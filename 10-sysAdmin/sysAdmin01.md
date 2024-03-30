@@ -22,7 +22,6 @@
 		### 1.2.Cliente
 	 	 - Quem acessa e usa seus serviços.    
 _______________________________________________________________________________________________________________________________________________   
-
 # 2.***Nuvem***   
 
  ## 2.1.[Cloud computing](https://colab.research.google.com/drive/1ZmYM90FYDxNtBGZEISQj4bY5jaE8Rr-M#scrollTo=gpOAAL87zrL5)
@@ -32,49 +31,47 @@ ________________________________________________________________________________
 					
   ### 2.2 [*Infrastructure as a Service*](https://cloud.google.com/learn/what-is-iaas?hl=pt-br#:~:text=IaaS%2C%20or%20Infrastructure%20as%20a,way%20requires%20time%20and%20capital.) 
 
-	- Um tipo de terceirização de infraestrutura de redes por meio da nuvem; que dispõe de VMs designadas para atuar nas diversas areas, aplicação, dados, virtualização, servidores etc, como se fosse uma máquina presencial/real.
+- Um tipo de terceirização de infraestrutura de redes por meio da nuvem; que dispõe de VMs designadas para atuar nas diversas areas, aplicação, dados, virtualização, servidores etc, como se fosse uma máquina presencial/real.
 
-	- Nesse caso **voce** é o gerente do serviço e determina como ele será gerido. Essa nuvem pode ser publica, privada ou híbrida;
-	 1. **Publica** é um serviço de nuvem fornecido ao público por terceiros
-	 2. **Privada** é o serviço particular de uma organização específica que detem todo serviço, ou físicamente no local ou em um DataCenter
-	 3. **Híbrida** é um pouco de ambos de modo integrado ao ponto que migrar de um a outro não traga problemas.
+- Nesse caso **voce** é o gerente do serviço e determina como ele será gerido. Essa nuvem pode ser publica, privada ou híbrida;
+	 
+1. **Publica** é um serviço de nuvem fornecido ao público por terceiros
+2. **Privada** é o serviço particular de uma organização específica que detem todo serviço, ou físicamente no local ou em um DataCenter
+3. **Híbrida** é um pouco de ambos de modo integrado ao ponto que migrar de um a outro não traga problemas.
      
-	#### 2.2.1 **Regiões**
-	 - Esse serviço é separado por regiões que são **locais geográficos que contêm os DataCenters**, cada DataCenter é separado por zona, e cada zona é plenamente independente uma da outra de modo que se um DataCenter fica offline por qualquer razão é possível migrar os usuários para outro sem que sequer seja notado; também é questão importante no que tange latência e distancia entre provedor e cliente.
+#### 2.2.1 **Regiões**
+- Esse serviço é separado por regiões que são **locais geográficos que contêm os DataCenters**, cada DataCenter é separado por zona, e cada zona é plenamente independente uma da outra de modo que se um DataCenter fica offline por qualquer razão é possível migrar os usuários para outro sem que sequer seja notado; também é questão importante no que tange latência e distancia entre provedor e cliente.
 
-  ### 2.3 [*Networking as a Service*](https://en.wikipedia.org/wiki/Network_as_a_service)
-	- Identico ao IaaS, porém, focado no aspecto de networking (redes) para que a empresa não tenha que lidar com o custoso hardware de rede.   
+### 2.3 [*Networking as a Service*](https://en.wikipedia.org/wiki/Network_as_a_service)
+- Identico ao IaaS, porém, focado no aspecto de networking (redes) para que a empresa não tenha que lidar com o custoso hardware de rede.   
 
-  ### 2.4 [*Platform as a Service*](https://www.business.com/articles/8-ways-cloud-computing-can-increase-productivity/)
-	- Identico, porém, focado na plataforma; com objetivo de auxiliar em compilação de código, armazenamento de dados e entrega de aplicativos.   
+### 2.4 [*Platform as a Service*](https://www.business.com/articles/8-ways-cloud-computing-can-increase-productivity/)
+- Identico, porém, focado na plataforma; com objetivo de auxiliar em compilação de código, armazenamento de dados e entrega de aplicativos.   
 
-  ### 2.5 *Software as a Service*
-	- O software ja vêm pré-configurado e o usuário final não lida com a configuração da nuvem. O provedor gerencia tudo relacionado ao serviço.	 
-
-_______________________________________________________________________________________________________________________________________________	
-
-# 3.[**Server OS**](https://phoenixnap.com/kb/server-operating-system)
- - OS dedicado à funcionalidade de um servidor. Quase todos distribuidores possuem um OS dedicados para servidores
-			
- - [conexões remotas](https://www.coursera.org/learn/administracao-de-sistemas-servicos-infraestrutura-ti/supplement/LgiZ5/conexoes-remotas)  
+### 2.5 *Software as a Service*
+- O software ja vêm pré-configurado e o usuário final não lida com a configuração da nuvem. O provedor gerencia tudo relacionado ao serviço.
  
- - [OpenSSH](https://en.wikipedia.org/wiki/OpenSSH)   
+---
+# 3.[**Server OS**](https://phoenixnap.com/kb/server-operating-system)
+- OS dedicado à funcionalidade de um servidor. Quase todos distribuidores possuem um OS dedicados para servidores
+			
+- [conexões remotas](https://www.coursera.org/learn/administracao-de-sistemas-servicos-infraestrutura-ti/supplement/LgiZ5/conexoes-remotas)  
+ 
+- [OpenSSH](https://en.wikipedia.org/wiki/OpenSSH)   
 
 # 4.[**File Transfer Protocol**](https://en.wikipedia.org/wiki/Comparison_of_FTP_client_software)
- - Forma de transferir arquivos via internet por meio de um servidor; não é muito seguro por não lidar com dado encriptado. Muito usado no compartilhamento de conteúdo web.
+- Forma de transferir arquivos via internet por meio de um servidor; não é muito seguro por não lidar com dado encriptado. Muito usado no compartilhamento de conteúdo web.
 			
-	### 4.1.SFTP, *Secure File Transf. Protocol*
-	 - Identico ao FTP, porem possui encripção nos dados, trazendo mais segurança às transferencias   
+### 4.1.SFTP, *Secure File Transf. Protocol*
+- Identico ao FTP, porem possui encripção nos dados, trazendo mais segurança às transferencias   
 
-	### 4.2.TFTP, *Trivial File Transfer Protocol*
-	 - Não usa nem autenticação, muito popular com hospedação de arquivos de instalação.   
+### 4.2.TFTP, *Trivial File Transfer Protocol*
+- Não usa nem autenticação, muito popular com hospedação de arquivos de instalação.   
 				
-	### 4.3.NetworkTimeProtocol
-	 - Modo usado para sincronizar relógios em máquinas conectadas em uma rede. Usado por alguns programas de segurança que necessitam de sincronia dos relógios para funcionar.
-	 - O modo exato de funcionamento varia de OS pra OS mas a ideia não muda.    
-
-_______________________________________________________________________________________________________________________________________________   
-
+### 4.3.NetworkTimeProtocol
+- Modo usado para sincronizar relógios em máquinas conectadas em uma rede. Usado por alguns programas de segurança que necessitam de sincronia dos relógios para funcionar.
+- O modo exato de funcionamento varia de OS pra OS mas a ideia não muda.
+ 
 # 5.***Serviços***   
 
  ## 5.1 No Linux
@@ -110,99 +107,97 @@ ________________________________________________________________________________
   ### 5.3.2 [Email](https://blog.servermania.com/what-protocols-send-receive-email-with-the-mail-server)
    - Existem varios, os mais comuns são:    
 
-	1. **POP3**
-	 - Post Office Protocol; baixa o email de um servidor de email direto ao cliente, e então, **deleta o email do servidor, no caso em que o email só podera ser visto em um unico dispositivo**.
-	 - Util se quiser manter uma quota de armazenamento baixa, já que **o email é deletado do servidor**, mesma razão pela qual é util em questão de segurança e privacidade
-	2. **IMAP**
-	 - Internet Message Adress Protocol; Parecido com o pop, **mas não deleta o email do servidor de emails**.
-	3. **SMTP**
-	 - Simple Mail Transfer; usado para enviar os emails.   
+1. **POP3**
+- Post Office Protocol; baixa o email de um servidor de email direto ao cliente, e então, **deleta o email do servidor, no caso em que o email só podera ser visto em um unico dispositivo**.
+- Util se quiser manter uma quota de armazenamento baixa, já que **o email é deletado do servidor**, mesma razão pela qual é util em questão de segurança e privacidade
+2. **IMAP**
+- Internet Message Adress Protocol; Parecido com o pop, **mas não deleta o email do servidor de emails**.
+3. **SMTP**
+- Simple Mail Transfer; usado para enviar os emails.   
 
-   #### 5.3.3 [Spam](https://colab.research.google.com/drive/1fEC2bfYk5LVaZWvNFlDB0n_tw1F9RqRx#scrollTo=FbimnQ22_vEI)
-    - É um tópico muito extenso que requer muita atenção, para mais informações, seguir o link.
-    - **Spam é definido como qualquer mensagem ou chamada não solicitada enviada para um grande número de destinatários**.   
+#### 5.3.3 [Spam](https://colab.research.google.com/drive/1fEC2bfYk5LVaZWvNFlDB0n_tw1F9RqRx#scrollTo=FbimnQ22_vEI)
+- É um tópico muito extenso que requer muita atenção, para mais informações, seguir o link.
+- **Spam é definido como qualquer mensagem ou chamada não solicitada enviada para um grande número de destinatários**.   
   
-    ##### 5.3.3.1 Tipos:
-	 - **Phishing**; do ingles *fishing ou pescar*, tenta enganar a vítima a liberar informações como dados pessoais, logins, senhas etc.
-	 - Pode se dar tambem por mensagens de texto; em via de regra, *todo tipo de comunicação falsa com intuito de enganar a vítima a liberar informação é considerado phishing*.
-	 - **Clickbait**; do ingles '*isca*' de clique, tenta enganar a vítima com link que não leva ao endereço que indica levar.
-	 - **Spoofing**; do ingles *imitar/fingir*, é uma mensagen/email enviada de um endereço que se apresenta como legítimo, mas não é.
-	 - **Golpe de suporte técnico**; o golpista de finge ser do suporte técnico de uma companhia legítima, Microsoft por exemplo, e tem objetivo de obter informações da vítima.     
+##### 5.3.3.1 Tipos:
+- **Phishing**; do ingles *fishing ou pescar*, tenta enganar a vítima a liberar informações como dados pessoais, logins, senhas etc.
+- Pode se dar tambem por mensagens de texto; em via de regra, *todo tipo de comunicação falsa com intuito de enganar a vítima a liberar informação é considerado phishing*.
+- **Clickbait**; do ingles '*isca*' de clique, tenta enganar a vítima com link que não leva ao endereço que indica levar.
+- **Spoofing**; do ingles *imitar/fingir*, é uma mensagen/email enviada de um endereço que se apresenta como legítimo, mas não é.
+- **Golpe de suporte técnico**; o golpista de finge ser do suporte técnico de uma companhia legítima, Microsoft por exemplo, e tem objetivo de obter informações da vítima.     
 
  ## 5.4 **Serviços de arquivo**   
  - Auxiliam na organização de arquivos em larga escala; seja salvando, baixando ou enviando, entre funcionários podendo ser da mesma organização ou de organizações diferentes.    
 
-  ### 5.4.1 Servidores de Armaz. de Arquivos.
-   - Permitem o armazenamento e distribuição de arquivos de modo central. 
-   - [Este serviço tambem pode ser feito por meio da nuvem](https://www.cloudwards.net/comparison/).  
+### 5.4.1 Servidores de Armaz. de Arquivos.
+- Permitem o armazenamento e distribuição de arquivos de modo central. 
+- [Este serviço tambem pode ser feito por meio da nuvem](https://www.cloudwards.net/comparison/).  
 
-   #### 5.4.1.1 Armaz. de Arquivos em rede   
+#### 5.4.1.1 Armaz. de Arquivos em rede   
 
-    ##### NFS - **Network File System** (Sist. de arqui. em rede)
-	 - Protocolo que permite compartilhação de arquivos pela rede.
-	 - Compatível com *todos* OS.
-	 - Configurado por um ambiente em Linux
-		- *É possível instalar o software do servidor NFS e, em seguida, modificar os arquivos de configuração dos diretórios aos quais você quer permitir acesso compartilhado. Depois de fazer isso, o serviço NFS vai ser executado em segundo plano no servidor.*
-		- *A partir dai, é só usar o nome de host ao invés do nome do disco rígido e acessar o diretório* `/share`
-	 - Apesar disso, o NFS ainda possui algums problemas de compatibilidade com Windows.   
+##### NFS - **Network File System** (Sist. de arqui. em rede)
+- Protocolo que permite compartilhação de arquivos pela rede.
+- Compatível com *todos* OS.
+- Configurado por um ambiente em Linux
+	- *É possível instalar o software do servidor NFS e, em seguida, modificar os arquivos de configuração dos diretórios aos quais você quer permitir acesso compartilhado. Depois de fazer isso, o serviço NFS vai ser executado em segundo plano no servidor.*
+	- *A partir dai, é só usar o nome de host ao invés do nome do disco rígido e acessar o diretório* `/share`
+- Apesar disso, o NFS ainda possui algums problemas de compatibilidade com Windows.   
 
-	##### **Samba**
-	 - **NFS do windows**, possui todas funcionalidades do NFS e ainda possui outro serviços como por exemplo serviço de impressora.
-	 - Implementa o protocolo [**SMB**](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/hh831795(v=ws.11)?redirectedfrom=MSDN)
+##### **Samba**
+- **NFS do windows**, possui todas funcionalidades do NFS e ainda possui outro serviços como por exemplo serviço de impressora.
+- Implementa o protocolo [**SMB**](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/hh831795(v=ws.11)?redirectedfrom=MSDN)
 
-	##### NAS - **Network Attached Storage**
-	 - Computador dedicado à armaz. de dados, possui um OS simplificado e MUITO espaço de armazenamento.  
+##### NAS - **Network Attached Storage**
+- Computador dedicado à armaz. de dados, possui um OS simplificado e MUITO espaço de armazenamento.  
 
-   #### [**Sincronização móvel**](https://colab.research.google.com/drive/1NAQxoDJ4mdpS3m1dB4w2J7tsnUeitjXJ#scrollTo=_hPMAALtg0Pm)
-    - Garante que os dados são iguais em dispositivos móveis. Geralmente isso é feito por meio da nuvem onde estão armazenados os dados originais.
+#### [**Sincronização móvel**](https://colab.research.google.com/drive/1NAQxoDJ4mdpS3m1dB4w2J7tsnUeitjXJ#scrollTo=_hPMAALtg0Pm)
+- Garante que os dados são iguais em dispositivos móveis. Geralmente isso é feito por meio da nuvem onde estão armazenados os dados originais.
 	- Tanto iOS quanto Android possuem suporte de sincronia na nuvem.   
 
-  ## 5.5 **Serviços de Impressora** 
-   - Organizações maiores precisam de um gerenciamente de impressoras mais robusto, devido ao fato que podem ter dezenas de diferentes impressoras funcionando. Normalmente isso é feito por meio de um servidor de impressões.   
+## 5.5 **Serviços de Impressora** 
+- Organizações maiores precisam de um gerenciamente de impressoras mais robusto, devido ao fato que podem ter dezenas de diferentes impressoras funcionando. Normalmente isso é feito por meio de um servidor de impressões.   
 
-  ### 5.5.1 [**Servidor de Impressão**](https://colab.research.google.com/drive/1BXvIwGGL-4-ZBjCpzBIBy0GonVvh2byw#scrollTo=ctmyMbkBpyls)
-   - Local central de gerenciamento de impressão, auxilia a tudo, desde a impressão ao gerenciamento físico das impressoras em si. Muitos OS ja vem com um serviço de impressão, então é necessário só instala-lo em um servidor.
+### 5.5.1 [**Servidor de Impressão**](https://colab.research.google.com/drive/1BXvIwGGL-4-ZBjCpzBIBy0GonVvh2byw#scrollTo=ctmyMbkBpyls)
+- Local central de gerenciamento de impressão, auxilia a tudo, desde a impressão ao gerenciamento físico das impressoras em si. Muitos OS ja vem com um serviço de impressão, então é necessário só instala-lo em um servidor.
 	- ***No Linux*** o serviço é o [CUPS](https://en.wikipedia.org/wiki/CUPS); **Common UNIX Printing System** que o permite gerenciar o sistema de impressão por meio de uma URL.
-   - Esse serviço tambem pode ser gerenciado pela *nuvem*, associando impressoras à navegadores de WEB permitindo que os usuários imprimam sem precisar configurar nada nas máquinas.   
+- Esse serviço tambem pode ser gerenciado pela *nuvem*, associando impressoras à navegadores de WEB permitindo que os usuários imprimam sem precisar configurar nada nas máquinas.   
 
- ## 5.6 **Serviços de Plataforma**
-  - Providencia uma plataforma para que devs possam criar e implementar aplicativos de software por completo, sem ter que lidar com manutenções, rede e outros serviços associados às ferramentas da plataforma.   
+## 5.6 **Serviços de Plataforma**
+- Providencia uma plataforma para que devs possam criar e implementar aplicativos de software por completo, sem ter que lidar com manutenções, rede e outros serviços associados às ferramentas da plataforma.   
 
-   ### 5.6.1 [**Balanceadores de Carga**](https://colab.research.google.com/drive/1ko__xVFHgp2XpIW98OzDzfcHQHBYJrlC#scrollTo=5ANMCbfy62dZ)
-    - Balanceadores de carga monitoram e encaminham o tráfego de rede de entrada e saída de e para um pool de servidores físicos ou virtuais, podendo ser hardware ou software, distribuindo o tráfego de maneira uniforme ou conforme regras personalizadas, impedindo que o fluxo de tráfego sobrecarregue um servidor.
-	- Os recursos básicos dos servidores costumam incluir CPUs, RAM e largura de banda de rede, mas também podem oferecer outros recursos, como aplicativos, servidores de arquivos, serviços de banco de dados e muito mais. 
-	- Os balanceadores de carga também conseguem detectar quando um servidor falhou em redirecionar e equilibrar o tráfego de rede nos outros servidores. Além disso, os balanceadores dão a capacidade de adicionar e remover servidores do pool conforme necessário.   
+### 5.6.1 [**Balanceadores de Carga**](https://colab.research.google.com/drive/1ko__xVFHgp2XpIW98OzDzfcHQHBYJrlC#scrollTo=5ANMCbfy62dZ)
+- Balanceadores de carga monitoram e encaminham o tráfego de rede de entrada e saída de e para um pool de servidores físicos ou virtuais, podendo ser hardware ou software, distribuindo o tráfego de maneira uniforme ou conforme regras personalizadas, impedindo que o fluxo de tráfego sobrecarregue um servidor.
+- Os recursos básicos dos servidores costumam incluir CPUs, RAM e largura de banda de rede, mas também podem oferecer outros recursos, como aplicativos, servidores de arquivos, serviços de banco de dados e muito mais. 
+- Os balanceadores de carga também conseguem detectar quando um servidor falhou em redirecionar e equilibrar o tráfego de rede nos outros servidores. Além disso, os balanceadores dão a capacidade de adicionar e remover servidores do pool conforme necessário.   
 
-	#### 5.6.1.1 **Escalonamento Automático ou Autoscaling**
-	 - Serviço que equilibra a carga de modo automático, ao ponto que cada VM só sera usada (e cobrada) conforme for necessário.
+#### 5.6.1.1 **Escalonamento Automático ou Autoscaling**
+- Serviço que equilibra a carga de modo automático, ao ponto que cada VM só sera usada (e cobrada) conforme for necessário.
 
-   ### 5.6.2 **Bancos de Dados**
-    - Permitem armazenar, consultar, filtrar e gerenciar grandes quantidades de dados.
-	- [MySQL, PostgreSQL & SQLite](https://www.digitalocean.com/community/tutorials/sqlite-vs-mysql-vs-postgresql-a-comparison-of-relational-database-management-systems)  
+### 5.6.2 **Bancos de Dados**
+- Permitem armazenar, consultar, filtrar e gerenciar grandes quantidades de dados.
+- [MySQL, PostgreSQL & SQLite](https://www.digitalocean.com/community/tutorials/sqlite-vs-mysql-vs-postgresql-a-comparison-of-relational-database-management-systems)  
 
- ## 5.7 **Problemas de Serv. de Rede**
-  - Os navegadores de hoje têm ferramentas integradas que ajudam a diagnosticar problemas no navegador ou no próprio site por meio das ferramentas de desenvolvedor (**F12** na maioria dos browsers).   
+## 5.7 **Problemas de Serv. de Rede**
+- Os navegadores de hoje têm ferramentas integradas que ajudam a diagnosticar problemas no navegador ou no próprio site por meio das ferramentas de desenvolvedor (**F12** na maioria dos browsers).   
 
-  ### 5.7.1 [**Códigos de Status HTTP**](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)
-   - Os códigos de status HTTP são códigos ou números que indicam algum tipo de erro ou mensagens informativas que ocorreram ao tentar acessar um recurso da Web.
+### 5.7.1 [**Códigos de Status HTTP**](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)
+- Os códigos de status HTTP são códigos ou números que indicam algum tipo de erro ou mensagens informativas que ocorreram ao tentar acessar um recurso da Web.
 ```
     1xx informational response  – the request was received, continuing process
     2xx successful 				– the request was successfully received, understood, and accepted
     3xx redirection  			– further action needs to be taken in order to complete the request
     4xx client error 			– the request contains bad syntax or cannot be fulfilled
     5xx server error 			– the server failed to fulfil an apparently valid request
-```
-
-____________________________________________________________________________________________________________________________________________   
+```   
 
 # 7.DNS, *Doman Name Service*
- - Sistema de nomeamento que converte nome de domíno em endereço de IP, controlando qual servidor um usuário final alcançará quando digitar um nome de domínio no navegador da web.
+- Sistema de nomeamento que converte nome de domíno em endereço de IP, controlando qual servidor um usuário final alcançará quando digitar um nome de domínio no navegador da web.
 
- ## 7.1.DHCP, *Dynamic Host Config. Protocol*
-  - Protocolo usado para mapear computadores de uma rede à endereços de IP de modo automático.  
+## 7.1.DHCP, *Dynamic Host Config. Protocol*
+- Protocolo usado para mapear computadores de uma rede à endereços de IP de modo automático.  
 
- ## 7.2.PXE, *Pre Exec. Enviroment* (pixie)
-  - Configuração de pré-inicialização que permite um computador rodar/instalar um OS por meio da rede.   
+## 7.2.PXE, *Pre Exec. Enviroment* (pixie)
+- Configuração de pré-inicialização que permite um computador rodar/instalar um OS por meio da rede.   
 
- ## 7.3.Dnsmasq
-  - Serviço que providencia *DNS, DHCP, TFPT* e *PXE* em um pacote único. Considerado util por centralizar varios serviços diferentes, leve em consumo de recursos e fácil de se usar.   
+## 7.3.Dnsmasq
+- Serviço que providencia *DNS, DHCP, TFPT* e *PXE* em um pacote único. Considerado util por centralizar varios serviços diferentes, leve em consumo de recursos e fácil de se usar.   
