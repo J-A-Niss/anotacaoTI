@@ -186,14 +186,14 @@
     5xx server error – the server failed to fulfil an apparently valid request
 ```   
 
-# 7.DNS, *Doman Name Service*
+# 6.DNS, *Doman Name Service*
 - Sistema de nomeamento que converte nome de domíno em endereço de IP, controlando qual servidor um usuário final alcançará quando digitar um nome de domínio no navegador da web.
 
-## 7.1.DHCP, *Dynamic Host Config. Protocol*
+## 6.1.DHCP, *Dynamic Host Config. Protocol*
 - Protocolo usado para mapear computadores de uma rede à endereços de IP de modo automático.  
 
-## 7.2.PXE, *Pre Exec. Enviroment* (pixie)
+## 6.2.PXE, *Pre Exec. Enviroment* (pixie)
 - Configuração de pré-inicialização que permite um computador rodar/instalar um OS por meio da rede.   
 
-## 7.3.Dnsmasq
+## 6.3.Dnsmasq
 - Serviço que providencia *DNS, DHCP, TFPT* e *PXE* em um pacote único. Considerado util por centralizar varios serviços diferentes, leve em consumo de recursos e fácil de se usar.   
