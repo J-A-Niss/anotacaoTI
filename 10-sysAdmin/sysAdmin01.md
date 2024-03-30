@@ -1,8 +1,8 @@
 # 1.***SysAdmin***
- - Sysadmin é o administrador; quem administra o(s) sistema(s); o responsável por fazer com que as coisas funcionem direito.
- - Gravar as ações pode ajudar com resolução de problemas, anotar de qualquer modo que seja, as ações feitas pode ser usado como um guia do que foi feito e do que aconteceu.
- - Comandos como o `script` em Linux e o ` Start-Transcript` no powershell ajudam a gravar os comandos usados nos respectivos CMDs, para auxiliar em possiveis resoluções.
- - Gravar a seção tambem, com programas como *OBS* ou o *recordMyDesktop* tambem auxilia.
+- Sysadmin é o administrador; quem administra o(s) sistema(s); o responsável por fazer com que as coisas funcionem direito.
+- Gravar as ações pode ajudar com resolução de problemas, anotar de qualquer modo que seja, as ações feitas pode ser usado como um guia do que foi feito e do que aconteceu.
+- Comandos como o `script` em Linux e o ` Start-Transcript` no powershell ajudam a gravar os comandos usados nos respectivos CMDs, para auxiliar em possiveis resoluções.
+- Gravar a seção tambem, com programas como *OBS* ou o *recordMyDesktop* tambem auxilia.
 	
 ## 1.1.**Servidor**
 - Software ou máquina que providencia serviços à outros softwares e máquinas; por exemplo um webserver armazena e providencia conteúdo à clientes através da internet.
@@ -16,7 +16,6 @@
 							
 #### 1.3.Reprodução do caso
 - Metodologia usada para retraçar passos que levaram a um erro:
-
 1. *O que foi feito para chegar nesse ponto.*
 2. *O que aconteceu de inesperado.*
 3. *O que era para acontecer.*
@@ -26,15 +25,13 @@
 
 # 2.***Nuvem***   
 
- ## 2.1.[Cloud computing](https://colab.research.google.com/drive/1ZmYM90FYDxNtBGZEISQj4bY5jaE8Rr-M#scrollTo=gpOAAL87zrL5)
- - Conceito de que voce pode acessar todo conteúdo da internet em qualquer lugar do mundo por meio da Nuvem contanto que se tenha conexão à internet; Na verdade é uma rede de computadores que armazena e processa dados **DataCenters** ao redor do mundo todo, que são centros de servidores especificamente designados para armazenar dados.
- - A computação em nuvem tem alguns benefícios, como menor custo inicial, serviços acessíveis de qualquer lugar do mundo que tenha conexão com a internet, e atualizações de software gerenciadas por outra empresa.
- - Com a computação local, você controle tudo da sua infraestrutura de TI e pode atualizar e proteger sua organização o tempo todo.  
+## 2.1.[Cloud computing](https://colab.research.google.com/drive/1ZmYM90FYDxNtBGZEISQj4bY5jaE8Rr-M#scrollTo=gpOAAL87zrL5)
+- Conceito de que voce pode acessar todo conteúdo da internet em qualquer lugar do mundo por meio da Nuvem contanto que se tenha conexão à internet; Na verdade é uma rede de computadores que armazena e processa dados **DataCenters** ao redor do mundo todo, que são centros de servidores especificamente designados para armazenar dados.
+- A computação em nuvem tem alguns benefícios, como menor custo inicial, serviços acessíveis de qualquer lugar do mundo que tenha conexão com a internet, e atualizações de software gerenciadas por outra empresa.
+- Com a computação local, você controle tudo da sua infraestrutura de TI e pode atualizar e proteger sua organização o tempo todo.  
 					
 ### 2.2 [*Infrastructure as a Service*](https://cloud.google.com/learn/what-is-iaas?hl=pt-br#:~:text=IaaS%2C%20or%20Infrastructure%20as%20a,way%20requires%20time%20and%20capital.) 
-
 - Um tipo de terceirização de infraestrutura de redes por meio da nuvem; que dispõe de VMs designadas para atuar nas diversas areas, aplicação, dados, virtualização, servidores etc, como se fosse uma máquina presencial/real.
-
 - Nesse caso **voce** é o gerente do serviço e determina como ele será gerido. Essa nuvem pode ser publica, privada ou híbrida;
 	 
 1. **Publica** é um serviço de nuvem fornecido ao público por terceiros
@@ -73,38 +70,38 @@
  
 # 5.***Serviços***   
 
- ## 5.1 No Linux
- - Os arquivos de configuração estão no diretório `/etc`; por exemplo, a configuração do vsftpd está no diretório `etc/vsftpd.conf`
+## 5.1 No Linux
+- Os arquivos de configuração estão no diretório `/etc`; por exemplo, a configuração do vsftpd está no diretório `etc/vsftpd.conf`
 
- #### Comandos:
- 1. `service ntp status` indica o status do serviço, no caso o ntp
- 2. `sudo date -s "ano-mes-dia hr:min:seg"` para determinar a data e hora manualmente
- 3. `sudo service ntp stop` pausa o serviço, no caso o ntp
- 4. `sudo service ntp start` inicia o serviço
- 5. `sudo service ntp restart` reinicia o serviço por meio do `stop` e `start` simultaneamente
- 6. `sudo apt install vsftpd` instala o *vsftpd*, um simples servidor ftp
- 7. `lftp localholst` *lftp* é um programa cliente ftp que permite conectar a um servidor ftp
- 8. `sudo service vsftpds reload` o serviço recarrega, re-lendo as configurações do arquivo, sem sua interrupção
+#### Comandos:
+1. `service ntp status` indica o status do serviço, no caso o ntp
+2. `sudo date -s "ano-mes-dia hr:min:seg"` para determinar a data e hora manualmente
+3. `sudo service ntp stop` pausa o serviço, no caso o ntp
+4. `sudo service ntp start` inicia o serviço
+5. `sudo service ntp restart` reinicia o serviço por meio do `stop` e `start` simultaneamente
+6. `sudo apt install vsftpd` instala o *vsftpd*, um simples servidor ftp
+7. `lftp localholst` *lftp* é um programa cliente ftp que permite conectar a um servidor ftp
+8. `sudo service vsftpds reload` o serviço recarrega, re-lendo as configurações do arquivo, sem sua interrupção
 	 
- ## 5.2 No Windows
- - Por meio da GUI pode se configurar os serviços.   
+## 5.2 No Windows
+- Por meio da GUI pode se configurar os serviços.   
 
- #### Comandos:
- 1. `Get-Service` lista todos serviços do windows
- 2. `Get-Service wuauserv` *wuauserv* significa windows update service
- 3. `Get-Service wuauserv | Format-List *` lista informações adicionais do serviço em questão
- 4. `Stop-Service wuauserv` pausa o windows update
- 5. `Start-Service wuauserv` inicia o windows update   
+#### Comandos:
+1. `Get-Service` lista todos serviços do windows
+2. `Get-Service wuauserv` *wuauserv* significa windows update service
+3. `Get-Service wuauserv | Format-List *` lista informações adicionais do serviço em questão
+4. `Stop-Service wuauserv` pausa o windows update
+5. `Start-Service wuauserv` inicia o windows update   
 
- ## 5.3 **Comunicação**
-  - Função essencial para qualquer organização, existem varios metodos para que funcionários se comuniquem entre si, aqui alguns listados:
+## 5.3 **Comunicação**
+- Função essencial para qualquer organização, existem varios metodos para que funcionários se comuniquem entre si, aqui alguns listados:
 
-  ### 5.3.1 IRC - Internet Chat Relay
-   - Protocolo usado para mensagens de bate-papo, operando em modelo cliente-servidor, sendo que muitos clientes IRC podem ser usados para se conectar à um servidor IRC.
-   - Muito usado nos anos 90, mas foi aos poucos substituido por chats de medias sociais como instagram e facebook.  
+### 5.3.1 IRC - Internet Chat Relay
+- Protocolo usado para mensagens de bate-papo, operando em modelo cliente-servidor, sendo que muitos clientes IRC podem ser usados para se conectar à um servidor IRC.
+- Muito usado nos anos 90, mas foi aos poucos substituido por chats de medias sociais como instagram e facebook.  
 
-  ### 5.3.2 [Email](https://blog.servermania.com/what-protocols-send-receive-email-with-the-mail-server)
-   - Existem varios, os mais comuns são:    
+### 5.3.2 [Email](https://blog.servermania.com/what-protocols-send-receive-email-with-the-mail-server)
+- Existem varios, os mais comuns são:    
 
 1. **POP3**
 - Post Office Protocol; baixa o email de um servidor de email direto ao cliente, e então, **deleta o email do servidor, no caso em que o email só podera ser visto em um unico dispositivo**.
