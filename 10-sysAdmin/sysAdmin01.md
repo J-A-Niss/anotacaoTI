@@ -31,12 +31,13 @@ ________________________________________________________________________________
  - Com a computação local, você controle tudo da sua infraestrutura de TI e pode atualizar e proteger sua organização o tempo todo.  
 					
   ### 2.2 [*Infrastructure as a Service*](https://cloud.google.com/learn/what-is-iaas?hl=pt-br#:~:text=IaaS%2C%20or%20Infrastructure%20as%20a,way%20requires%20time%20and%20capital.) 
-  
+
 	- Um tipo de terceirização de infraestrutura de redes por meio da nuvem; que dispõe de VMs designadas para atuar nas diversas areas, aplicação, dados, virtualização, servidores etc, como se fosse uma máquina presencial/real.
+
 	- Nesse caso **voce** é o gerente do serviço e determina como ele será gerido. Essa nuvem pode ser publica, privada ou híbrida;
-		1. **Publica** é um serviço de nuvem fornecido ao público por terceiros
-		2. **Privada** é o serviço particular de uma organização específica que detem todo serviço, ou físicamente no local ou em um DataCenter
-		3. **Híbrida** é um pouco de ambos de modo integrado ao ponto que migrar de um a outro não traga problemas.
+	 1. **Publica** é um serviço de nuvem fornecido ao público por terceiros
+	 2. **Privada** é o serviço particular de uma organização específica que detem todo serviço, ou físicamente no local ou em um DataCenter
+	 3. **Híbrida** é um pouco de ambos de modo integrado ao ponto que migrar de um a outro não traga problemas.
      
 	#### 2.2.1 **Regiões**
 	 - Esse serviço é separado por regiões que são **locais geográficos que contêm os DataCenters**, cada DataCenter é separado por zona, e cada zona é plenamente independente uma da outra de modo que se um DataCenter fica offline por qualquer razão é possível migrar os usuários para outro sem que sequer seja notado; também é questão importante no que tange latência e distancia entre provedor e cliente.
