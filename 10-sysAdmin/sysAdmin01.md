@@ -4,23 +4,25 @@
  - Comandos como o `script` em Linux e o ` Start-Transcript` no powershell ajudam a gravar os comandos usados nos respectivos CMDs, para auxiliar em possiveis resoluções.
  - Gravar a seção tambem, com programas como *OBS* ou o *recordMyDesktop* tambem auxilia.
 	
-	## 1.1.**Servidor**
-	- Software ou máquina que providencia serviços à outros softwares e máquinas; por exemplo um webserver armazena e providencia conteúdo à clientes através da internet.
-		##### 1.1.1.[KVM Switch, Keyboard Video Mouse](https://en.wikipedia.org/wiki/KVM_switch)
-		- Dispositivo que permite um usuário controlar varios computadores com um ou mais setups de mouse, teclado e monitor.    
-							
-		#### 1.2.Produção
-		- Partes da infraestrutura onde um serviço é executado ao cliente. Para qualquer alteração feita, deve ser antes testada em um **ambiente de teste**; uma VM rodando a mesma config. da produção, mas que não ta disponível ao cliente.
-		- Tambem é recomendável ter uma maquina secundária de stand-by com as mesmas especificações da principal, para que possa redirecionar o tráfego durante a aplicação das alterações; o objetivo é nunca tirar o acesso do cliente ao serviço.
-							
-		#### 1.3.Reprodução do caso
-		- Metodologia usada para retraçar passos que levaram a um erro:
-			1. *O que foi feito para chegar nesse ponto.*
-			2. *O que aconteceu de inesperado.*
-			3. *O que era para acontecer.*
+## 1.1.**Servidor**
+- Software ou máquina que providencia serviços à outros softwares e máquinas; por exemplo um webserver armazena e providencia conteúdo à clientes através da internet.
 
-		### 1.2.Cliente
-	 	 - Quem acessa e usa seus serviços.    
+##### 1.1.1.[KVM Switch, Keyboard Video Mouse](https://en.wikipedia.org/wiki/KVM_switch)
+- Dispositivo que permite um usuário controlar varios computadores com um ou mais setups de mouse, teclado e monitor.    
+							
+#### 1.2.Produção
+- Partes da infraestrutura onde um serviço é executado ao cliente. Para qualquer alteração feita, deve ser antes testada em um **ambiente de teste**; uma VM rodando a mesma config. da produção, mas que não ta disponível ao cliente.
+- Tambem é recomendável ter uma maquina secundária de stand-by com as mesmas especificações da principal, para que possa redirecionar o tráfego durante a aplicação das alterações; o objetivo é nunca tirar o acesso do cliente ao serviço.
+							
+#### 1.3.Reprodução do caso
+- Metodologia usada para retraçar passos que levaram a um erro:
+
+1. *O que foi feito para chegar nesse ponto.*
+2. *O que aconteceu de inesperado.*
+3. *O que era para acontecer.*
+
+### 1.2.Cliente
+- Quem acessa e usa seus serviços.    
 _______________________________________________________________________________________________________________________________________________   
 # 2.***Nuvem***   
 
