@@ -22,8 +22,8 @@
 3. *O que era para acontecer.*
 
 ### 1.2.Cliente
-- Quem acessa e usa seus serviços.    
-_______________________________________________________________________________________________________________________________________________   
+- Quem acessa e usa seus serviços.
+
 # 2.***Nuvem***   
 
  ## 2.1.[Cloud computing](https://colab.research.google.com/drive/1ZmYM90FYDxNtBGZEISQj4bY5jaE8Rr-M#scrollTo=gpOAAL87zrL5)
@@ -31,7 +31,7 @@ ________________________________________________________________________________
  - A computação em nuvem tem alguns benefícios, como menor custo inicial, serviços acessíveis de qualquer lugar do mundo que tenha conexão com a internet, e atualizações de software gerenciadas por outra empresa.
  - Com a computação local, você controle tudo da sua infraestrutura de TI e pode atualizar e proteger sua organização o tempo todo.  
 					
-  ### 2.2 [*Infrastructure as a Service*](https://cloud.google.com/learn/what-is-iaas?hl=pt-br#:~:text=IaaS%2C%20or%20Infrastructure%20as%20a,way%20requires%20time%20and%20capital.) 
+### 2.2 [*Infrastructure as a Service*](https://cloud.google.com/learn/what-is-iaas?hl=pt-br#:~:text=IaaS%2C%20or%20Infrastructure%20as%20a,way%20requires%20time%20and%20capital.) 
 
 - Um tipo de terceirização de infraestrutura de redes por meio da nuvem; que dispõe de VMs designadas para atuar nas diversas areas, aplicação, dados, virtualização, servidores etc, como se fosse uma máquina presencial/real.
 
@@ -53,12 +53,9 @@ ________________________________________________________________________________
 ### 2.5 *Software as a Service*
 - O software ja vêm pré-configurado e o usuário final não lida com a configuração da nuvem. O provedor gerencia tudo relacionado ao serviço.
  
----
 # 3.[**Server OS**](https://phoenixnap.com/kb/server-operating-system)
-- OS dedicado à funcionalidade de um servidor. Quase todos distribuidores possuem um OS dedicados para servidores
-			
+- OS dedicado à funcionalidade de um servidor. Quase todos distribuidores possuem um OS dedicados para servidores	
 - [conexões remotas](https://www.coursera.org/learn/administracao-de-sistemas-servicos-infraestrutura-ti/supplement/LgiZ5/conexoes-remotas)  
- 
 - [OpenSSH](https://en.wikipedia.org/wiki/OpenSSH)   
 
 # 4.[**File Transfer Protocol**](https://en.wikipedia.org/wiki/Comparison_of_FTP_client_software)
