@@ -1,4 +1,4 @@
-# 1.***SysAdmin***
+# 1.[***SysAdmin***](https://github.com/J-A-Niss/anotacaoTI/blob/main/10-sysAdmin/sysAdmin01.md)
 - Sysadmin é o administrador; quem administra o(s) sistema(s); o responsável por fazer com que as coisas funcionem direito.
 - Gravar as ações pode ajudar com resolução de problemas, anotar de qualquer modo que seja, as ações feitas pode ser usado como um guia do que foi feito e do que aconteceu.
 - Comandos como o `script` em Linux e o ` Start-Transcript` no powershell ajudam a gravar os comandos usados nos respectivos CMDs, para auxiliar em possiveis resoluções.
