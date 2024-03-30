@@ -30,7 +30,8 @@ ________________________________________________________________________________
  - A computação em nuvem tem alguns benefícios, como menor custo inicial, serviços acessíveis de qualquer lugar do mundo que tenha conexão com a internet, e atualizações de software gerenciadas por outra empresa.
  - Com a computação local, você controle tudo da sua infraestrutura de TI e pode atualizar e proteger sua organização o tempo todo.  
 					
-  ### 2.2 [*Infrastructure as a Service*](https://cloud.google.com/learn/what-is-iaas?hl=pt-br#:~:text=IaaS%2C%20or%20Infrastructure%20as%20a,way%20requires%20time%20and%20capital.)
+  ### 2.2 [*Infrastructure as a Service*](https://cloud.google.com/learn/what-is-iaas?hl=pt-br#:~:text=IaaS%2C%20or%20Infrastructure%20as%20a,way%20requires%20time%20and%20capital.) 
+  
 	- Um tipo de terceirização de infraestrutura de redes por meio da nuvem; que dispõe de VMs designadas para atuar nas diversas areas, aplicação, dados, virtualização, servidores etc, como se fosse uma máquina presencial/real.
 	- Nesse caso **voce** é o gerente do serviço e determina como ele será gerido. Essa nuvem pode ser publica, privada ou híbrida;
 		1. **Publica** é um serviço de nuvem fornecido ao público por terceiros
