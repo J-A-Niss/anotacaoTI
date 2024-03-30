@@ -184,7 +184,10 @@
     3xx redirection – further action needs to be taken in order to complete the request
     4xx client error – the request contains bad syntax or cannot be fulfilled
     5xx server error – the server failed to fulfil an apparently valid request
-```   
+```    
+
+## **Serviços de Diretório**
+- 
 
 # 6.DNS, *Doman Name Service*
 - Sistema de nomeamento que converte nome de domíno em endereço de IP, controlando qual servidor um usuário final alcançará quando digitar um nome de domínio no navegador da web.
@@ -196,4 +199,6 @@
 - Configuração de pré-inicialização que permite um computador rodar/instalar um OS por meio da rede.   
 
 ## 6.3.Dnsmasq
-- Serviço que providencia *DNS, DHCP, TFPT* e *PXE* em um pacote único. Considerado util por centralizar varios serviços diferentes, leve em consumo de recursos e fácil de se usar.   
+- Serviço que providencia *DNS, DHCP, TFPT* e *PXE* em um pacote único. Considerado util por centralizar varios serviços diferentes, leve em consumo de recursos e fácil de se usar.    
+
+
