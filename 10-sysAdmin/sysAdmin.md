@@ -186,8 +186,61 @@
     5xx server error – the server failed to fulfil an apparently valid request
 ```    
 
-## **Serviços de Diretório**
-- 
+## 5.8 **Serviços de Diretório**
+- Contém serviços de busca que fornecem mapeamento entre recursos de rede e seus endereços, ou seja, usado para organizar e pesquisar objetos; de usuários à números de telefone compartilhados na rede. Auxilia no gerenciamento de usuários, ao invés de salvar todas informações localmente, salva tudo no mesmo servidor caso precise fazer alguma alteração geral de modo mais rápido.
+- **Ou seja, são uteis para para organizar dados e torná-los pesquisáveis para uma organização** e isso é feito por meio de um modelo hierárquico de objetos e containers, esses chamados de Unidade Organizacional (*Organizational Units*)
+    - *Identico à um sistema de arquivo (Arquivo e Pastas)*  
+```
+Domínio
+    - Computadores
+    - Usuários
+        - Venda
+            - Usuário 1
+            - Usuário 2
+        - Engenharia
+            - Usuário 1
+            - Usuário 2
+        - Marketing
+            - Usuário 1
+            - Usuário 2
+            - Usuário 3 
+```    
+### 5.8.1 **Replicação**
+- Modo de copiar e distribuir a informação entre varios servidores físicos, mas ainda de modo 'unificado' para propositos de armazenamento e administração.
+- Outra função é redução de latência ao ter réplicas da pesquisa do diretório localmente, em cada escritório.   
+
+### 5.8.2 **X.500**
+- Padrão de diretório, que inclui:
+    1. *Directory Access Protocol, ou DAP*
+    2. *Directory System Protocol, ou DSP*
+    3. *Directory Information Shadowing Protocol, ou DISP*
+    4. *Directory Operational Bindings Management Protocol, ou DOP*
+- Microsoft tambem tem uma, chamada de *Active Directory* ou *AD*    
+
+### 5.8.3 [**LDAP - Lightweigth Directory Access Protoc.**](https://en.wikipedia.org/wiki/LDAP_Data_Interchange_Format)
+- Usado para acessar informações em diretórios de serviços numa rede.
+
+#### 5.8.3.1 OpenLADP
+- Um *LDAP* em código aberto que oferece suporte à varias plataformas incluindo Windows, UNIX, Linux e varios derivados.
+
+##### 5.8.3.1.1 Forma do Registro:
+- O registro é uma coleção de informações usadas para descrever algo, que se dá por:
+```
+dn:CN=Nome Sobrenome,OU=Sysadmin,DC=example,DC=com
+
+dn | distinguished name
+CN | common name of the object
+OU | Organizational Unit
+DC | domain component
+```  
+##### 5.8.3.1.2 Autenticação LADP
+- Restringe o acesso de usuários à diretórios e é feito por meio de uma **vinculação**(*Bind Operation*) que vincula clientes ao servidor de diretório e que pode ser feita de 3 maneiras diferentes: 
+1. Anônima
+    - *Na real que não é uma autenticação, e potencialmente, da acesso ao diretório para qualquer um, como se fosse publico.*
+2. Simples
+    - *Necessita do nome e senha do diretório, normalmente enviado por texto simples, ou seja, não é muito seguro*
+3. SASL (*simple auth. & security layer*)
+    - O método mais comun por ser o mais seguro dos 3, utiliza protocolos de segurança como **TLS** para autenticar o diretório E o usuário por meio do [**Kerberos**](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2003/cc780469(v=ws.10)?redirectedfrom=MSDN); **protocolo de autenticação de rede sado para autenticar a identidade do usuário, proteger a transferência de credenciais do usuário e muito mais.** 
 
 # 6.DNS, *Doman Name Service*
 - Sistema de nomeamento que converte nome de domíno em endereço de IP, controlando qual servidor um usuário final alcançará quando digitar um nome de domínio no navegador da web.
@@ -199,6 +252,10 @@
 - Configuração de pré-inicialização que permite um computador rodar/instalar um OS por meio da rede.   
 
 ## 6.3.Dnsmasq
-- Serviço que providencia *DNS, DHCP, TFPT* e *PXE* em um pacote único. Considerado util por centralizar varios serviços diferentes, leve em consumo de recursos e fácil de se usar.    
+- Serviço que providencia *DNS, DHCP, TFPT* e *PXE* em um pacote único. Considerado util por centralizar varios serviços diferentes, leve em consumo de recursos e fácil de se usar.   
 
-
+## 7. **Gerenciamento Centralizado**
+- Sistema central que gerencia todas partes da infraestrutura de TI. Os serviços de diretório fornecem autenticação, autorização e contabilidade centralizadas, também conhecidas como **AAA** (*authorization, authentication, accounting*).
+- Quando computadores e apps são configurados para usar serviços de diretório para serviços AAA, as decisões sobre conceder ou negar acesso a computadores, sistemas de arquivos e outros recursos são centralizadas.
+- Acessos aos recursos e à rede é baseado na sua função dentro da organização, isso agiliza na hora de trocar as funções/permissões de alguém que trocou de grupo/função, isso é chamado de [***controle de acesso baseado em função*** ou **RBAC** (*Role-Based Access Control*)](https://en.wikipedia.org/wiki/Role-based_access_control)
+- O gerenc. centr. tambem é usado para configurações de software e rede, no caso de necessitar alterações em massa.
