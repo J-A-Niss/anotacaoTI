@@ -254,8 +254,27 @@ DC | domain component
 ## 6.3.Dnsmasq
 - Serviço que providencia *DNS, DHCP, TFPT* e *PXE* em um pacote único. Considerado util por centralizar varios serviços diferentes, leve em consumo de recursos e fácil de se usar.   
 
-## 7. **Gerenciamento Centralizado**
+# 7. **Gerenciamento Centralizado**
 - Sistema central que gerencia todas partes da infraestrutura de TI. Os serviços de diretório fornecem autenticação, autorização e contabilidade centralizadas, também conhecidas como **AAA** (*authorization, authentication, accounting*).
 - Quando computadores e apps são configurados para usar serviços de diretório para serviços AAA, as decisões sobre conceder ou negar acesso a computadores, sistemas de arquivos e outros recursos são centralizadas.
 - Acessos aos recursos e à rede é baseado na sua função dentro da organização, isso agiliza na hora de trocar as funções/permissões de alguém que trocou de grupo/função, isso é chamado de [***controle de acesso baseado em função*** ou **RBAC** (*Role-Based Access Control*)](https://en.wikipedia.org/wiki/Role-based_access_control)
-- O gerenc. centr. tambem é usado para configurações de software e rede, no caso de necessitar alterações em massa.
+- O gerenc. centr. tambem é usado para configurações de software e rede, no caso de necessitar alterações em massa.   
+
+# 8. [**Active Directory(*AD*)**](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-2000-server/cc961936(v=technet.10)?redirectedfrom=MSDN)
+- Funciona de modo parecido ao OpenLDAP, ao ponto que se comunica com o LDAP e interopera com o Linux, OSX e outros hosts não Windows por meio dele, fornecendo mais do que apenas serviços de diretório e autenticação centralizada, **se tornando repositório central de objetos de política de grupo, ou GPOs**   
+- Sua administração se da por meio de um pacote de ferramentas e utilitários chamada de **Centro Administrativo do Active Directory, ou ADAC.** 
+
+## 8.1 **Centro Administrativo do Active Directory (*ADAC*)** 
+- Ferramenta usada para gerenciar o *AD*   
+
+### 8.1.2 **Unidade Organizacional (*OU*)**
+- Container/Pasta/Diretório usado para organizar objetos dentro de um sistema centralizado de gerenciamento. O nível de hierarquia é organizado por meio de 'arvores', e o maior 'nível' de domínio é denominado de 'floresta', por ser composto de varias 'arvores', ou seja, um conjunto de diferentes hierarquias organizadas:
+```
+- floresta
+    - arvore (domínio)
+        - contas
+```
+- Contas podem dividir recursos entre domínios diferentes da mesma floresta.   
+
+#### 8.1.2.1 Controladores de Domínio
+- ***Controladores de domínio fornecem diversos serviços na rede***; hospedam uma réplica do banco de dados do AD e objetos de política de grupo, atuam como servidores DNS para fornecer resolução de nomes e descoberta de serviços aos clientes, oferecem autenticação central por um protocolo de segurança de rede chamado **Kerberos**, decidem quando computadores e usuários podem fazer login no domínio, decidem se esses recursos têm acesso a recursos compartilhados como sistemas de arquivos e impressoras permitindo que os administradores do sistema façam mudanças na rede de forma rápida e fácil. 
