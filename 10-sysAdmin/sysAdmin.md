@@ -263,6 +263,7 @@ DC | domain component
 # 8. [**Active Directory(*AD*)**](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-2000-server/cc961936(v=technet.10)?redirectedfrom=MSDN)
 - Funciona de modo parecido ao OpenLDAP, ao ponto que se comunica com o LDAP e interopera com o Linux, OSX e outros hosts não Windows por meio dele, fornecendo mais do que apenas serviços de diretório e autenticação centralizada, **se tornando repositório central de objetos de política de grupo, ou GPOs**   
 - Sua administração se da por meio de um pacote de ferramentas e utilitários chamada de **Centro Administrativo do Active Directory, ou ADAC.** 
+- Tudo feito por meio da interface gráfica tambem pode ser feito por meio do Powershell
 
 ## 8.1 **Centro Administrativo do Active Directory (*ADAC*)** 
 - Ferramenta usada para gerenciar o *AD*   
@@ -277,4 +278,26 @@ DC | domain component
 - Contas podem dividir recursos entre domínios diferentes da mesma floresta.   
 
 #### 8.1.2.1 Controladores de Domínio
-- ***Controladores de domínio fornecem diversos serviços na rede***; hospedam uma réplica do banco de dados do AD e objetos de política de grupo, atuam como servidores DNS para fornecer resolução de nomes e descoberta de serviços aos clientes, oferecem autenticação central por um protocolo de segurança de rede chamado **Kerberos**, decidem quando computadores e usuários podem fazer login no domínio, decidem se esses recursos têm acesso a recursos compartilhados como sistemas de arquivos e impressoras permitindo que os administradores do sistema façam mudanças na rede de forma rápida e fácil. 
+- ***Controladores de domínio fornecem diversos serviços na rede***; hospedam uma réplica do banco de dados do AD e objetos de política de grupo, atuam como servidores DNS para fornecer resolução de nomes e descoberta de serviços aos clientes, oferecem autenticação central por um protocolo de segurança de rede chamado **Kerberos**, decidem quando computadores e usuários podem fazer login no domínio, decidem se esses recursos têm acesso a recursos compartilhados como sistemas de arquivos e impressoras permitindo que os administradores do sistema façam mudanças na rede de forma rápida e fácil.   
+
+#### 8.1.2.2 [**Grupos**](https://www.solarwinds.com/resources/it-glossary/active-directory-groups)
+- Agrupamentos, tanto de usuários quanto de máquinas; diferentes grupos possuírão diferentes permissões e atribuições. Dividem-se por **tipo** e **escopo**. Os mais comuns são os **grupos de segurança**.
+
+##### 8.1.2.2.1 **Tipos**
+- Os tipos são primariamente dois, **segurança e distribuição**, cada qual com 4 escopos, **universal, global, dominio local e local**.   
+    - ***Grupos de Segurança*** simplificam o gerenciamento do acesso dos usuários permitindo que o admin facilmente transfira permissões ao acesso da rede e de seus recursos à um grupo de usuários, podendo então ter dois objetivos, **delegar permissões e direitos aos usuários**.
+        - ***Direitos do usuário*** ajudam a identificar a responsabilidade de gerenciamento de um membro em particular de um grupo
+        - ***Permissões*** ajudam a manter controle de usuários autorizados à acessar recursos particulares da rede, como por exemplo, acesso à arquivos específicos.   
+
+    - ***Grupos de Dist.*** são usados para distribuir mensagens para usuários, não sendo usados para distribuir permissões devido ao baixo nível de segurança.  
+
+##### 8.1.2.2.2 **Escopo**
+- O Escopo é importante porque determina o nível de acesso aos recursos da rede, e ao escolher o escopo de um grupo, é importante considerar as necessidades de acesso dos membros do grupo; por exemplo: *Se os membros do grupo precisarem de acesso a recursos em vários domínios, um grupo global ou universal será necessário.*
+- Determina como as definições de grupo são replicadas entre domínios:
+    - **Local do domínio**: Usado para atribuir permissão a um recurso; os grupos locais do domínio são replicados apenas dentro do domínio em que são criados. Eles não são replicados para outros domínios na floresta.
+    - **Global**: Usado para agrupar contas em uma função; os globais são replicados para todos os domínios na floresta. Eles são usados para agrupar usuários e computadores que precisam de acesso a recursos em vários domínios.
+    - **Universal**: Usado para agrupar funções globais em uma floresta; os universais são replicados para todas as florestas em um domínio. Eles são usados para agrupar usuários e computadores que precisam de acesso a recursos em várias florestas.  
+
+- Para mais info:
+    - https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2003/cc755692(v=ws.10)?redirectedfrom=MSDN
+    - https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2003/cc780957(v=ws.10)?redirectedfrom=MSDN
