@@ -300,4 +300,11 @@ DC | domain component
 
 - Para mais info:
     - https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2003/cc755692(v=ws.10)?redirectedfrom=MSDN
-    - https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2003/cc780957(v=ws.10)?redirectedfrom=MSDN
+    - https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2003/cc780957(v=ws.10)?redirectedfrom=MSDN   
+
+## 8.2 **Senhas**
+- O AD gerencia senhas de modo centralizado, ao ponto que é possivel re-definir a senha de um usuário case o usuário esqueça e quando a senha é alterada pelo AD a alteração é efetiva na rede toda, independente da máquina que o usuário utilziar para fazer login.
+- **O AD não salva a senha do usuário**, mas salva uma conversão da senha em um hash criptográfico-de-uma-via, que não é facilmente re-convertido em senha. Isso ajuda a manter a segurança da senha do usuário de modo que nem mesmo o admin não terá acesso à senha, pelo fato de que se mais de uma pessoa possui a informação de autenticação, a auditoria se torna muito mais dificil, se não praticamente impossível.
+    - No caso, a *Auditoria* se referência ao processo de determinar **quem fez oque, quando, onde e porque**.
+- Ironicamente o processo de redenifição de senha é relativamente simples, **sendo a parte mais díficil voce determinar que de fato quem está requisitando a senha tem autorização para fazer a requisição** (*vide ataques de phishing*).  
+- Se a pessoa criptografou arquivos usando o recurso [Encrypting File System (EFS)](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-2000-server/cc962100(v=technet.10)?redirectedfrom=MSDN) do NTFS, talvez ela perca o acesso aos arquivos se a senha for redefinida. 
