@@ -81,7 +81,7 @@
 5. `sudo service ntp restart` reinicia o serviço por meio do `stop` e `start` simultaneamente
 6. `sudo apt install vsftpd` instala o *vsftpd*, um simples servidor ftp
 7. `lftp localholst` *lftp* é um programa cliente ftp que permite conectar a um servidor ftp
-8. `sudo service vsftpds reload` o serviço recarrega, re-lendo as configurações do arquivo, sem sua interrupção
+7. `sudo service vsftpds reload` o serviço recarrega, re-lendo as configurações do arquivo, sem sua interrupção
 	 
 ## 5.2 No Windows
 - Por meio da GUI pode se configurar os serviços.   
@@ -205,11 +205,11 @@ Domínio
             - Usuário 2
             - Usuário 3 
 ```    
-### 5.8.1 **Replicação**
+### 5.7.1 **Replicação**
 - Modo de copiar e distribuir a informação entre varios servidores físicos, mas ainda de modo 'unificado' para propositos de armazenamento e administração.
 - Outra função é redução de latência ao ter réplicas da pesquisa do diretório localmente, em cada escritório.   
 
-### 5.8.2 **X.500**
+### 5.72 **X.500**
 - Padrão de diretório, que inclui:
     1. *Directory Access Protocol, ou DAP*
     2. *Directory System Protocol, ou DSP*
@@ -260,15 +260,19 @@ DC | domain component
 - Acessos aos recursos e à rede é baseado na sua função dentro da organização, isso agiliza na hora de trocar as funções/permissões de alguém que trocou de grupo/função, isso é chamado de [***controle de acesso baseado em função*** ou **RBAC** (*Role-Based Access Control*)](https://en.wikipedia.org/wiki/Role-based_access_control)
 - O gerenc. centr. tambem é usado para configurações de software e rede, no caso de necessitar alterações em massa.   
 
-# 8. [**Active Directory(*AD*)**](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-2000-server/cc961936(v=technet.10)?redirectedfrom=MSDN)
+## 7.1. [**Active Directory(*AD*)**](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-2000-server/cc961936(v=technet.10)?redirectedfrom=MSDN)
 - Funciona de modo parecido ao OpenLDAP, ao ponto que se comunica com o LDAP e interopera com o Linux, OSX e outros hosts não Windows por meio dele, fornecendo mais do que apenas serviços de diretório e autenticação centralizada, **se tornando repositório central de objetos de política de grupo, ou GPOs**   
 - Sua administração se da por meio de um pacote de ferramentas e utilitários chamada de **Centro Administrativo do Active Directory, ou ADAC.** 
 - Tudo feito por meio da interface gráfica tambem pode ser feito por meio do Powershell
+- Para que uma máquina seja gerenciada pelo AD ela precisa ser associada ao domínio, se juntando e/ou se vinculando.
+    - Colocar um computador no Active Directory significa duas coisas; o AD sabe que o computador existe e provisionou uma conta para ele e computador sabe que o domínio do AD existe e o usa para autenticação.
+    - Isso pode ser facilmente feito pela GUI ou pelo powershell: `Add-Computer -DomainName 'example.com' -Server 'dc1'` e então inserindo as informações requisitadas (*login/senha*)
+- Diferentes versões são chamadas de ['níveis funcionais'](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/active-directory-functional-levels) e cada nivel suporta diferentes tipos de operações, para verificar, basta checar na GUI ou pelo powershell `Get-AdForesst` e `Get-AdDomain`. 
 
-## 8.1 **Centro Administrativo do Active Directory (*ADAC*)** 
+## 7.2 **Centro Administrativo do Active Directory (*ADAC*)** 
 - Ferramenta usada para gerenciar o *AD*   
 
-### 8.1.2 **Unidade Organizacional (*OU*)**
+### 7.2.1 **Unidade Organizacional (*OU*)**
 - Container/Pasta/Diretório usado para organizar objetos dentro de um sistema centralizado de gerenciamento. O nível de hierarquia é organizado por meio de 'arvores', e o maior 'nível' de domínio é denominado de 'floresta', por ser composto de varias 'arvores', ou seja, um conjunto de diferentes hierarquias organizadas:
 ```
 - floresta
@@ -277,13 +281,13 @@ DC | domain component
 ```
 - Contas podem dividir recursos entre domínios diferentes da mesma floresta.   
 
-#### 8.1.2.1 Controladores de Domínio
+#### 7.2.1.1 Controladores de Domínio
 - ***Controladores de domínio fornecem diversos serviços na rede***; hospedam uma réplica do banco de dados do AD e objetos de política de grupo, atuam como servidores DNS para fornecer resolução de nomes e descoberta de serviços aos clientes, oferecem autenticação central por um protocolo de segurança de rede chamado **Kerberos**, decidem quando computadores e usuários podem fazer login no domínio, decidem se esses recursos têm acesso a recursos compartilhados como sistemas de arquivos e impressoras permitindo que os administradores do sistema façam mudanças na rede de forma rápida e fácil.   
 
-#### 8.1.2.2 [**Grupos**](https://www.solarwinds.com/resources/it-glossary/active-directory-groups)
+#### 7.2.1.2 [**Grupos**](https://www.solarwinds.com/resources/it-glossary/active-directory-groups)
 - Agrupamentos, tanto de usuários quanto de máquinas; diferentes grupos possuírão diferentes permissões e atribuições. Dividem-se por **tipo** e **escopo**. Os mais comuns são os **grupos de segurança**.
 
-##### 8.1.2.2.1 **Tipos**
+##### 7.2.1.2.1 **Tipos**
 - Os tipos são primariamente dois, **segurança e distribuição**, cada qual com 4 escopos, **universal, global, dominio local e local**.   
     - ***Grupos de Segurança*** simplificam o gerenciamento do acesso dos usuários permitindo que o admin facilmente transfira permissões ao acesso da rede e de seus recursos à um grupo de usuários, podendo então ter dois objetivos, **delegar permissões e direitos aos usuários**.
         - ***Direitos do usuário*** ajudam a identificar a responsabilidade de gerenciamento de um membro em particular de um grupo
@@ -291,7 +295,7 @@ DC | domain component
 
     - ***Grupos de Dist.*** são usados para distribuir mensagens para usuários, não sendo usados para distribuir permissões devido ao baixo nível de segurança.  
 
-##### 8.1.2.2.2 **Escopo**
+##### 7.2.1.2.2 **Escopo**
 - O Escopo é importante porque determina o nível de acesso aos recursos da rede, e ao escolher o escopo de um grupo, é importante considerar as necessidades de acesso dos membros do grupo; por exemplo: *Se os membros do grupo precisarem de acesso a recursos em vários domínios, um grupo global ou universal será necessário.*
 - Determina como as definições de grupo são replicadas entre domínios:
     - **Local do domínio**: Usado para atribuir permissão a um recurso; os grupos locais do domínio são replicados apenas dentro do domínio em que são criados. Eles não são replicados para outros domínios na floresta.
@@ -302,9 +306,28 @@ DC | domain component
     - https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2003/cc755692(v=ws.10)?redirectedfrom=MSDN
     - https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2003/cc780957(v=ws.10)?redirectedfrom=MSDN   
 
-## 8.2 **Senhas**
+## 7.3 **Senhas**
 - O AD gerencia senhas de modo centralizado, ao ponto que é possivel re-definir a senha de um usuário case o usuário esqueça e quando a senha é alterada pelo AD a alteração é efetiva na rede toda, independente da máquina que o usuário utilziar para fazer login.
 - **O AD não salva a senha do usuário**, mas salva uma conversão da senha em um hash criptográfico-de-uma-via, que não é facilmente re-convertido em senha. Isso ajuda a manter a segurança da senha do usuário de modo que nem mesmo o admin não terá acesso à senha, pelo fato de que se mais de uma pessoa possui a informação de autenticação, a auditoria se torna muito mais dificil, se não praticamente impossível.
     - No caso, a *Auditoria* se referência ao processo de determinar **quem fez oque, quando, onde e porque**.
 - Ironicamente o processo de redenifição de senha é relativamente simples, **sendo a parte mais díficil voce determinar que de fato quem está requisitando a senha tem autorização para fazer a requisição** (*vide ataques de phishing*).  
-- Se a pessoa criptografou arquivos usando o recurso [Encrypting File System (EFS)](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-2000-server/cc962100(v=technet.10)?redirectedfrom=MSDN) do NTFS, talvez ela perca o acesso aos arquivos se a senha for redefinida. 
+- Se a pessoa criptografou arquivos usando o recurso [Encrypting File System (EFS)](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-2000-server/cc962100(v=technet.10)?redirectedfrom=MSDN) do NTFS, talvez ela perca o acesso aos arquivos se a senha for redefinida.   
+
+## 7.4 **Grupos**    
+
+### 7.4.1  **Objeto de Política de Grupo** (GPOs)
+- *Objeto* do AD; É um conjunto de **políticas e preferências** que podem ser aplicadas a um grupo de objetos no diretório. As políticas de grupo padronizam as preferências de usuário de cada equipe e facilitam a configuração.
+- **Quando você vincula um GPO, ela vale para todos os computadores, usuários do domínio, site ou OU.**
+- A configuração pode ser de usuário ou de computador.
+    - Config de computador é aplicada quando o computador é conectado ao domínio, acontece toda vez que o pc da boot do windows, exceto se for desconectado da rede antes de dar o boot.
+    - De usuário ocorre quando o usuário loga no computador e quando um GPO está em vigor, é checado a cada *X* minutos
+- Os GPOs chegam aos computadores vinculados ao domínio quando um usuário ou computador vinculado ao domínio faz login no domínio por meio do controlador do domínio, o controlador passa ao computador uma lista de regras que ele deve aplicar fazendo o download das políticas de uma pasta ***SYSVOL***. 
+- ***Muitas políticas e preferências no GPO são representadas como valores no registro do Windows***. O registro é um banco de dados hierárquico de configurações que o Windows e muitos aplicativos usam para armazenar dados de configuração e para aplicar o GPO, o computador faz alterações no registro. 
+
+#### 7.4.1.1 **Políticas & Preferencias**
+- ***Políticas*** são aplicadas e re-aplicadas a em um dado intervalo de tempo, geralmente de 90 minutos, e não podem ser alteradas nem pelo administrador local.
+- ***Preferencias*** já funcionam como um modelo, que pode ser alterado conforme a necessidade.
+
+### 7.5 **Console de Gerenciamento de Política de Grupo** (*GPMC*)
+- Ferramenta usada para criar e conferir objetos de política de grupo, disponível no menu "Ferramentas" do Gerenciador de Servidor
+ou como `gpmc.msc` na linha de comando. 
