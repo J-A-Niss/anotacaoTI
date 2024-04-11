@@ -284,10 +284,10 @@ DC | domain component
 #### 7.2.1.1 Controladores de Domínio
 - ***Controladores de domínio fornecem diversos serviços na rede***; hospedam uma réplica do banco de dados do AD e objetos de política de grupo, atuam como servidores DNS para fornecer resolução de nomes e descoberta de serviços aos clientes, oferecem autenticação central por um protocolo de segurança de rede chamado **Kerberos**, decidem quando computadores e usuários podem fazer login no domínio, decidem se esses recursos têm acesso a recursos compartilhados como sistemas de arquivos e impressoras permitindo que os administradores do sistema façam mudanças na rede de forma rápida e fácil.   
 
-#### 7.2.1.2 [**Grupos**](https://www.solarwinds.com/resources/it-glossary/active-directory-groups)
+## 7.3 [**Grupos**](https://www.solarwinds.com/resources/it-glossary/active-directory-groups)
 - Agrupamentos, tanto de usuários quanto de máquinas; diferentes grupos possuírão diferentes permissões e atribuições. Dividem-se por **tipo** e **escopo**. Os mais comuns são os **grupos de segurança**.
 
-##### 7.2.1.2.1 **Tipos**
+### 7.3.1 **Tipos**
 - Os tipos são primariamente dois, **segurança e distribuição**, cada qual com 4 escopos, **universal, global, dominio local e local**.   
     - ***Grupos de Segurança*** simplificam o gerenciamento do acesso dos usuários permitindo que o admin facilmente transfira permissões ao acesso da rede e de seus recursos à um grupo de usuários, podendo então ter dois objetivos, **delegar permissões e direitos aos usuários**.
         - ***Direitos do usuário*** ajudam a identificar a responsabilidade de gerenciamento de um membro em particular de um grupo
@@ -295,7 +295,7 @@ DC | domain component
 
     - ***Grupos de Dist.*** são usados para distribuir mensagens para usuários, não sendo usados para distribuir permissões devido ao baixo nível de segurança.  
 
-##### 7.2.1.2.2 **Escopo**
+##### 7.3.1.1 **Escopo**
 - O Escopo é importante porque determina o nível de acesso aos recursos da rede, e ao escolher o escopo de um grupo, é importante considerar as necessidades de acesso dos membros do grupo; por exemplo: *Se os membros do grupo precisarem de acesso a recursos em vários domínios, um grupo global ou universal será necessário.*
 - Determina como as definições de grupo são replicadas entre domínios:
     - **Local do domínio**: Usado para atribuir permissão a um recurso; os grupos locais do domínio são replicados apenas dentro do domínio em que são criados. Eles não são replicados para outros domínios na floresta.
@@ -306,16 +306,14 @@ DC | domain component
     - https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2003/cc755692(v=ws.10)?redirectedfrom=MSDN
     - https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2003/cc780957(v=ws.10)?redirectedfrom=MSDN   
 
-## 7.3 **Senhas**
+## 7.4 **Senhas**
 - O AD gerencia senhas de modo centralizado, ao ponto que é possivel re-definir a senha de um usuário case o usuário esqueça e quando a senha é alterada pelo AD a alteração é efetiva na rede toda, independente da máquina que o usuário utilziar para fazer login.
 - **O AD não salva a senha do usuário**, mas salva uma conversão da senha em um hash criptográfico-de-uma-via, que não é facilmente re-convertido em senha. Isso ajuda a manter a segurança da senha do usuário de modo que nem mesmo o admin não terá acesso à senha, pelo fato de que se mais de uma pessoa possui a informação de autenticação, a auditoria se torna muito mais dificil, se não praticamente impossível.
     - No caso, a *Auditoria* se referência ao processo de determinar **quem fez oque, quando, onde e porque**.
 - Ironicamente o processo de redenifição de senha é relativamente simples, **sendo a parte mais díficil voce determinar que de fato quem está requisitando a senha tem autorização para fazer a requisição** (*vide ataques de phishing*).  
 - Se a pessoa criptografou arquivos usando o recurso [Encrypting File System (EFS)](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-2000-server/cc962100(v=technet.10)?redirectedfrom=MSDN) do NTFS, talvez ela perca o acesso aos arquivos se a senha for redefinida.   
 
-## 7.4 **Grupos**    
-
-### 7.4.1  **Objeto de Política de Grupo** (GPOs)
+### 7.5.1  **Objeto de Política de Grupo** (GPOs)
 - *Objeto* do AD; É um conjunto de **políticas e preferências** que podem ser aplicadas a um grupo de objetos no diretório. As políticas de grupo padronizam as preferências de usuário de cada equipe e facilitam a configuração.
 - **Quando você vincula um GPO, ela vale para todos os computadores, usuários do domínio, site ou OU.**
 - A configuração pode ser de usuário ou de computador.
@@ -324,10 +322,27 @@ DC | domain component
 - Os GPOs chegam aos computadores vinculados ao domínio quando um usuário ou computador vinculado ao domínio faz login no domínio por meio do controlador do domínio, o controlador passa ao computador uma lista de regras que ele deve aplicar fazendo o download das políticas de uma pasta ***SYSVOL***. 
 - ***Muitas políticas e preferências no GPO são representadas como valores no registro do Windows***. O registro é um banco de dados hierárquico de configurações que o Windows e muitos aplicativos usam para armazenar dados de configuração e para aplicar o GPO, o computador faz alterações no registro. 
 
-#### 7.4.1.1 **Políticas & Preferencias**
+#### 7.5.1.1 **Políticas & Preferencias**
 - ***Políticas*** são aplicadas e re-aplicadas a em um dado intervalo de tempo, geralmente de 90 minutos, e não podem ser alteradas nem pelo administrador local.
 - ***Preferencias*** já funcionam como um modelo, que pode ser alterado conforme a necessidade.
 
-### 7.5 **Console de Gerenciamento de Política de Grupo** (*GPMC*)
+##### 7.5.1.1.1 ***Troubleshooting*** de problemas de política de grupo.
+- Fazer perguntas é o ponto mais crucial para se entender o problema da pessoa.
+- Reproduzir o problema para tentar entender e soluciona-lo é crucial. 
+- Muitas vezes, a solução mais simples é a melhor.
+- Para problemas de rede, como por exemplo, problemas em conectar ao servidor de DNS podem ser descobertos com solicitações de DNS aos registros SRV que correspondem ao domínio a que está vinculado.
+    - O registro SRV que queremos é `_ldap._ tcp.dc._msdcs.DOMAIN.NAME`, em que `DOMAIN.NAME` é o nome DNS do nosso domínio. 
+        - Isso pode ser feito pelo powershell por meio do comando `Resolve-DNSName -Type SRV -Name _ldap._ tcp.dc._msdcs.example.com`
+    - Algumas vezes o problema pode ser sincronia do relógio interno do computador com o UTC, o que pode ser resolvido com o comando `w32tm /resync` 
+
+#### 7.5.1.2 **Console de Gerenciamento de Política de Grupo** (*GPMC*)
 - Ferramenta usada para criar e conferir objetos de política de grupo, disponível no menu "Ferramentas" do Gerenciador de Servidor
-ou como `gpmc.msc` na linha de comando. 
+ou como `gpmc.msc` na linha de comando.  
+
+#### Herança e precedência
+- Regras(*GPOs*) precisam ser aplicadas mas as vezes as regras são contraditórias ou redundantes, no qual as regras são aplicadas em uma ordem específica com base em um *conjunto de regras de precedência*:
+    - **A mais genérica/vinculada ao maior conteiner, é aplicada primeiro. A mais específica/vinculada ao conteiner menor, é aplicada após.**
+1. **Qualquer regra vinculada ao site do Active Domain**
+2. **Qualquer regra vinculada ao domínio**
+3. **Qualquer regra vinculada ao objeto em sí, de objeto pai à objeto filho**
+4. **Se mais de uma política tenta definir a mesma coisa, a mais específica pravelece**
