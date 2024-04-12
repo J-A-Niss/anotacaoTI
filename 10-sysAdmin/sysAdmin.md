@@ -313,7 +313,7 @@ DC | domain component
 - Ironicamente o processo de redenifição de senha é relativamente simples, **sendo a parte mais díficil voce determinar que de fato quem está requisitando a senha tem autorização para fazer a requisição** (*vide ataques de phishing*).  
 - Se a pessoa criptografou arquivos usando o recurso [Encrypting File System (EFS)](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-2000-server/cc962100(v=technet.10)?redirectedfrom=MSDN) do NTFS, talvez ela perca o acesso aos arquivos se a senha for redefinida.   
 
-### 7.5.1  **Objeto de Política de Grupo** (GPOs)
+### 7.4.1  **Objeto de Política de Grupo** (GPOs)
 - *Objeto* do AD; É um conjunto de **políticas e preferências** que podem ser aplicadas a um grupo de objetos no diretório. As políticas de grupo padronizam as preferências de usuário de cada equipe e facilitam a configuração.
 - **Quando você vincula um GPO, ela vale para todos os computadores, usuários do domínio, site ou OU.**
 - A configuração pode ser de usuário ou de computador.
@@ -322,20 +322,29 @@ DC | domain component
 - Os GPOs chegam aos computadores vinculados ao domínio quando um usuário ou computador vinculado ao domínio faz login no domínio por meio do controlador do domínio, o controlador passa ao computador uma lista de regras que ele deve aplicar fazendo o download das políticas de uma pasta ***SYSVOL***. 
 - ***Muitas políticas e preferências no GPO são representadas como valores no registro do Windows***. O registro é um banco de dados hierárquico de configurações que o Windows e muitos aplicativos usam para armazenar dados de configuração e para aplicar o GPO, o computador faz alterações no registro. 
 
-#### 7.5.1.1 **Políticas & Preferencias**
+#### 7.4.1.1 **Políticas & Preferencias**
 - ***Políticas*** são aplicadas e re-aplicadas a em um dado intervalo de tempo, geralmente de 90 minutos, e não podem ser alteradas nem pelo administrador local.
 - ***Preferencias*** já funcionam como um modelo, que pode ser alterado conforme a necessidade.
 
-##### 7.5.1.1.1 ***Troubleshooting*** de problemas de política de grupo.
-- Fazer perguntas é o ponto mais crucial para se entender o problema da pessoa.
-- Reproduzir o problema para tentar entender e soluciona-lo é crucial. 
-- Muitas vezes, a solução mais simples é a melhor.
-- Para problemas de rede, como por exemplo, problemas em conectar ao servidor de DNS podem ser descobertos com solicitações de DNS aos registros SRV que correspondem ao domínio a que está vinculado.
-    - O registro SRV que queremos é `_ldap._ tcp.dc._msdcs.DOMAIN.NAME`, em que `DOMAIN.NAME` é o nome DNS do nosso domínio. 
-        - Isso pode ser feito pelo powershell por meio do comando `Resolve-DNSName -Type SRV -Name _ldap._ tcp.dc._msdcs.example.com`
-    - Algumas vezes o problema pode ser sincronia do relógio interno do computador com o UTC, o que pode ser resolvido com o comando `w32tm /resync` 
+##### 7.4.1.1.1 [***Troubleshooting***](https://colab.research.google.com/drive/12V2K2ProE3qv7OBCihutv_Q-j7_axp5m#scrollTo=2Xggx2dhc53F)   
 
-#### 7.5.1.2 **Console de Gerenciamento de Política de Grupo** (*GPMC*)
+- [**Problemas de política de grupo**](https://colab.research.google.com/drive/1d8f2qcc_ZAakSAO-9GFz4Zqz-1hkque3#scrollTo=iYee4rY7d03W).
+    - Fazer perguntas é o ponto mais crucial para se entender o problema da pessoa.
+    - Reproduzir o problema para tentar entender e soluciona-lo é crucial. 
+    - Muitas vezes, a solução mais simples é a melhor.
+    - Para problemas de rede, como por exemplo, problemas em conectar ao servidor de DNS podem ser descobertos com solicitações de DNS aos registros SRV que correspondem ao domínio a que está vinculado.
+        - O registro SRV que queremos é `_ldap._ tcp.dc._msdcs.DOMAIN.NAME`, em que `DOMAIN.NAME` é o nome DNS do nosso domínio. 
+            - Isso pode ser feito pelo powershell por meio do comando `Resolve-DNSName -Type SRV -Name _ldap._ tcp.dc._msdcs.example.com`
+        - Algumas vezes o problema pode ser sincronia do relógio interno do computador com o UTC, o que pode ser resolvido com o comando `w32tm /resync`
+    - Outro problema comun ocorre quando uma política/preferencia **não** é aplicada ao computador, geralmente esse problema se apresenta como algum software faltando ou como algo que o usuário poderia/deveria fazer mas não consegue. Isso normalmente se dá pela falta da configuração da GPO em um ou mais computadores:
+        1. Dependendo de como o domínio é configurado, o mecanismo de políticas de grupo que aplica as configurações na máquina local talvez sacrifique a aplicação imediata das políticas para agilizar o logon, isso é chamado **otimização de logon** e significa que algumas mudanças do GPO podem levar mais tempo para serem aplicadas que o esperado.
+            - Nesses exemplos, você pode forçar a aplicação de todos GPOs de forma completa e imediata com `gpupdate /force`e para fazer o trabalho completo, você pode executar `gpupdate /force /sync`. 
+        2. Erro na replicação é outro motivo de falha na aplicação de um GPO. Lembre-se, as mudanças no Active Directory geralmente acontecem em um único controlador de domínio precisando ser replicadas para outros controladores e se a replicação falha, os computadores podem ter estados diferentes para os objetos do *Directory*, como objetos de política de grupo.
+            - Voce pode conferir isso com o comando `$env: LOGONSERVER` no *powershell* e `%LOGONSERVER%` no *prompt de comando*
+    - Utiliza-se o comando `gpresult /R` para gerar um relatório do conjunto de políticas, ou [***RSOP***](https://learn.microsoft.com/en-us/troubleshoot/windows-server/group-policy/use-resultant-set-of-policy-logging) e para o relatório completo, o comando `gpresult /H FILENAME.html` onde `FILENAME` é o nome do arquivo: `gpresult /H text.html`
+    - Cada GPO também pode ser configurado com um **filtro WMI** que permite que você aplique um GPO de acordo com a configuração do computador. Os filtros WMI são eficientes, mas caros e difíceis de configurar, por consultarem os valores da *Instrumentação de Gerenciamento do Windows* para decidir se a política deve ser aplicada. 
+
+#### 7.4.1.2 **Console de Gerenciamento de Política de Grupo** (*GPMC*)
 - Ferramenta usada para criar e conferir objetos de política de grupo, disponível no menu "Ferramentas" do Gerenciador de Servidor
 ou como `gpmc.msc` na linha de comando.  
 
@@ -345,4 +354,14 @@ ou como `gpmc.msc` na linha de comando.
 1. **Qualquer regra vinculada ao site do Active Domain**
 2. **Qualquer regra vinculada ao domínio**
 3. **Qualquer regra vinculada ao objeto em sí, de objeto pai à objeto filho**
-4. **Se mais de uma política tenta definir a mesma coisa, a mais específica pravelece**
+4. **Se mais de uma política tenta definir a mesma coisa, a mais específica pravelece** 
+
+## 7.5 MDM - Mobile Device Manager
+- O sistema operacional móvel usa perfis ou políticas MDM que contêm configurações para o dispositivo. 
+- Também é possível aplicar configurações de segurança, como ativar a criptografia do armazenamento do dispositivo e exigir uma tela de bloqueio.
+- As soluções MDM também permitem limpar remotamente um dispositivo móvel que é uma redefinição de fábrica acionada no MDM central, em vez de precisar fazer isso pessoalmente no dispositivo.
+- As configurações de políticas MDM são específicas para cada OS, mas essas políticas podem ser criadas e distribuídas com o uso de um sistema de gerenciamento de mobilidade empresarial, ou EMM. 
+- [iOS](https://support.apple.com/pt-br/guide/deployment/welcome/web)
+- [Android](https://support.google.com/a/answer/6328708#apply)
+- [iOS Prof. Manager](https://support.apple.com/pt-br/guide/server/apd0e2214c6/mac)
+- [Android Adv MDM](https://support.google.com/a/answer/7396025)
