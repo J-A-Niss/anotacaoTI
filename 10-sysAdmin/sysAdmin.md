@@ -122,7 +122,7 @@
 - **Spoofing**; do ingles *imitar/fingir*, é uma mensagen/email enviada de um endereço que se apresenta como legítimo, mas não é.
 - **Golpe de suporte técnico**; o golpista de finge ser do suporte técnico de uma companhia legítima, Microsoft por exemplo, e tem objetivo de obter informações da vítima.     
 
- ## 5.4 **Serviços de arquivo**   
+## 5.4 **Serviços de arquivo**   
  - Auxiliam na organização de arquivos em larga escala; seja salvando, baixando ou enviando, entre funcionários podendo ser da mesma organização ou de organizações diferentes.    
 
 ### 5.4.1 Servidores de Armaz. de Arquivos.
