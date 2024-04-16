@@ -220,11 +220,9 @@ Domínio
 ### 5.8.3 [**LDAP - Lightweigth Directory Access Protoc.**](https://en.wikipedia.org/wiki/LDAP_Data_Interchange_Format)
 - Usado para acessar informações em diretórios de serviços numa rede.
 
-#### 5.8.3.1 OpenLADP
-- Um *LDAP* em código aberto que oferece suporte à varias plataformas incluindo Windows, UNIX, Linux e varios derivados.
-
-##### 5.8.3.1.1 Forma do Registro:
-- O registro é uma coleção de informações usadas para descrever algo, que se dá por:
+### 5.8.4 **OpenLDAP**
+- Um *LDAP* em código aberto que oferece suporte à varias plataformas incluindo Windows, UNIX, Linux e varios derivados e funciona de modo *parecido ao Active Directory*. OpenLDAP pode ser gerenciado pela interface de comando e tambem por uma ferramenta chamada **phpLDAPadmin** que oferece uma interface de web para gerenciamento do dados de diretório.
+- Forma do Registro; o registro é uma coleção de informações usadas para descrever algo, que se dá por:
 ```
 dn:CN=Nome Sobrenome,OU=Sysadmin,DC=example,DC=com
 
@@ -233,14 +231,46 @@ CN | common name of the object
 OU | Organizational Unit
 DC | domain component
 ```  
-##### 5.8.3.1.2 Autenticação LADP
+
+#### 5.8.4.1 OpenLDAP no Linux
+1. No ambiente Linux digita-se o comando `sudo apt-get install slapd ldap-utils`.
+2. Fornecer a senha de administrador.
+3. Então o comando `sudo dpkg-reconfigure slapd` para configurar o LDAP
+4. Fornecer um nome para o dominio como `example.com`
+5. Fornecer um nome para a organização como `example`
+6. Escolher o banco de dados, entre *BDB*, *HDB* e *MDB*
+7. Terminar as configurações de transferencia de dados e afins.
+- Para mais info: 
+    - https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-openldap-and-phpldapadmin-on-ubuntu-16-04
+    - https://www.openldap.org/doc/admin24/slapdconf2.html   
+
+- Para gerenciar o OpenLDAP é usado uma ferramenta chamada **phpLDAPadmin** e para isso é necessário um arquivo [**LDIF**](https://en.wikipedia.org/wiki/LDAP_Data_Interchange_Format) que é um simples arquivo de texto que descrever valores e atributos:
+
+```
+dn:CN=Nome Sobrenome,OU=Sysadmin,DC=example,DC=com
+
+dn:uid=cindy,ou=Engineering,dc=example,dc=com
+objectClass: inetOrgPerson
+description: Cindy works in the Engineering department.
+cn: Cindy
+uid: cindy
+```
+- [*E para gerenciar esse tipo de arquivo, seriam usados comando como:*](https://www.digitalocean.com/community/tutorials/how-to-use-ldif-files-to-make-changes-to-an-openldap-system)
+```
+ldapadd - pega entradas do arquivo LDIF e adiciona contexto
+ldapmodify - modifica um objeto
+ldapdelete - remove o objeto associado ao arquivo LDIF
+ldapsearch - pesquisa entradas no banco de dados do seu diretório
+```
+
+#### 5.8.4.2 Autenticação LDAP
 - Restringe o acesso de usuários à diretórios e é feito por meio de uma **vinculação**(*Bind Operation*) que vincula clientes ao servidor de diretório e que pode ser feita de 3 maneiras diferentes: 
-1. Anônima
-    - *Na real que não é uma autenticação, e potencialmente, da acesso ao diretório para qualquer um, como se fosse publico.*
-2. Simples
-    - *Necessita do nome e senha do diretório, normalmente enviado por texto simples, ou seja, não é muito seguro*
-3. SASL (*simple auth. & security layer*)
-    - O método mais comun por ser o mais seguro dos 3, utiliza protocolos de segurança como **TLS** para autenticar o diretório E o usuário por meio do [**Kerberos**](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2003/cc780469(v=ws.10)?redirectedfrom=MSDN); **protocolo de autenticação de rede sado para autenticar a identidade do usuário, proteger a transferência de credenciais do usuário e muito mais.** 
+    1. Anônima
+        - *Na real que não é uma autenticação, e potencialmente, da acesso ao diretório para qualquer um, como se fosse publico.*
+    2. Simples
+        - *Necessita do nome e senha do diretório, normalmente enviado por texto simples, ou seja, não é muito seguro*
+    3. SASL (*simple auth. & security layer*)
+        - O método mais comun por ser o mais seguro dos 3, utiliza protocolos de segurança como **TLS** para autenticar o diretório E o usuário por meio do [**Kerberos**](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2003/cc780469(v=ws.10)?redirectedfrom=MSDN); **protocolo de autenticação de rede sado para autenticar a identidade do usuário, proteger a transferência de credenciais do usuário e muito mais.** 
 
 # 6.DNS, *Doman Name Service*
 - Sistema de nomeamento que converte nome de domíno em endereço de IP, controlando qual servidor um usuário final alcançará quando digitar um nome de domínio no navegador da web.
@@ -364,4 +394,7 @@ ou como `gpmc.msc` na linha de comando.
 - [iOS](https://support.apple.com/pt-br/guide/deployment/welcome/web)
 - [Android](https://support.google.com/a/answer/6328708#apply)
 - [iOS Prof. Manager](https://support.apple.com/pt-br/guide/server/apd0e2214c6/mac)
-- [Android Adv MDM](https://support.google.com/a/answer/7396025)
+- [Android Adv MDM](https://support.google.com/a/answer/7396025)  
+
+# 8. ***Recuperação de Dados***  
+
