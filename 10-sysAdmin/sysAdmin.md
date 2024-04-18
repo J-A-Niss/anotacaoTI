@@ -272,7 +272,7 @@ ldapsearch - pesquisa entradas no banco de dados do seu diretório
     3. SASL (*simple auth. & security layer*)
         - O método mais comun por ser o mais seguro dos 3, utiliza protocolos de segurança como **TLS** para autenticar o diretório E o usuário por meio do [**Kerberos**](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2003/cc780469(v=ws.10)?redirectedfrom=MSDN); **protocolo de autenticação de rede sado para autenticar a identidade do usuário, proteger a transferência de credenciais do usuário e muito mais.** 
 
-# 6.DNS, *Doman Name Service*
+# 6. DNS, *Doman Name Service*
 - Sistema de nomeamento que converte nome de domíno em endereço de IP, controlando qual servidor um usuário final alcançará quando digitar um nome de domínio no navegador da web.
 
 ## 6.1.DHCP, *Dynamic Host Config. Protocol*
@@ -397,4 +397,18 @@ ou como `gpmc.msc` na linha de comando.
 - [Android Adv MDM](https://support.google.com/a/answer/7396025)  
 
 # 8. ***Recuperação de Dados***  
+- Planejar recuperação de dados é fundamental para o funcionamento de qualquer organização. Quando os dados se perdem por qualquer razão, o objetivo é sempre tentar continuar o funcionamento normalmente, do modo que for possível. Um dos modos que se faz isso é por meio do [**planejamento de disastre**](https://pt.wikipedia.org/wiki/Recupera%C3%A7%C3%A3o).
+    - Neste planejamento é comun serem feitos *backups de rotina de dados críticos* para o funcionamento.
+    - Também é feito um post-mortem que documenta os problemas encontrados e com oforam corrigidos, para que se acontecer novamente, ser mais fácil de celere a recuperação.
+    - [*Gitlab accident from 2017*](https://about.gitlab.com/blog/2017/02/01/gitlab-dot-com-database-incident/)
+
+## 8.1 [**Backup**](https://pt.wikipedia.org/wiki/C%C3%B3pia_de_seguran%C3%A7a)  
+- Um backup é a cópia de dados, de um sistema, computador, banco de dados ou de qualquer outro tipo de armazenamento de dados que for; usado com o propósito de restaurar os dados salvos em caso de perda.
+- Backups podem ser feitos *local* ou *remotamente*.
+
+### 8.1.1 Local
+- Envolve fazer o backup no mesmo espaço físico como por exemplo, no mesmo servidor, *ou* no mesmo local que se hospeda (fisicamente) o servidor. Vantagems incluem pouco gasto de banda larga e a facilidade de acesso, por se tratar do mesmo lugar, o problema é que se for algum problema no local em si (*como por exemplo um incendio no prédio*) todos os dados serão perdidos sem a possibilidade de recuperação.
+
+### 8.1.2 Remoto
+- Envolve fazer o backup em outro espaço, geralmente pela web, ou até mesmo na nuvem. Vantagens incluem maior segurança pelo fato que os dados estão em multiplos locais, porém isso traz riscos pelo fato de que será necessário salvar esses dados fora da sua rede de origem, trazendo necessidade de encripção e a necessidade de banda para realizar a transferencia.
 
