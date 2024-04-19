@@ -404,11 +404,47 @@ ou como `gpmc.msc` na linha de comando.
 
 ## 8.1 [**Backup**](https://pt.wikipedia.org/wiki/C%C3%B3pia_de_seguran%C3%A7a)  
 - Um backup é a cópia de dados, de um sistema, computador, banco de dados ou de qualquer outro tipo de armazenamento de dados que for; usado com o propósito de restaurar os dados salvos em caso de perda.
-- Backups podem ser feitos *local* ou *remotamente*.
+- Backups podem ser feitos *local* ou *remotamente*. Geralmente a melhor opção são ambos, por se complementarem.
+- Outro metodo que não é necessariamente um backup é o comando [`rsync`](https://wiki.archlinux.org/title/rsync#As_a_backup_utility) que transfere e sincroniza dados entre localizações e computadores diferentes.
+    - Um metodo usado pela *Apple* é o [*Time Machine*](https://support.apple.com/en-us/104984) que permite a restauração de um sistema inteiro usando backups ou arquivos individuais. Ele também permite restaurar versões mais antigas de arquivos de backup.
+    - Windows tem o [*Backup e Restauração*](https://support.microsoft.com/en-us/windows/back-up-your-windows-pc-87a81f8a-78fa-456e-b521-ac0560e32338) tendo dois modos de operação, uma versão baseada em arquivos em que o backup é feito para um arquivo zip ou uma imagem do sistema, em que todo o disco é salvo bloco a bloco em um arquivo.
+- **Procedimentos de Restauração** devem ser documentados e acessíveis, para que alguém com o acesso correto possa restaurar as operações. Esse processo todo é crítico para garantir que os métodos são validos e eficientes. Exercícios de recuperação de dados são tambem um ótimo ponto de teste, para averiguar eventuais falhas que precisam ser corrigidas, porque é melhor descobrir um problema no exercício do que na prática.
+- No geral, a melhor prática é sempre uma mistura de ***backups completos infrequentes, e backups diferencias regulares.***
+- Outra coisa que sistemas de backup fazem para economizar espaço é **compactar** arquivos.
+    - Ao criar um backup, todas as estruturas de arquivos e pastas serão copiadas e colocadas em arquivos, esses arquivos mantêm tudo organizado preservando a estrutura de pastas. Além de arquivar, os backups também podem ser compactados por meio de algoritmos para que consuman menos espaço. Contudo nem todo tipo de arquivo pode ser compactado, além disso ainda há o descompactamento que, dependendo do arquivo, pode ser ainda mais demorado que o compactamento em si.
 
-### 8.1.1 Local
+## 8.2 **Tipos de Backup** 
+
+### 8.2.1 Local
 - Envolve fazer o backup no mesmo espaço físico como por exemplo, no mesmo servidor, *ou* no mesmo local que se hospeda (fisicamente) o servidor. Vantagems incluem pouco gasto de banda larga e a facilidade de acesso, por se tratar do mesmo lugar, o problema é que se for algum problema no local em si (*como por exemplo um incendio no prédio*) todos os dados serão perdidos sem a possibilidade de recuperação.
 
-### 8.1.2 Remoto
+### 8.2.2 Remoto
 - Envolve fazer o backup em outro espaço, geralmente pela web, ou até mesmo na nuvem. Vantagens incluem maior segurança pelo fato que os dados estão em multiplos locais, porém isso traz riscos pelo fato de que será necessário salvar esses dados fora da sua rede de origem, trazendo necessidade de encripção e a necessidade de banda para realizar a transferencia.
 
+### 8.2.3 Completo
+- Envolve fazer uma *cópia de ***todos*** os dados* em um intervalo regular de tempo. O conteúdo total e inalterado é salvo e mantido em armazenamento para o caso de catástrofe, neste caso se consome bastante memória, tempo, e dependendo do caso, banda para o envio dos dados. *Em dados que não mudam*, um backup completo em **intervalo regular** não é a melhor solução, porque vai se salvar várias copias idênticas ao longo do tempo, como por exemplo OSs, na qual um unico backup geralmente já basta.
+
+### 8.2.4 Diferencial (*parcial*)
+- Neste, nem todos os dados são salvos, só os que são (ou foram) alterados ao longo do tempo, neste caso a vantagem está no fato que se salva uma parte dos dados, consumindo menos memória e banda, mas não se salvam todos.
+
+### 8.2.5 Incremental
+- Enquanto o backup diferencial copia arquivos alterados ou criados, o **backup incremental copia apenas os dados alterados** nos arquivos. Isso é ainda mais eficiente em termos de espaço em disco e tempo necessário em comparação ao backup diferencial.   
+
+## 8.3 [RAID](https://en.wikipedia.org/wiki/RAID) (*Redundant Array of Independent Disks*)
+- *Matriz Redundante de Discos Independentes* combina diversos discos físicos em um unico e grande disco virtual. Existem varios tipos de configurações diferentes denominados [níveis](https://en.wikipedia.org/wiki/Standard_RAID_levels) que podem priorizar capacidade, performance ou confiabilidade. Dito isso, **RAID não é uma solução de backup, mas de armazenamento.**  
+
+## 8.4 **Plano de Desastre**
+- Parte crucial na rec. de dados; essencialmente é uma **coleção de procedimentos e planos documentados sobre como reagir e lidar com uma emergência** ou um desastre de uma perspectiva operacional incluindo aquilo que deve ser feito antes, durante e depois de um desastre cujo objetivo é de minimizar a interrupção para a empresa e as operações de TI, mantendo a inatividade dos sistemas em um nível mínimo e evitando perdas de dados significativas.
+- Geralmente o plano se inicia com uma **analise e avaliação de riscos** envolvendo analise de sistemas, em *detalhes*, afim de encontrar pontos fracos, permitindo então a priorização de aspectos específicos que podem se tornar problemáticos no futuro.
+- Testes de estresse tambem são importantes, na qual voce tenta forçar uma carga altíssima em um serviço com o intuito de quebra-lo, para então ver onde e como o sistema poderia quebrar no futuro e tentar prevenir, ou corrigir, o erro.
+
+### 8.4.1 Medidas Preventivas
+- Tambem estão inclusas no plano e são medidas proativas que se toma para reduzir o impacto, ou até mesmo evitar um possível desastre, como por exemplos, *multiplos backups e sistemas redundantes* como por exemplo, baterias ou fontes de energia fora do sistema de alimentação principal, no caso de um blackout.
+
+### 8.4.2 Medidas de Detecção
+- Alertam sobre um possível desastre, ou ocorrendo ou se aproximando, com o intuito de avisar os profissionais da area à tomarem as medidas necessárias. A notificação rápida da ocorrência de um desastre é essencial já que algumas etapas do plano podem ser urgentes para garantir que não haja perda de dados ou danos aos equipamentos.
+    - Outras medidas detectivas inclui sensores ambientais, como sensor de temperatura, humidade e fumaça.
+- Planos de evacução tambem se encaixam, em casos mais extremos como um incêndio.
+
+### 8.4.3 Medidas Corretivas
+- Feito após o desastre, envolvendo etapas de recuperação de dados, reconfiguração de sistemas danificados e 
