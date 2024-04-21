@@ -399,7 +399,7 @@ ou como `gpmc.msc` na linha de comando.
 # 8. ***Recuperação de Dados***  
 - Planejar recuperação de dados é fundamental para o funcionamento de qualquer organização. Quando os dados se perdem por qualquer razão, o objetivo é sempre tentar continuar o funcionamento normalmente, do modo que for possível. Um dos modos que se faz isso é por meio do [**planejamento de disastre**](https://pt.wikipedia.org/wiki/Recupera%C3%A7%C3%A3o).
     - Neste planejamento é comun serem feitos *backups de rotina de dados críticos* para o funcionamento.
-    - Também é feito um post-mortem que documenta os problemas encontrados e com oforam corrigidos, para que se acontecer novamente, ser mais fácil de celere a recuperação.
+    - Também é feito um **post-mortem** que documenta os problemas encontrados e com oforam corrigidos, para que se acontecer novamente, ser mais fácil de celere a recuperação.
     - [*Gitlab accident from 2017*](https://about.gitlab.com/blog/2017/02/01/gitlab-dot-com-database-incident/)
 
 ## 8.1 [**Backup**](https://pt.wikipedia.org/wiki/C%C3%B3pia_de_seguran%C3%A7a)  
@@ -447,4 +447,23 @@ ou como `gpmc.msc` na linha de comando.
 - Planos de evacução tambem se encaixam, em casos mais extremos como um incêndio.
 
 ### 8.4.3 Medidas Corretivas
-- Feito após o desastre, envolvendo etapas de recuperação de dados, reconfiguração de sistemas danificados e 
+- Feito após o desastre, envolvendo etapas de recuperação de dados, reconfiguração de sistemas danificados e quaisquer consertos necessários.  
+
+### 8.4.4 Post-Mortem
+- Relatório feito após a catastrófe (*evento/projeto/falha etc*), para analisar o que houve e como foi resolvido. Nele incluem o antes, *fatores que levaram à catástrofe*, o durante, a *catástrofe em si* e o após, *como ela foi resolvida* e seu propósito é de aprender com a catástrofe, não de punir ninguem nem expor erros, apesar de serem abordados caso sejam relevantes ao caso.
+- Após ser redigido o relatório é divulgado, e dependendo do caso, até externamente com outros times ou online propriamente dito, porque no final, o objetivo é de prevenir e prepar e é possível que outros passem pelo mesmo problema.
+- Eles são escritos desse modo:
+1. **Resumo do Incidente**
+    - *O que aconteceu*
+    - *Quanto durou*
+    - *O que impactou*
+    - *Como resolveu*
+2. **Cronograma Detalhado**
+    - *Deve incluir ***todos detalhes*** da catástrofe, como quando começou e quanto demorou para que as pessoas fossem notificadas*.
+3. **Causa Raiz**
+    - *Relato focado no que levou à catastrofe*.
+4. **Resolução Detalhada**
+    - *Foca no que foi feito para resolver a catástrofe de modo minuncioso*.
+5. **Açoes para evitar a Catástrofe**
+    - *Oque deve ser feito para que a catástrofe não ocorra novamente*.
+- ***Todos passos devem incluir datas e horas, incluindo fuso-horários***
