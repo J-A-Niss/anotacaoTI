@@ -1,7 +1,7 @@
 # 1. **ITSec**
 *IT Security* ou Segurança de TI é o ramo que estuda e analisa potenciais ameaças à sistemas e computadores.
 
-# 2. **CIA**
+## 1.1 **CIA**
 - *Confidentiality, Integrity e Availability*; ou Confidencialidade, Integridade e Disponibilidade. Acronimo do que é chamado de tríade CIA, um modelo guia para designar políticas de segurança de informação.
     - **Confidencilidade**
         - Como o nome implica, envolve manter seus dados seguros e afastados de olhares indesejados. Como por exemplo, uma senha que não é contada para ninguém, usada para aumentar a segurança de sua conta.
@@ -10,7 +10,7 @@
     - **Disponibilidade**
         - Para que os dados estejam facilmente acessíveis a quem precisar do acesso.
 
-# 3. Terminologia
+## 1.2 Terminologia
 1. ***Risco*** é a possibilidade de sofrer uma perda durante um ataque ao sistema.
 2. ***Vulnerabilide*** é uma falha no sistema que pode ser usada para compromete-lo. 
     - ***Vulnerabilidade de dia zero*** é uma vulnerabilidade desconhecida pelo desenvolvedor ou vendedor, mas conhecida pelo invasor; *chamada de dia zero porque se tem zero dias para conserta-la* e já foi explorada por invasores.
@@ -18,3 +18,52 @@
 4. ***Ameaça*** é a possiblidade de perigo que pode explorar uma vulnerabilidade, ou seja, **possiveis invasores**.
 5. ***Hacker*** é alguém que tenta explorar ou invadir um sistema
 6. ***Ataque*** é uma tentativa real de causar dano ou invadir um sistema
+7. ***Malware*** é a abrevição de *malicious software* ou software malicioso.
+
+# 2. *Malware*
+- *Malicious Software* ou Software Malicioso é um software cujo proposito é causar algum tipo de dano, roubando/deletando/modificando arquivos.
+
+Para mais info. sobre prot. antimalware: https://colab.research.google.com/drive/1MKxEvVGAYvCppaFOUVT0Cl9DUMg1JE4i#scrollTo=Ak3aFkgWkqzN
+
+## 2.1 *Vírus*
+- Funciona como um vírus da vida real, na qual o virus de apega à uma célula do seu corpo e usa para se reproduzir e lhe causar dano, o vírus de computado se apega à um código executável, como um programa, e quando esse programa é executado ele se apega à outros arquivos que se tornam suscetíveis à infecção pelo vírus, onde ele se reproduz nos arquivos e causa mais dano.
+
+## 2.2 *Worms*
+- Parecido com o vírus, mas no caso ele não precisa se apegar à um arquivo para se espalhar, sendo independente e podendo se espalhar por canais, como a rede local.
+
+### 2.2.1 *Love Bug*
+- Foi um caso famoso de um worm que se espalhou por meio de um **arquivo executável disfarçado como arquivo de texto**, enviado por email parecendo ser uma confissão amorosa, que então era executado, se propagando por meio de software, fazendo outros ataques maliciosos, danificando arquivos etc. 
+- Ele se espalhava roubando endereços de email e clientes de chat no computador da vítima, replicando o email para todos os contatos da vítima, sendo ***esta uma das maiores razões que não se abre arquivo executável de remetentes desconhecidos***.  
+
+## 2.1 *Adware*
+- Malware que faz anuncio de propaganda e coleta dados, muitas vezes se faz download de adware de forma legítima, acontecendo quando se concorda com termos de serviço que permitem o uso de software gratuito em troca da exibição de anúncios. Em outros casos, ele é instalado sem consentimento e pode *fazer outras ações maliciosas além de só exibir anúncios*.
+
+## 2.3 *Trojan*
+*Na mitologia grega, existe a história invasão de Troia. Onde os gregos constroem uma estátus de um cavalo e dão de presente aos troianos, dentro da qual se escondem e atacam a cidade durante a noite.*
+- Um *Trojan* é um malware que se disfarça de algo, *e como os troianos*, o usuário precisa aceitar e executar o arquivo para que este cause dano.  
+
+## 2.4 *Spyware*
+- Malware cujo propósito é espionar o usuário, incluindo monitoramento da tela do usuário, pressionamento de teclas (keylogger), webcam, microfone etc. E então enviar todos estes dados para o remetente.
+
+### 2.4.1 *Keylogger*
+- Tipo de spyware cuja função é detectar o pressionamento da tecla do computador, podendo capturar de mensagens à senhas e logins.
+
+## 2.5 *Ransomware*
+- Malware que faz seus dados refém até que um resgate seja pago.
+
+### 2.5.1 *WannaCry*
+- Ransomware emblemático, de maio de 2017. O malware explorou uma vulnerabilidade em sistemas Windows antigos e infectou máquinas pelo mundo todo, chegando a desativar os sistemas do serviço público de saúde da Inglaterra, causando uma crise de saúde pública. 
+
+## 2.6 *BotNet*
+- Rede computadores comprometidos, cujo objetivo é de usar o poder das máquinas infectadas para fazer alguma função distribuída, como por exemplo, *mineração de bitcoin*.
+    - Mineração de bitcoin envolve uma máquina realizar cálculos que consomem seus recursos, e um ataque de botnet muito popular foi de sequestrar sistemas para fazer tais cálculos, sem a anuência do usuário.
+
+## 2.7 *Backdoor*
+- É uma vulnerabilidade que permite o acesso à um sistema, caso as outras vias de acesso estejam bloqueadas e são geralmente instaladas quando se tem um acesso ao sistema e invasores querem manter este acesso.
+
+## 2.8 *Rootkit*
+- Como o nome indica, é um kit para o acesso *root*, sendo ferramentas usadas que um administrador usaria, permitindo modificações em níveis de admin ao OS. É de dificil detecção por usar o proprio sistema para se esconder, executando processos que não são demonstrados no gerenciador de tarefas.
+
+## 2.9 *Logic Bomb*
+- Malware instalado propositalmente que após um certo gatilho, como um período de tempo ou algum outro evento realizado pela máquina, executa um programa malicioso.
+    - Houve um caso famoso de [bomba lógica em 2006](https://www.independent.co.uk/news/business/news/disgruntled-worker-tried-to-cripple-ubs-in-protest-over-32-000-bonus-481515.html) quando um administrador de sistemas de um banco instalou uma bomba lógica que derrubou os serviços da empresa para tentar diminuir o valor das ações. O funcionário foi pego, indiciado por fraude e condenado a 8 anos de prisão.

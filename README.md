@@ -4,4 +4,4 @@
 --- 
 ## **GitHub repository dedicated towards IT online classes anottations**
  - Feel free to read/use/copy/paste/learn
- - No intentions of translating it to EN-US for the moment.
+ - *No intentions of translating it to EN-US for the moment.*
