@@ -112,8 +112,7 @@ Para mais info. sobre prot. antimalware: https://colab.research.google.com/drive
 
 ## 4.2.1 **Força Bruta**
 - Utiliza um programa que tenta adivinhar sua senha, usando literalmente ***todas possíveis combinações dos carácteres permitidos pelo site em questão***. E dependendo do tamanho da senha pode ser rápido ou praticamente impossível.
-    - **O comprimento da senha exponencializa a dificuldade de adivinhação do programa, tornando a senha muito mais segura do que pela complexidade dos carácteres**.
-
+ 
 ### 4.2.1.1 ***Comprimento > c0mpl3x1d4d&***
 ```
 56 letras + 10 números + 10 carácteres especiais = 76 possíveis carácteres
@@ -128,3 +127,10 @@ senha de 6 carácteres  = 56 x 56 x 56 x 56 x 56 x 56 = 30.840.979.456 poss. com
 
 >> senha de 10 carácteres = 56 x 56 x 56 x 56 x 56 x 56 x 56 x 56 x 56 x 56 = 303.305.489.096.114.176 poss. comb.
 ```
+- **Ou seja; comprimento da senha exponencializa a dificuldade de adivinhação do programa, tornando a senha muito mais segura do que pela complexidade dos carácteres**.
+
+### 4.2.1.2 Captcha
+- Um captcha é um tipo de filtro que tenta distinguir um acesso de um humano do acesso de um robo, usado como um tipo de protetor da senha contra um método de força bruta.  
+
+### 4.2.1.3 Ataque de dicionário
+- Identico ao de força bruta, mas testa palavras ao invés de combinações
