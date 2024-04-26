@@ -1,4 +1,4 @@
-# 1. **ITSec**
+# 1. ***ITSec***
 *IT Security* ou Segurança de TI é o ramo que estuda e analisa potenciais ameaças à sistemas e computadores.
 
 ## 1.1 **CIA**
@@ -20,7 +20,7 @@
 6. ***Ataque*** é uma tentativa real de causar dano ou invadir um sistema
 7. ***Malware*** é a abrevição de *malicious software* ou software malicioso.
 
-# 2. *Malware*
+# 2. ***Malware***
 - *Malicious Software* ou Software Malicioso é um software cujo proposito é causar algum tipo de dano, roubando/deletando/modificando arquivos.
 
 Para mais info. sobre prot. antimalware: https://colab.research.google.com/drive/1MKxEvVGAYvCppaFOUVT0Cl9DUMg1JE4i#scrollTo=Ak3aFkgWkqzN
@@ -65,5 +65,66 @@ Para mais info. sobre prot. antimalware: https://colab.research.google.com/drive
 - Como o nome indica, é um kit para o acesso *root*, sendo ferramentas usadas que um administrador usaria, permitindo modificações em níveis de admin ao OS. É de dificil detecção por usar o proprio sistema para se esconder, executando processos que não são demonstrados no gerenciador de tarefas.
 
 ## 2.9 *Logic Bomb*
-- Malware instalado propositalmente que após um certo gatilho, como um período de tempo ou algum outro evento realizado pela máquina, executa um programa malicioso.
-    - Houve um caso famoso de [bomba lógica em 2006](https://www.independent.co.uk/news/business/news/disgruntled-worker-tried-to-cripple-ubs-in-protest-over-32-000-bonus-481515.html) quando um administrador de sistemas de um banco instalou uma bomba lógica que derrubou os serviços da empresa para tentar diminuir o valor das ações. O funcionário foi pego, indiciado por fraude e condenado a 8 anos de prisão.
+- Malware instalado propositalmente que *após um certo gatilho*, como um período de tempo ou algum outro evento realizado pela máquina, *executa um programa malicioso*.
+    - Houve um caso famoso de [bomba lógica em 2006](https://www.independent.co.uk/news/business/news/disgruntled-worker-tried-to-cripple-ubs-in-protest-over-32-000-bonus-481515.html) quando um administrador de sistemas de um banco instalou uma bomba lógica que derrubou os serviços da empresa para tentar diminuir o valor das ações. O funcionário foi pego, indiciado por fraude e condenado a 8 anos de prisão.  
+
+# 3. **Ataques à rede** 
+- Ataque que alvejam a rede em si.
+
+## 3.1 Envenenamento de Cache
+- Engana um servidor DNS com um endereço de um DNS falso que vai apontar à um servidor comprometido, que então te transmite endereços DNS falsos quando voce tentar acessar sites legítimos, podendo se espalhar para outras redes se outros servidores estiverem recebendo informações de um servidor comprometido, propagando o ciclo.
+
+### 3.1.1 [Ataque no Brasil em 2011](https://threatpost.com/major-dns-cache-poisoning-attack-hits-brazilian-isps-110711/75859/)
+
+## 3.2 Meddler-in-the-middle
+- Coloca um invador entre 2 hosts que acreditam estarem se comunicando diretamente, na qual o invasor monitora a comunicação entre os hosts a modificando.
+
+### 3.2.1 *Cookie Hijacking*
+- Tambem conhecido como *Session Hijacking* ou **Sequestro de Sessão**, na qual o invasor utiliza um token de segurança já pré-gerado pelo host se comunicando o servidor para poder roubar as informações; por exemplo, acessar o Youtube com sua conta e ter sua sessão sequestrada por um invasor, se passando por voce para acessar sua conta.
+    - Geralmente esse tipo de sequestro se dá em acessos de **pontos públicos**
+
+#### 3.2.1.1 *Rogue Access Point*
+- É um ponto de acesso malicioso, instalado em uma rede sem o consentimento/conhecimento do administrador.
+
+#### 3.2.1.2 *Evil Twin*
+- Parecido com o *RogueAP*, mas no caso é um rede que se faz parecer identica à outra, com objetivo de enganar um usuário à se acessar nela, rede esta que é controlada geralmente por um administrador malicioso com objetivo de monitorar o tráfego de quem se conecta à ela.    
+
+## 3.3 *Denial of Service*
+- Um DoS é um ataque envolve sobrecarregar um sistema ou servidor com acessos falsos, com objetivo de impedir acesso de usuários legítimos.
+
+### 3.3.1 *Hug of Death*
+- Um DoS, mas feito por usuários legítimos que acabam por sobrecarregar acidentalmente uma rede.
+
+### 3.3.2 *Distributed DoS*
+- É um DoS, mas feito com multiplos sistemas, tendo por objetivo sobrecarregar ainda mais redes ainda maiores. Geralmente feitos por meio de botnets
+    - [Para mais info sobre DDoS](https://colab.research.google.com/drive/1v6e25s0mlJXaVj_HnVr7y3A8C4nuWDs1#scrollTo=Yu6uXvGxlCDa)
+
+# 4. **Ataques do lado do Cliente**
+
+## 4.1 **XXS**
+- *Cross-site scripting attack* ou ataque de scripting en varios sites é um ataque que envolve um invasor injetar código malicioso que alveja o usuário de um serviço, muito usados para ***sequestro de sessão***.
+
+### 4.1.1 **SQL Injection**
+- Idêntico ao XXS, mas este alveja o site em si caso este use um banco de dados em SQL, na qual o invasor tem controle do banco de dados, podendo manipula-los como quiser.
+
+## 4.2 **Ataque de Senha**
+- Utiliza um programa que tenta descobrir a senha.
+
+## 4.2.1 **Força Bruta**
+- Utiliza um programa que tenta adivinhar sua senha, usando literalmente ***todas possíveis combinações dos carácteres permitidos pelo site em questão***. E dependendo do tamanho da senha pode ser rápido ou praticamente impossível.
+    - **O comprimento da senha exponencializa a dificuldade de adivinhação do programa, tornando a senha muito mais segura do que pela complexidade dos carácteres**.
+
+### 4.2.1.1 ***Comprimento > c0mpl3x1d4d&***
+```
+56 letras + 10 números + 10 carácteres especiais = 76 possíveis carácteres
+
+>> senha de 6 carácteres  = 76 x 76 x 76 x 76 x 76 x 76 = 192.699.928.576 possíveis combinações 
+
+senha de 10 carácteres = 76 x 76 x 76 x 76 x 76 x 76 x 76 x 76 x 76 x 76 = 6.428.888.932.339.941.376 possiveis combinações
+
+ignorando letras e carácteres especiais:
+
+senha de 6 carácteres  = 56 x 56 x 56 x 56 x 56 x 56 = 30.840.979.456 poss. comb.
+
+>> senha de 10 carácteres = 56 x 56 x 56 x 56 x 56 x 56 x 56 x 56 x 56 x 56 = 303.305.489.096.114.176 poss. comb.
+```
