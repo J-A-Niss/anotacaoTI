@@ -92,17 +92,20 @@ Para mais info. sobre prot. antimalware: https://colab.research.google.com/drive
 ## 3.3 *Denial of Service*
 - Um DoS é um ataque envolve sobrecarregar um sistema ou servidor com acessos falsos, com objetivo de impedir acesso de usuários legítimos.
 
-### 3.3.1 *Hug of Death*
+### 3.3.1 *Ping of Death*
+- Um ataque de *Ping of Death* (PoD) é um ataque de negação de serviço em que o invasor visa interromper uma máquina, enviando um pacote maior que o tamanho máximo permitido, fazendo com que a máquina visada trave ou falhe.
+
+### 3.3.2 *Hug of Death*
 - Um DoS, mas feito por usuários legítimos que acabam por sobrecarregar acidentalmente uma rede.
 
-### 3.3.2 *Distributed DoS*
+### 3.3.3 *Distributed DoS*
 - É um DoS, mas feito com multiplos sistemas, tendo por objetivo sobrecarregar ainda mais redes ainda maiores. Geralmente feitos por meio de botnets
     - [Para mais info sobre DDoS](https://colab.research.google.com/drive/1v6e25s0mlJXaVj_HnVr7y3A8C4nuWDs1#scrollTo=Yu6uXvGxlCDa)
 
 # 4. **Ataques do lado do Cliente**
 
 ## 4.1 **XXS**
-- *Cross-site scripting attack* ou ataque de scripting en varios sites é um ataque que envolve um invasor injetar código malicioso que alveja o usuário de um serviço, muito usados para ***sequestro de sessão***.
+- *Cross-site scripting attack* ou ataque de scripting em varios sites é um ataque que envolve um invasor injetar código malicioso que alveja o usuário de um serviço, muito usados para ***sequestro de sessão***.
 
 ### 4.1.1 **SQL Injection**
 - Idêntico ao XXS, mas este alveja o site em si caso este use um banco de dados em SQL, na qual o invasor tem controle do banco de dados, podendo manipula-los como quiser.
@@ -125,7 +128,7 @@ ignorando letras e carácteres especiais:
 
 senha de 6 carácteres  = 56 x 56 x 56 x 56 x 56 x 56 = 30.840.979.456 poss. comb.
 
->> senha de 10 carácteres = 56 x 56 x 56 x 56 x 56 x 56 x 56 x 56 x 56 x 56 = 303.305.489.096.114.176 poss. comb.
+>> senha de 10 carácteres = 56 x 56 x 56 x 56 x 56 x 56 x 56 x 56 x 56 x 56 = 303.305.489.096.114.176 poss. comb. 
 ```
 - **Ou seja; comprimento da senha exponencializa a dificuldade de adivinhação do programa, tornando a senha muito mais segura do que pela complexidade dos carácteres**.
 
@@ -133,4 +136,27 @@ senha de 6 carácteres  = 56 x 56 x 56 x 56 x 56 x 56 = 30.840.979.456 poss. com
 - Um captcha é um tipo de filtro que tenta distinguir um acesso de um humano do acesso de um robo, usado como um tipo de protetor da senha contra um método de força bruta.  
 
 ### 4.2.1.3 Ataque de dicionário
-- Identico ao de força bruta, mas testa palavras ao invés de combinações
+- Identico ao de força bruta, mas testa *palavras* comuns ao invés de combinações de carácteres.
+
+# 5. [***Engenharia Social***](https://colab.research.google.com/drive/1O0WwNfPF-ALmuzMxbpvx_GLral0NJqX5#scrollTo=k1eJxqhWdL6R)
+- ***O Usuários é sempre o elo mais fraco de qualquer sistema de segurança.***
+- Engenharia social envolve a manipulação psicológica do usuário para que este revele informações sensíveis, geralmente sob engano. Um dos métodos mais comuns de Engenharia Social é o ataque de *phishing*.
+
+## 5.1 *Phishing*
+- *Phishing*; do ingles *fishing* ou pescar, tenta enganar a vítima a liberar dados pessoais como logins, senhas, números de cartão etc.
+- Pode se dar tambem por mensagens de texto; em via de regra, *todo tipo de comunicação falsa com intuito de enganar a vítima a liberar informação é considerado phishing*.
+
+### 5.1.1 *Spear Phishing*
+- *Idêntico ao phishing, mas alveja um indivíduo/grupo específico*, com o meio de comunicação falso contendo informações sua, como nome ou algum outro tipo de informação de contato.
+
+## 5.2 *Spoofing*
+- Envolve a falsificação do endereço de email do remetente com o intuito de enganar a vítima a achar que o email é legítimo.
+
+## 5.3 *Ataques Físicos*
+- ***Não envolvem atacar fisicamente a vítima***, mas sim tentar engana-la fora da internet.
+
+### 5.3.1 *Baiting*
+- Tipo de ataque físico que envolve *'abandonar'* um dispositivo, como um USB, em algum lugar com o objetivo de que a vítima conecte o dispositivo à sua propria máquina.
+
+### 5.3.2 *Tailgating*
+- Envolve seguir um funcionário legítimo em area restrita, cujo acesso não deveria ser permitido.
