@@ -161,5 +161,3 @@ senha de 6 carácteres  = 56 x 56 x 56 x 56 x 56 x 56 = 30.840.979.456 poss. com
 ### 5.3.2 *Tailgating*
 - Envolve seguir um funcionário legítimo em area restrita, cujo acesso não deveria ser permitido.
 
-
-# TESTE
