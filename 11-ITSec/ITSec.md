@@ -169,17 +169,64 @@ senha de 6 carácteres  = 56 x 56 x 56 x 56 x 56 x 56 = 30.840.979.456 poss. com
 - Ato de pegar uma mensagem de texto simples e aplica-la uma operação denominada *cypher* ou cifra, de modo a gerar uma mensagem ilegível, chamado de *cyphertext* ou texto-criptografado.
 
 ### 6.1.1 **Algoritmo de Criptografia**
-- É a lógica subjacente usada para criptografar um texto normal:
-```
-e=a
-l=m
+- É a lógica subjacente usada para criptografar um texto normal, essencialmente são operações matemáticas **muito** complexas usadas para ocultar a mensagem.
 
-Hello World = Homma Warmd
-```
-- Essencialmente são operações matemáticas **muito** complexas.
+#### 6.1.1.1 Algoritmos de Criptog. Simétrico
+
+##### 6.1.1.1.1 **DES** - *Data Encryption Standard*
+- Designado pela IBM em conjunto com a NSA (*National Sec. Agency*), adotado então como o primeiro **FIPS, *Federal Info. Processing Standard*** ou Padrão Federal de Proc. de Info. dos USA, significando que era usado para encriptar e proteger dados governamentais.
+- O **DES** é uma cifra de bloco simétrica que usa chaves de 64 bits, operando com blocos de 64 bits. ***Apesar da chave ser de 64 bits, 8 bits são usados para verificação de paridade, ou seja, para avergiguar erros. Ou seja, o comprimento real do DES é de 56 bits.***
+
+##### 6.1.1.1.2 **AES** - *Adv. Encp. Standard*
+- Substitui o DES, usando blocos de 128 bits e suportando chaves de 128, 192 e 256 bits de comprimento. Devido ao tamanho das chaves, ataques de força bruta ao AES são apenas teóricos por enquanto pelo fato do ***poder computacional, ou o tempo necessário, são completamente inviáveis***.
+- CPUs da Intel e da AMD já possuem AES incorporados para agilizar o processo de encripção, tendo em mente que as vezes, essa encripções são feitas em massa, sendo melhor que elas sejam rápidas e de baixo impacto no sistema.
+
+##### 6.1.1.1.3 RC4 - *Rivest Cypher 4*
+- Foi uma cifra de fluxo simétrico que era usada simplesmente pela sua velocidade, infelizmente devido à fraquezas e vulnerabilidades inerentes, esta cifra foi abandonada em favor de **TLS 1.2 com AES GCM**.
+    - *Isto foi exacerbado com o* [RC4 NOMORE](http://www.rc4nomore.com/) *onde invasores inseriam JavaScript malicioso em websites que induziam a vítima a transmitir pedidos encriptados que continham cookies pessoais, na qual o invasor pega a lista de cookies prováveis e os testa um a um.*
+
+##### 6.1.1.1.4 GCM - *Galois Counter Mode*
+- Modo específico de AES, que pega um valor de *semente* aleatorio, o incrementa e criptografa o resultado, criando blocos de texto criptografado numerados em sequência e depois o texto criptografado é incorporado ao simples a ser criptografado.
+
+##### 6.1.1.1.5 *Seed Value*
+- Valor secreto usado para inicializar um processo gerado por um software, usando um ou mais valores.
 
 ### 6.1.2 **Chave**
-- Algo de único que é introduzido durante a encripção no texto simples, que auxilia na complexação da criptografia.
+- Algo de único que é introduzido durante a encripção no texto simples, que auxilia na complexação da criptografia. Se a mesma chave é reusada se torna possível quebrar a criptografia de decodificar a mensagen, para isso é introduzido um **vetor de inicialização, ou IV**, que são dados aleatórios integradao à chave de criptografia, na qual a chave resultante é usada para criptografar os dados.
+    - **A idéia é de que com a chave mestra, se gera uma chave avulsa de uso unico composta da chave mestra e o IV.** E para **decodificar** é **necessário o IV em texto simples junto com a mensagem codificada**.
+- O tamanho da chave é definido em bits e indica seu comprimento total, que tambem define a qta. máxima de chaves de um determinado algoritmo, e seu comprimento define o potencial total de segurança da criptografia. 
+- Imaginando um sistema ideal, sem falha nenhuma, na qual a unica chance de um invasor de quebrar a criptografia seria de tentar adivinhar a chave, usando nesse caso o método da ***força bruta***, na qual chaves maiores protegem melhor.
+    - Usando o **DES** como exemplo, com 64 bits totais, das quais 8 são dedicados à paridade, ***tendo então 56 bits de chave, o que traz 2^56 ou 72.000.000.000.000.000 de chaves possíveis.***
+        - *Eventualmente, com o avanço da técnologia, 56 bits se tornou muito pouco.*
+
+#### 6.1.2.1 **Chave Simétrica**
+- Chave simétrica é a que é usada para *encriptar* e *decriptar* mensagens
+
+##### 6.1.2.1.1 Cifra de Substituição
+- Chave simples que substitui letras por outras letras: 
+```
+e=a | l=m > Hello World = Homma Warmd
+```
+- Com a chave ou a tabela de substituição fica fácil de traduzir a mensagem fazendo a inversão.
+
+##### 6.1.2.1.2 *Cifra de César*
+- Uma cifra de substit. que substit. letras e as deslocas, embaralhando ainda mais a mensagem original, na qual o num. do deslocamento é a chave.
+
+##### 6.1.2.1.3 **ROT13**
+- *Rotate 13*, nesta o alfabeto é rotacionado 13 posições, neste caso é uma **Cifra de Cesar que usa uma chave de 13.**
+```
+A B C D E F G H I J K L M
+| | | | | | | | | | | | | 
+N O P Q R S T U V X W Y Z 
+
+ROT13: Hello World = URYYB JBEYQ
+```
+
+##### 6.1.2.1.4 Cifra de Bloco e de Fluxo
+- Relacionado à como a cifra opera no texto simples;
+    - ***Cifra de Fluxo*** é a que recebe um fluxo de entrada e *encripta* um cáracter/digito por vez, gerando um carácter/dígito por vez., ou sejam *encripta* 1:1
+    - ***Cifra de Bloco*** *encripta* varios cáracteres/digitos por vez, gerando então uma unica unidade de dado *encriptado*. Caso não tenha dado suficiente para preencher o bloco, ele será preenchido para que o texto simples encaixe no bloco de modo uniforme.
+
 
 ## 6.2 **Decripção**
 - O processo reverso da encripção, que envolve 'traduzir' uma mensagen criptograda em texto legível.
