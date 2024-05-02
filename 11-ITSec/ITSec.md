@@ -161,3 +161,39 @@ senha de 6 carácteres  = 56 x 56 x 56 x 56 x 56 x 56 = 30.840.979.456 poss. com
 ### 5.3.2 *Tailgating*
 - Envolve seguir um funcionário legítimo em area restrita, cujo acesso não deveria ser permitido.
 
+# 6. [***Criptografia***](https://colab.research.google.com/drive/1aHMWY1F0gc10exlVUsZOUT1cJ3W-xDD1#scrollTo=VHFF5ddpSfKh)
+- É a prática e estudo da conversão de dados de um formato legível à um formato *codificado* com o objetivo de ocultar mensagens. Seu estudo é chamado de **Criptologia**
+    - Seu inverso é chamado de *criptoanálise*
+
+## 6.1 **Encripção**
+- Ato de pegar uma mensagem de texto simples e aplica-la uma operação denominada *cypher* ou cifra, de modo a gerar uma mensagem ilegível, chamado de *cyphertext* ou texto-criptografado.
+
+### 6.1.1 **Algoritmo de Criptografia**
+- É a lógica subjacente usada para criptografar um texto normal:
+```
+e=a
+l=m
+
+Hello World = Homma Warmd
+```
+- Essencialmente são operações matemáticas **muito** complexas.
+
+### 6.1.2 **Chave**
+- Algo de único que é introduzido durante a encripção no texto simples, que auxilia na complexação da criptografia.
+
+## 6.2 **Decripção**
+- O processo reverso da encripção, que envolve 'traduzir' uma mensagen criptograda em texto legível.
+
+## 6.3 ***Security through Obscurity***
+- *Segurança pela obscuridade*, é o principio de incrementar a segurança, do que quer que seja, por meio da confidencialidade, ou da informação, ou do processo de obter tal informação.
+
+### 6.3.1 [*Kerckhoff's Principle*](https://en.wikipedia.org/wiki/Kerckhoffs%27s_principle)
+- "*Mesmo que tudo do sistema seja conhecido, ele permanece seguro se a chave é desconhecida*"
+- **A segurança de um *cryptosystem* ou criptosistema é baseado primordialmente em sua chave**, todo seu resto deve ser considerado conhecimento público. Ou seja, ***mesmo que o algoritmo em si seja conhecido, se a chave for desconhecida, o sistema permanece seguro.***
+- Esse tambem é denominado por *Shannon's Maxim*: "O inimigo conheçe o sistema"
+
+## 6.4 **Ánalise de Frequências**
+- A pratica de estudar a frequência com que letras aparecem um texto criptografado. A premissa desse tipo de análise é que em línguas escritas algumas letras são mais frequentes que outras, e algumas letras têm maior tendência de aparecerem juntas. Por exemplo, as letras mais comuns em inglês são: "e", "t", "a" e "o" e os pares mais comuns dessas letras são: "th", "er", "on" e "an".  
+
+# 7. ***Esteganografia***
+- Prática de ocultar mensagens sem codifica-las. Por exemplo, usar uma tinta 'invisível' que só pode ser vista sob uma luz específica. Técnicas atuais envolve ocultar as mensagens e até arquivos em outros arquivos, como imagens. 
