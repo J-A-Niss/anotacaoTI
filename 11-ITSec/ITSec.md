@@ -200,7 +200,29 @@ senha de 6 carácteres  = 56 x 56 x 56 x 56 x 56 x 56 = 30.840.979.456 poss. com
         - *Eventualmente, com o avanço da técnologia, 56 bits se tornou muito pouco.*
 
 #### 6.1.2.1 **Chave Simétrica**
-- Chave simétrica é a que é usada para *encriptar* e *decriptar* mensagens
+- Chave simétrica é a que é usada para *encriptar* **e** *decriptar* as mensagens.   
+
+#### 6.1.2.2 **Chave Assimétrica**
+- Em contraste à chave simétrica, essa usa uma chave para *encriptar* e **outra** para *decriptar*. O processo funciona do seguinte modo:
+    1. Duas pessoas, `A` e `B` querem se comunicar de forma segura, cada um gera uma chave particular
+    2. Dessa chave particular, uma pública é derivada
+    3. Quando cada parte gera uma chave particular e uma pública, as chaves publicas são trocadas
+    4. Quando mensagens são trocadas, se usa a chave publica da OUTRA parte para *encriptar* a mensagen, que só pode ser *decriptada* com sua chave particular.
+    6. `A` envia uma mensagen *encriptada* com a chave publica de `B`, para `B` que só poderá *decriptar* a mensagem de `A` com sua propria chave particular.
+- ***A força do sistema de criptografia assimétrica vem da dificuldade computacional de descobrir a chave privada correspondente à uma chave pública.*** Nisto, o sistema assim. de criptografia confere 3 qualidades: 
+1. Confidencialidade
+    - Por meio dos sistemas de *encrip* e *decripção*
+2. Autenticidade
+    - Conferida por meio da ass. digital, que garante sua não adulteração
+3. Não-repudiação
+    - E devido à tudo isso, o autor não pode disputar a origem da mensagem, trazendo a gerantia de que a mensagem veio de quem se afirma ser seu autor.
+- Devido à tudo isso, a chave assim. é mais *complexa* e *computacionalmente exigente*.
+
+##### 6.1.2.2.1 *Assinatura de Chave Pública*
+- Utilizado para que o recipiente da mensagem tenha certeza que a mensagem foi enviada pela pessoa esperada sem ter sido adulterada. Isso é feito combinando com sua chave **particular**, gerando uma assinatura de chave publica.
+    7. Agora `B` pode averiguar a autenticidade da mensagem de `A` ao combinar sua mensagen, chave pública e assinatura digital
+    8. Se a mensagem não foi modificada a ass. digital fará a validação
+        - *Se a mensagem foi adulterada, **nem que seja um único caráctere**, a validação falhará*
 
 ##### 6.1.2.1.1 Cifra de Substituição
 - Chave simples que substitui letras por outras letras: 
@@ -225,8 +247,13 @@ ROT13: Hello World = URYYB JBEYQ
 ##### 6.1.2.1.4 Cifra de Bloco e de Fluxo
 - Relacionado à como a cifra opera no texto simples;
     - ***Cifra de Fluxo*** é a que recebe um fluxo de entrada e *encripta* um cáracter/digito por vez, gerando um carácter/dígito por vez., ou sejam *encripta* 1:1
-    - ***Cifra de Bloco*** *encripta* varios cáracteres/digitos por vez, gerando então uma unica unidade de dado *encriptado*. Caso não tenha dado suficiente para preencher o bloco, ele será preenchido para que o texto simples encaixe no bloco de modo uniforme.
+    - ***Cifra de Bloco*** *encripta* varios cáracteres/digitos por vez, gerando então uma unica unidade de dado *encriptado*. Caso não tenha dado suficiente para preencher o bloco, ele será preenchido para que o texto simples encaixe no bloco de modo uniforme.   
 
+##### 6.1.2.1.5 Message Authentication Codes - MACs
+- ***Totalmente distintos do Mac address***. É um bit de informação que permite authenticação de uma mensagen, garatindo que veio de onde diz vir e não foi adulterada.
+    - **HMAC** ou *Keyed-hash MAC*, usa um hash criptográfico junto com a chave secreta para gerar um MAC.
+    - **CMAC** ou *Cypher-based MAC*, identico ou HMAC, mas usa uma cifra simétrica ao invés do hash criptografado.
+        - **CBCMAC** ou *Cypher-block Chaining MAC*, identico ao CMAC, mas usa cifras em blocos.
 
 ## 6.2 **Decripção**
 - O processo reverso da encripção, que envolve 'traduzir' uma mensagen criptograda em texto legível.
