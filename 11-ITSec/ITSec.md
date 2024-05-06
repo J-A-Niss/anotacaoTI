@@ -189,7 +189,33 @@ senha de 6 carácteres  = 56 x 56 x 56 x 56 x 56 x 56 = 30.840.979.456 poss. com
 - Modo específico de AES, que pega um valor de *semente* aleatorio, o incrementa e criptografa o resultado, criando blocos de texto criptografado numerados em sequência e depois o texto criptografado é incorporado ao simples a ser criptografado.
 
 ##### 6.1.1.1.5 *Seed Value*
-- Valor secreto usado para inicializar um processo gerado por um software, usando um ou mais valores.
+- Valor secreto usado para inicializar um processo gerado por um software, usando um ou mais valores.   
+
+#### 6.1.1.2 Algoritmos de Criptog. Assimétrico   
+
+##### 6.1.1.2.1 RSA
+- Um dos primeiros sistemas práticos de criptografia desenvolvidos, nomeado pela sigla de seus criadores, *Ron Rivest, Adi Shamir* e *Leonard Alderman*. Patenteado em 1983 e lançado em domínio público pela *RSA Security* em 2000.
+- O processo de geração de chave em si é incrivelmente complexo para ser abordado, mas basicamente é ***a escolha de dois números primos únicos, aleatórios e muito grandes.***
+
+##### 6.1.1.2.2 DSA - *Digital Sign. Algorithm*
+- É um *sist. de cript. assim.* usado para assinar e verificar dados. Patenteado em 1991 e faz parte do padrão de processamento de info. do governo dos EUA. Parecido ao RSA, esse cobre a geração de chave a assinatura e verificação de dados usando pares de chaves. **É importante ressaltar que a segurança do sistema depende da escolha de um valor de semente aleatório que é incorporado ao processo de assinatura.**
+    - Em 2010 a Sony **não estava garantindo que esse valor aleatório fosse alterado para cada assinatura**. Isso fez com que um grupo de hackers chamado *Fail0verflow* conseguisse recuperar a chave privada que a Sony usava para assinar softwares para a plataforma. **Isso permitiu a gravação e a assinatura de softwares personalizados que podiam ser executados na plataforma do console**, fazendo com que a pirataria de jogos se tornasse um problema, facilitando a cópia e a distribuição ilícitas de jogos.
+
+##### 6.1.1.2.3 DH - *Diffie-Hellman*
+- Algoritmo de troca de chaves.
+    1. As partes querem se comunicar por um canal *não-seguro*
+    2. As partes escolhem um numero inicial que será público, inteiro, aleatório, enorme e que diferente para cada nova seção
+    3. Cada parte escolhe um novo número próprio, que será secreto
+    4. Então soma o numero secreto ao público e envia o resultado à outra parte
+    5. A outra parte então soma seu número secreto mais a soma do numero público com o número secreto da outra parte
+    6. O resultado final é um novo valor, idêntico em ambos os lados, sem liberar informações desnecessárias à terceiros
+- Esse algoritmo foi designado para a troca de chaves, mas existem tentativas de adapta-lo para fins de criptografia. Tambem foi parte de PKI, ou sistema de infraestrutura de chave pública.   
+
+##### 6.1.1.2.4 ECC 
+- Criptografia de curvas elípticas é um sistema de criptografia de chave pública que usa a estrutura algébrica de curvas elípticas sobre campos finitos para gerar chaves seguras. Sistemas tradicionais de chave pública usam a fatoração de grandes números primos, enquanto a ECC utiliza curvas elípticas. Uma curva elíptica é composta por um conjunto de coordenadas que se ajustam à uma equação. **A vantagem dos sistemas de criptografia baseados em curva elíptica é que eles conseguem segurança semelhante aos sistemas tradicionais de chave pública com tamanhos de chave menores.**
+    - *Assim, por exemplo, uma chave de curva elíptica de 256 bits seria comparável a uma chave RSA de 3.072 bits. Isso é uma vantagem enorme, porque reduz o volume de dados que precisa ser armazenado e transmitido ao lidar com chaves.*   
+
+#### 6.1.1.3 Hash
 
 ### 6.1.2 **Chave**
 - Algo de único que é introduzido durante a encripção no texto simples, que auxilia na complexação da criptografia. Se a mesma chave é reusada se torna possível quebrar a criptografia de decodificar a mensagen, para isso é introduzido um **vetor de inicialização, ou IV**, que são dados aleatórios integradao à chave de criptografia, na qual a chave resultante é usada para criptografar os dados.
@@ -264,7 +290,7 @@ ROT13: Hello World = URYYB JBEYQ
 ### 6.3.1 [*Kerckhoff's Principle*](https://en.wikipedia.org/wiki/Kerckhoffs%27s_principle)
 - "*Mesmo que tudo do sistema seja conhecido, ele permanece seguro se a chave é desconhecida*"
 - **A segurança de um *cryptosystem* ou criptosistema é baseado primordialmente em sua chave**, todo seu resto deve ser considerado conhecimento público. Ou seja, ***mesmo que o algoritmo em si seja conhecido, se a chave for desconhecida, o sistema permanece seguro.***
-- Esse tambem é denominado por *Shannon's Maxim*: "O inimigo conheçe o sistema"
+- Esse tambem é denominado por *Shannon's Maxim*: "O inimigo conheçe o sistema" e "Deve-se designar o sistema assumindo que o inimigo terá total conhecimento sobre ele imediatamente."
 
 ## 6.4 **Ánalise de Frequências**
 - A pratica de estudar a frequência com que letras aparecem um texto criptografado. A premissa desse tipo de análise é que em línguas escritas algumas letras são mais frequentes que outras, e algumas letras têm maior tendência de aparecerem juntas. Por exemplo, as letras mais comuns em inglês são: "e", "t", "a" e "o" e os pares mais comuns dessas letras são: "th", "er", "on" e "an".  
