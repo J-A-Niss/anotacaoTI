@@ -114,7 +114,7 @@ Para mais info. sobre prot. antimalware: https://colab.research.google.com/drive
 - Utiliza um programa que tenta descobrir a senha.
 
 ## 4.2.1 **Força Bruta**
-- Utiliza um programa que tenta adivinhar sua senha, usando literalmente ***todas possíveis combinações dos carácteres permitidos pelo site em questão***. E dependendo do tamanho da senha pode ser rápido ou praticamente impossível.
+- Utiliza um programa que tenta adivinhar sua senha, usando literalmente ***todas possíveis combinações dos carácteres permitidos pelo site em questão***. E dependendo do tamanho da senha pode ser rápido ou praticamente impossível. *Teoricamente*, do mesmo modo que é impossível ter uma porta *inarrombável*, é impossível se proteger completamente de um ataque de força bruta, porém, dependendo da complexidade da segurança do sistema, mais tempo e recursos computacionais serão necessários, de modo que esses ataques se tornem impraticáveis.
  
 ### 4.2.1.1 ***Comprimento > c0mpl3x1d4d&***
 ```
@@ -215,7 +215,34 @@ senha de 6 carácteres  = 56 x 56 x 56 x 56 x 56 x 56 = 30.840.979.456 poss. com
 - Criptografia de curvas elípticas é um sistema de criptografia de chave pública que usa a estrutura algébrica de curvas elípticas sobre campos finitos para gerar chaves seguras. Sistemas tradicionais de chave pública usam a fatoração de grandes números primos, enquanto a ECC utiliza curvas elípticas. Uma curva elíptica é composta por um conjunto de coordenadas que se ajustam à uma equação. **A vantagem dos sistemas de criptografia baseados em curva elíptica é que eles conseguem segurança semelhante aos sistemas tradicionais de chave pública com tamanhos de chave menores.**
     - *Assim, por exemplo, uma chave de curva elíptica de 256 bits seria comparável a uma chave RSA de 3.072 bits. Isso é uma vantagem enorme, porque reduz o volume de dados que precisa ser armazenado e transmitido ao lidar com chaves.*   
 
-#### 6.1.1.3 Hash
+#### 6.1.1.3 *Hash*
+- *Hashing* é o processo que transforma um dado de qualquer tamanho em um código único com tamanho fixo chamado de *Hash*, sendo usado para facilitar a identificação e comparação de dados. **O *output* em si será sempre único, *exceto o tamanho, que será sempre idêntico*** de modo que dois *inputs* diferentes nunca resultem no mesmo *output*. Tambem ajuda a identificar cópias em bancos de dados ou arquivos.
+    - Por exemplo: *Se você usar a função de hash "MD5" para transformar a frase "Olá, mundo!", ela gerará o código "5eb63bbbe01eeed093cb22bb8f5acdc3".*
+- Isso torna o dado em questão em uma *hash*:
+1. Determinística
+    - Mesmo dado sempre gerará o mesmo *hash*
+2. Eficiente
+    - A função é rápida de calcular
+3. Única
+    - Diferentes dados geram diferentes *hashes*
+
+##### 6.1.1.3.1 *Hash Criptográfico*
+- Distinto da criptografia em si devido ao fato que são unidirecionais, ou seja, *não da pra recuperar o dado original por meio do hash.* Por exemplo, no processo de autenticação de senha a senha em si é colocada e comparada à um hash da senha da conta, que é a informação salva de fato no banco de dados, caso o hash da senha da conta não ser congruente com a senha fornecida o acesso é negado. Neste caso se salva os hashes das informação, que não são re-conversíveis nos dados originas i.e: *logins* e *senhas*, então mesmo no caso de uma invasão e os hashes forem vazados, não será uma perda tão grande.
+    - ***Neste caso, o que invasores fazem é tentar um ataque de força bruta contra as hashes das informações, quando ocorre uma correlação eles utilizam as informações correlacionadas para entrar na contra.***
+
+##### 6.1.1.3.2 *Algoritmos de geração de hashes criptográficos*
+- **MD5**
+    - Projetado em 1990, opera em blocos de 512 bits gerando resumos de 128 bits, foi publicado em '92 mas decobriram um falha em '96, na qual criptógrafos recomendaram o uso da *SHA1*, mas não erá nada crítico então a MD5 continuou a ser utilizada até 2004 quando foi suscetível à colisão de hashes, permitindo então que invasores explorem essa falha e em 2008 pesquisadores comprovaram que era possível falsificar certificados SSL com por meio dessa colisão de hashes, que acarretou na recomendação da interrupção de seu uso em 2010 e em 2012 o malware `Flame` usou dessa fraqueza para assinar certificados digitais e se passar por software oficial da Microsoft.  
+- **SHA1**
+    - Faz parte do pacote de funções de algoritmo de hash seguro, projetado pela NSA e publicado em 1995 ele opera blocos de 512 bits e gera um resumo hash de 160 bits. SHA1 é outra função de hash criptográfico amplamente usada em protocolos famosos, como TLS/SSL, PGP/SSH e IPSec e também é usado em sistemas de controle de versão como o Git, que usa hashes para identificar revisões e garantir a integridade dos dados pela detecção de dados corrompidos ou adulterados. Em 2010 foi recomendado sua substituição pelo *SHA2*, e apesar disso, pesquisadores não conseguirem comprovar  que é possível ocorrer uma colisão *parcial* de hashes, **mas não uma completa**, devido à necessidade computacional que simplesmente ainda não é realista. 
+        - ***Apesar disso, em 2017 foi publicada a primeira colisão completa de hashes no SHA1, que custaria, teorica e aproximadamente 6.500 anos de uso de uma unica CPU e 110 em uma unica GPU em computação ininterrupta***.
+
+##### 6.1.1.3.3 *Colisão de Hashes*
+- Ocorre quando uma hash dois tipos distintos de dados em um mesmo bloco geram a mesma hash. Usado em ataques de força bruta, vendo que o invasor precisaria 'adivinhar' qual senha corresponde a qual hash salva no banco de dados tentando todas possíveis combinações e passando as na função de hash para ver quais são compatíveis.
+    - Senhas comuns são salvas em uma ***'Tabela arco-iris'***, neste caso não se 'adivinha' tanto quanto se puxa possiveis senhas de uma lista pré-definida, trocando então um pouco da necessidade de poder computacional por espaço em disco. Nestes casos se usa então ***'Sal'*** que é mais uma informação adicionada ao hash gerado pela senha. Caso então que um invasor teria que computar mais uma *Tabela Arco-iris* para cada valor de *Sal*. Se *'Sal'* suficiente é usado, os requerimentos de recursos computacionais se tornan impraticáveis.
+
+##### 6.1.1.3.4 MIC
+- *Message Integrity Check*, é uma hash de uma mensagem. Pode ser considerado a somatória total (*checksum*) da mensagem, com intuito de averiguar se a mensagem não foi corrompida, devido ao fato de não necessariamente auxiliar na segurança da.   
 
 ### 6.1.2 **Chave**
 - Algo de único que é introduzido durante a encripção no texto simples, que auxilia na complexação da criptografia. Se a mesma chave é reusada se torna possível quebrar a criptografia de decodificar a mensagen, para isso é introduzido um **vetor de inicialização, ou IV**, que são dados aleatórios integradao à chave de criptografia, na qual a chave resultante é usada para criptografar os dados.
