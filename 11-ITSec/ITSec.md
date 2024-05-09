@@ -308,6 +308,37 @@ ROT13: Hello World = URYYB JBEYQ
     - **CMAC** ou *Cypher-based MAC*, identico ou HMAC, mas usa uma cifra simétrica ao invés do hash criptografado.
         - **CBCMAC** ou *Cypher-block Chaining MAC*, identico ao CMAC, mas usa cifras em blocos.
 
+#### 6.1.2.3 **Chaves Públicas**
+
+##### 6.1.2.3.1 PKI - *Public Key Infrast.*
+- Ou **ICP**, *Infraest. de Chave Pública*, é um sistema que define a criação, armazenamento e distribuição de ***certificados digitais***.
+
+##### 6.1.2.3.2 **Certificados Digitais** 
+- São arquivos que provam que uma entidade é dona da chave pública em questão, estes por sua parte contém:
+1. *Informações sobre a chave publica*
+2. *Info. sobre seu proprietário*
+3. *Assinatura digital de terceiro que averigua sua autenticidade*
+- Se a assn. é válida e se confia no terceiro que a autentica, então se pode confiar na chave em si para que se tenha uma comunicação segura e privada com a entidade proprietária; a entidade responsável por armazenar, emitir e assinar certificados é chamada de autoridade certificadora (AC) sendo esta um componente crucial crucial do sistema **ICP**. 
+- A **ICP** é baseada em relações de confiança entre entidades e na criação de uma rede ou cadeia de confiança que começa na ***autoridade certificadora raiz***. Os certificados raiz são autoassinados porque são o início da cadeia de confiança por não ter autoridade mais alta para assinar por eles. A autoridade certificadora raiz usa o certificado autoassinado e a chave privada associada para assinar outras chaves públicas e emitir certificados criando uma estrutura de árvore, com a chave privada raiz no topo. Quando a AC raiz assina um certificado e define o campo "AC" no certificado como verdadeiro, esse certificado é marcado como AC intermediária ou subordinada. Isso significa que a entidade para a qual o certificado foi emitido pode agora assinar outros certificados, e essa AC tem a mesma confiança que a AC raiz. *Quando um certificado não tem autoridade como AC, ele é chamado de entidade final ou certificado de folha.*
+- Existe também a ***autoridade de registro (AR)***, responsável por confirmar a identidade das entidades que solicitam a assinatura e o armazenamento de certificados AC.
+- Existem tambem ***certificados de cliente SSL/TLS***, componente opcional, que como diz o nome são certificados vinculados a clientes e usados para autenticar o cliente junto ao servidor permitindo controle de acesso a um serviço SSL/TLS.
+- Há também ***certificados de assinatura de código***, usados para assinar programas executáveis. Os usuários dos aplicativos assinados podem verificar as assinaturas e ter certeza que o aplicativo não foi adulterado. Isso também confirma que o aplicativo veio do autor do software e não é uma imitação maliciosa.  
+
+##### 6.1.2.3.3 [X.509](https://www.ietf.org/rfc/rfc5280.txt)
+- Padrão que define o formato dos certs. digitais e a CRL, que uma lista de certificados revogados. O padrão X.509 foi emitido pela primeira vez em 1988 e atualmente está na versão 3. Um certificado X.509 possui os campos: 
+    - **A versão do padrão X.509 que o certificado adota**. 
+    - **Número de série**, um identificador exclusivo para o certificado atribuído pela AC, que permite que a AC gerencie e identifique certificados individuais.
+    - **Algoritmo de assinatura do certificado**. Esse campo indica qual algoritmo de chave pública é usado para a chave pública e qual algoritmo de hash é usado para assinar o certificado.
+    - **Nome do emissor** que contém informações sobre a autoridade que assina o certificado. 
+    - **Validade**. Contém dois subcampos, "Não antes" e "Não depois", que definem o período de validade do certificado. 
+    - **Assunto**. Esse campo contém informações de identificação sobre a entidade para a qual o certificado foi emitido. 
+    - **Informações sobre a chave pública do sujeito**. Esses dois subcampos definem o algoritmo da chave pública juntamente com a própria chave pública. 
+    - **Algoritmo de assinatura do certificado**. Idem ao campo "Informações sobre a chave pública do sujeito", esses dois campos precisam ser iguais. 
+    - **Valor da assinatura do certificado**, os próprios dados da assinatura digital.
+
+
+ 
+
 ## 6.2 **Decripção**
 - O processo reverso da encripção, que envolve 'traduzir' uma mensagen criptograda em texto legível.
 
