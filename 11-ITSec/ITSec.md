@@ -192,7 +192,6 @@ senha de 6 carácteres  = 56 x 56 x 56 x 56 x 56 x 56 = 30.840.979.456 poss. com
 - Valor secreto usado para inicializar um processo gerado por um software, usando um ou mais valores.   
 
 #### 6.1.1.2 Algoritmos de Criptog. Assimétrico   
-
 ##### 6.1.1.2.1 RSA
 - Um dos primeiros sistemas práticos de criptografia desenvolvidos, nomeado pela sigla de seus criadores, *Ron Rivest, Adi Shamir* e *Leonard Alderman*. Patenteado em 1983 e lançado em domínio público pela *RSA Security* em 2000.
 - O processo de geração de chave em si é incrivelmente complexo para ser abordado, mas basicamente é ***a escolha de dois números primos únicos, aleatórios e muito grandes.***
@@ -269,7 +268,31 @@ senha de 6 carácteres  = 56 x 56 x 56 x 56 x 56 x 56 = 30.840.979.456 poss. com
     - Conferida por meio da ass. digital, que garante sua não adulteração
 3. Não-repudiação
     - E devido à tudo isso, o autor não pode disputar a origem da mensagem, trazendo a gerantia de que a mensagem veio de quem se afirma ser seu autor.
-- Devido à tudo isso, a chave assim. é mais *complexa* e *computacionalmente exigente*.
+- Devido à tudo isso, a chave assim. é mais *complexa* e *computacionalmente exigente*.   
+
+### 6.2.3 TLS
+- Geralmente chamado de *TLS-SSL*, apesar do ssl ter sido depreciado em 2015. **TLS** é um protocolo genérico de comunicações seguras pela rede. Muito usado em browsers web, VoIP, email, mensagens instantaneas e até mesmo segurança de redes wi-fi. O TLS em si nos tras 3 coisas:
+1. ***Linha de comunicação segura***, onde os dados transmitidos são protegidos contra interceptação.
+2. ***Autenticação das partes*** que estão se comunicando, embora geralmente apenas o servidor seja autenticado pelo cliente
+3. ***Integridade da comunicação***, com verificações para detectar a perda ou alteração de mensagens em trânsito.
+- Resumidamente, TLS traz uma via segura para que uma aplicação se comunique à um serviço/servidor. Isto é estabelecido por um *handshake TLS*:
+1. ***ClientHello***
+    - *O cliente estabelece uma conexão com um serviço, inclui informações sobre o cliente, como a versão do TLS com suporte no cliente, uma lista de pacotes de cifra com suporte e talvez outras opções de TLS.*
+2. ***ServerHello***
+    - *A resposta do servidor seleciona a versão mais alta do protocolo suportada pelo cliente e um pacote de cifra da lista. Também transmite o certificado digital dele e a mensagem final* `ServerHelloDone` 
+- O cliente verifica se o certificado do servidor é de confiança e se foi emitido para o nome de host apropriado. Caso o certificado passe na validação, o cliente envia a mensagem `ClientKeyExchange` .
+3. ***ClientKeyExchange***
+    - *O cliente escolhe um mecanismo de troca de chave para estabelecer uma chave compartilhada com o servidor, que será usada com uma cifra simétrica para criptografar o resto da comunicação. O cliente também envia a mensagem* `ChangeCipherSpec`, *indicando que ele está passando para a comunicação segura e envia uma mensagem* `Finished` *criptografada que tambem serve para encerrar o* `Handshake`
+4. ***ChangeCipherSpec***
+    - *O servidor tambem responde com um* `ChangeCipherSpec` e `Finished` *criptografado após receber a chave e agora os dados podem ser transmitidos pelo canal seguro.*
+- A chave de sessão é a chave de criptografia usada nas sessões de TLS para criptografar os dados trocados. Apesar disso, se a chave privada for comprometida, talvez um invasor decodifique todas as mensagens já trocadas que foram criptografas com as chaves derivadas dessa chave privada. Para impedir isso, existe o conceito de *forward secrecy*.
+    - ***Forward Secrecy***: *propriedade do sistema criptográfico que protege as chaves de sessão mesmo que haja comprometimento da chave privada*.  
+
+#### 6.2.3.1 SSH 
+- *Secure Shell Protocol* protocolo de rede seguro que usa criptografia para permitir o acesso seguro a um serviço de rede por redes inseguras. Geralmente o SSH é usado para login remoto em sistemas de linha de comando.  
+
+#### 6.2.3.2 [PGP](https://www.philzimmermann.com/EN/essays/WhyIWrotePGP.html)
+- [Pretty Good](https://www.youtube.com/watch?v=8xVfjkb-xVs) Privacy é um aplicativo de criptografia para a autenticação de dados com privacidade em relação a terceiros, usando a criptografia assimétrica. É usado geralmente para e-mail criptografado, mas também está disponível para criptografia de disco inteiro ou criptografia de pastas, arquivos ou documentos arbitrários. 
 
 ##### 6.1.2.2.1 *Assinatura de Chave Pública*
 - Utilizado para que o recipiente da mensagem tenha certeza que a mensagem foi enviada pela pessoa esperada sem ter sido adulterada. Isso é feito combinando com sua chave **particular**, gerando uma assinatura de chave publica.
@@ -335,9 +358,6 @@ ROT13: Hello World = URYYB JBEYQ
     - **Informações sobre a chave pública do sujeito**. Esses dois subcampos definem o algoritmo da chave pública juntamente com a própria chave pública. 
     - **Algoritmo de assinatura do certificado**. Idem ao campo "Informações sobre a chave pública do sujeito", esses dois campos precisam ser iguais. 
     - **Valor da assinatura do certificado**, os próprios dados da assinatura digital.
-
-
- 
 
 ## 6.2 **Decripção**
 - O processo reverso da encripção, que envolve 'traduzir' uma mensagen criptograda em texto legível.
