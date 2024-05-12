@@ -1,3 +1,4 @@
+# *Continuação de 01-ITSec*
 # 6. [***Criptografia***](https://colab.research.google.com/drive/1aHMWY1F0gc10exlVUsZOUT1cJ3W-xDD1#scrollTo=VHFF5ddpSfKh)
 - É a prática e estudo da conversão de dados de um formato legível à um formato *codificado* com o objetivo de ocultar mensagens. Seu estudo é chamado de **Criptologia**
     - Seu inverso é chamado de *criptoanálise*
@@ -80,7 +81,7 @@
 ##### 6.1.1.3.4 MIC
 - *Message Integrity Check*, é uma hash de uma mensagem. Pode ser considerado a somatória total (*checksum*) da mensagem, com intuito de averiguar se a mensagem não foi corrompida, devido ao fato de não necessariamente auxiliar na segurança da.   
 
-### 6.1.2 **Chave**
+### 6.1.2 **Chaves**
 - Algo de único que é introduzido durante a encripção no texto simples, que auxilia na complexação da criptografia. Se a mesma chave é reusada se torna possível quebrar a criptografia de decodificar a mensagen, para isso é introduzido um **vetor de inicialização, ou IV**, que são dados aleatórios integradao à chave de criptografia, na qual a chave resultante é usada para criptografar os dados.
     - **A idéia é de que com a chave mestra, se gera uma chave avulsa de uso unico composta da chave mestra e o IV.** E para **decodificar** é **necessário o IV em texto simples junto com a mensagem codificada**.
 - O tamanho da chave é definido em bits e indica seu comprimento total, que tambem define a qta. máxima de chaves de um determinado algoritmo, e seu comprimento define o potencial total de segurança da criptografia. 
@@ -131,10 +132,7 @@
 #### 6.1.3.2 [PGP](https://www.philzimmermann.com/EN/essays/WhyIWrotePGP.html)
 - [*Pretty Good*](https://www.youtube.com/watch?v=8xVfjkb-xVs) Privacy é um aplicativo de criptografia para a autenticação de dados com privacidade em relação a terceiros, usando a criptografia assimétrica. É usado geralmente para e-mail criptografado, mas também está disponível para criptografia de disco inteiro ou criptografia de pastas, arquivos ou documentos arbitrários. 
 
-
-
 #### 6.1.2.3 **Chaves Públicas**
-
 ##### 6.1.2.3.1 PKI - *Public Key Infrast.*
 - Ou **ICP**, *Infraest. de Chave Pública*, é um sistema que define a criação, armazenamento e distribuição de ***certificados digitais***.
 
@@ -213,4 +211,32 @@ ROT13: Hello World = URYYB JBEYQ
 - A pratica de estudar a frequência com que letras aparecem um texto criptografado. A premissa desse tipo de análise é que em línguas escritas algumas letras são mais frequentes que outras, e algumas letras têm maior tendência de aparecerem juntas. Por exemplo, as letras mais comuns em inglês são: "e", "t", "a" e "o" e os pares mais comuns dessas letras são: "th", "er", "on" e "an".  
 
 # 7. ***Esteganografia***
-- Prática de ocultar mensagens sem codifica-las. Por exemplo, usar uma tinta 'invisível' que só pode ser vista sob uma luz específica. Técnicas atuais envolve ocultar as mensagens e até arquivos em outros arquivos, como imagens. 
+- Prática de ocultar mensagens sem codifica-las. Por exemplo, usar uma tinta 'invisível' que só pode ser vista sob uma luz específica. Técnicas atuais envolve ocultar as mensagens e até arquivos em outros arquivos, como imagens.   
+
+# 8. ***VPN***
+- *Virtual Private Network*, ou Rede Privada Virtual é um mecanismo que permite conectar remotamente à uma rede privada interna, passando os dados de modo privado por um canal público como a Internet.
+```
+          |INTERNET||INTERNET||INTERNET||INTERNET| 
+REMETENTE --dados--> VPN --dados--> VPN --dados--> DESTINATÁRIO 
+          |INTERNET||INTERNET||INTERNET||INTERNET|
+```
+- Basicamente funciona como um *'túnel'* privado que permite a transferencia segura de dados. Podendo tambem ser de ponto a ponto, sem nem precisar passar pela internet.
+
+## 8.1 IPsec, ou Protocolo de Segurança IP
+- Protocolo VPN que foi projetado em conjunto com o IPV6. Funciona com a criptografia de um pacote IP e o encapsulamento do pacote dentro de um pacote IPsec que então é criptografado e roteado ao *endpoint* da VPN, onde é desencapsulado, descriptografado e enviado ao destino final. O IPsec aceita dois modos de operação: modo de transporte e de túnel.
+
+### 8.1.2 Modo Transporte
+- Só o payload é criptografado, os cabeçalhos do IP permancem intactos.
+
+### 8.2.3 Modo Túnel
+- Todo o pacote é criptografado e encapsulado dentro de outro pacote com outro IP.
+
+### L2TP - *Layer 2 Tunnelling Protoc.*
+- É o protocolo que 'tunela' os pacotes de uma rede à outra, o resto é providenciado pelo IPSec
+
+## 8.2 [RFC 3193 da IETF](https://datatracker.ietf.org/doc/html/rfc3193)
+- Padronizou a combinação do L2TP e o IPSec no nome L2TP/IPSec
+
+# 9. Hardware *Criptogrfd*.
+- 
+
