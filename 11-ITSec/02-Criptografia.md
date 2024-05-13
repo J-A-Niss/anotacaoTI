@@ -237,6 +237,15 @@ REMETENTE --dados--> VPN --dados--> VPN --dados--> DESTINATÁRIO
 ## 8.2 [RFC 3193 da IETF](https://datatracker.ietf.org/doc/html/rfc3193)
 - Padronizou a combinação do L2TP e o IPSec no nome L2TP/IPSec
 
-# 9. Hardware *Criptogrfd*.
-- 
+# 9. Hardware *Criptografado*
+## 9.1 *Trusted Platform Module*
+- É um dispositvo integrado ao computador que age como um microprocessador dedicado à criptografia. Responsável por:
+    1. *Geração de chaves*
+    2. *Geração de Números Aleatórios*
+    3. *Atestação Remota*
+        - Um sistema autentica a configuração de software e hardware com um sistema remoto. Com isso, o sistema remoto verifica a própria integridade. 
+    4. *Vinculação e Selamento de Dados*
+        - Na **vinculação** a chave secreta é usada para derivar uma chave exclusiva, que é usada para criptografar os dados vinculando os dados criptografados ao TPM e o sistema em que ele está instalado, já que apenas a chave gravada no TPM pode descriptografar os dados.
+        - No **selamento** os dados são criptografados com a chave baseada no hardware. Mas, para descriptografar os dados, o TPM precisa estar em um estado especificado. 
+- Ao mesmo ponto que o *TPM* possui uma chave unica e secreta gravada no hardware durante sua fabricação que permite operações como autenticação de hardware, possibilitando a detecção de mudanças não autorizadas no hardware.
 
