@@ -136,7 +136,7 @@
 ##### 6.1.2.3.1 PKI - *Public Key Infrast.*
 - Ou **ICP**, *Infraest. de Chave Pública*, é um sistema que define a criação, armazenamento e distribuição de ***certificados digitais***.
 
-##### 6.1.2.3.2 **Certificados Digitais** 
+##### 6.1.2.3.2 **Certificado Digital** 
 - São arquivos que provam que uma entidade é dona da chave pública em questão, estes por sua parte contém:
 1. *Informações sobre a chave publica*
 2. *Info. sobre seu proprietário*
@@ -248,4 +248,16 @@ REMETENTE --dados--> VPN --dados--> VPN --dados--> DESTINATÁRIO
         - Na **vinculação** a chave secreta é usada para derivar uma chave exclusiva, que é usada para criptografar os dados vinculando os dados criptografados ao TPM e o sistema em que ele está instalado, já que apenas a chave gravada no TPM pode descriptografar os dados.
         - No **selamento** os dados são criptografados com a chave baseada no hardware. Mas, para descriptografar os dados, o TPM precisa estar em um estado especificado. 
 - Ao mesmo ponto que o *TPM* possui uma chave unica e secreta gravada no hardware durante sua fabricação que permite operações como autenticação de hardware, possibilitando a detecção de mudanças não autorizadas no hardware.
+- O mesmo dispositivo possui um chip dedicado à proteção chamado de *Elemento Seguro*, um chip resistente a adulteração, geralmente integrado ao microprocessador ou à placa principal do dispositivo que armazena chaves criptográficas e oferece ambiente seguro para aplicativos.  
+
+### 9.1.1 **TEE**
+- *Trusted Exec. Environm.* ou Ambiente Confiável de Execução, é um ambiente de execução completo e isolado executado em paralelo ao OS principal de modo que os aplicativos ficam isolados do OS principal e de outros aplicativos instalados. Os processos seguros também são isolados quando executados no TEE.
+
+## 9.2 **FDE**
+- *Full Disk Encryption* ou Criptografia Total do Disco é um processo que criptografa o **disco todo**, e não só alguns arquivos mais sensíveis. Existem algumas opções diferentes como:
+    1. PGP
+    2. Bitlocker da Microsoft
+    3. Filevault 2 da Apple
+    5. dm-crypt para Linux
+- Em uma configuração FTE, uma partição ou partição lógica contém os dados a serem criptografados, geralmente o volume raiz onde o SO está instalado mas, para inicializar o volume, é preciso desbloqueá-lo antes. Como o volume está criptografado, a BIOS não pode acessar os dados nele para a inicialização e por isso, nas configurações de FTE geralmente há uma partição de inicialização pequena sem criptografia, com elementos como kernel, bootloader e NRD. *Na inicialização, esses elementos são carregados e pedem uma senha ao usuário para desbloquear o disco e continuar a inicialização*.
 
