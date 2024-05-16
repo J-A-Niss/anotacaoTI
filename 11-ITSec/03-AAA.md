@@ -32,9 +32,34 @@
 - Identico ao Token de Data, mas utiliza uma contagem interna para alterar a senha aleatória ao invés de data e hora, que é incrementada sempre que é usada. 
 
 ## 1.2.3 Biometria
-- Utiliza características da fisiológicas do indivíduo para o identificar.
+- Utiliza características da fisiológicas do indivíduo para o identificar, como impressão digital e escaneamento de retina.
 
 # 2. **Authorization**
 - Os recursos que uma identidade te da, por exemplo, autorização de administrador de sistemas. Usa-se o termo `auth-z`
 
-# Para mais informações: *https://colab.research.google.com/drive/1VXLefLLdR5m24_X85E83KlRHeoHVpouo#scrollTo=PaWT3-hxwsuz*
+# Para mais informações: *https://colab.research.google.com/drive/1VXLefLLdR5m24_X85E83KlRHeoHVpouo#scrollTo=PaWT3-hxwsuz*  
+
+# 3. **Certificados**
+- São chaves públicas assinadas por uma autoridade certificadora como sinal de confiança. Para emitir certificados do cliente, uma organização precisa configurar e manter a infraestrutura da AC para emitir e assinar certificados. Parte da autenticação do certificado também envolve a autenticação do cliente no servidor proporcionando autenticação mútua. 
+
+## 3.1 **Datas**
+- Os certificados têm duas datas que precisam ser verificadas, `Não é válido antes de` que verifica se o certificado *já* é válido, e `Não é válido depois de` que é uma simples data de expiração. 
+
+# 4. **RADIUS**
+- *Remote Authn. Dial-in User Services* ou **Serviço de Usuário Discado de Autenticação Remota** é um protocolo que fornece serviços AAA para usuários em uma rede. Muito comum, é usado para gerenciar o acesso a redes internas, Wi-Fi, serviços de e-mail e VPN.
+- Os clientes que querem se autenticar em um servidor RADIUS não interagem diretamente com ele. Em vez disso, quando um cliente quer acessar um recurso protegido, apresenta credenciais de autenticação a um NAS, ou servidor de acesso à rede, que vai retransmitir as credenciais ao servidor RADIUS. O servidor RADIUS verifica então as credenciais usando um esquema de autenticação configurado.
+
+# 5. **Kerberos**
+- Protocolo de autenticação de rede em que entidades usam tickets para comprovar a identidade delas em canais inseguros e realizar autenticação mútua. Ele também usa criptografia simétrica para proteger as mensagens contra interceptação e ataques de reprodução.
+    - **Primeiro**, o usuário que quer se autenticar digita o nome de usuário e a senha na máquina cliente. O software cliente do Kerberos usa a senha para gerar uma chave *simétrica*, cliente então envia uma mensagem em texto simples ao servidor de autenticação (**AS**) do Kerberos incluindo o ID do usuário que está autenticando. **A senha e a chave secreta derivada não são transmitidas**. O AS usa o ID de usuário para verificar se há uma conta no banco de dados de autenticação, como um servidor do Active Directory. Em caso positivo, o AS gera a chave secreta usando o hash de senha armazenado no servidor de distribuição de chaves.
+    - O AS usa a chave secreta para criptografar e enviar uma mensagem com a chave de sessão TGS do cliente. É uma chave secreta usada para criptografar comunicações com o servidor de concessão de ticket (TGS), que o servidor de autenticação já conhece. O AS também envia outra mensagem, com um ticket de concessão de ticket (TGT), que é criptografada com a chave secreta do TGS. O ticket de concessão de ticket tem informações como o ID do cliente, o período de validade do ticket e a chave de sessão do serviço de concessão de ticket do cliente. 
+
+## 5.1 *Tickets*
+- Uma token para comprovar a identidade, usados para autenticação em serviços protegidos pelo Kerberos, ou que estão no domínio do Kerberos. Com os tickets, os usuários *fazem autenticação em serviços sem usar nome de usuário e senha para cada serviço*. O ticket expira após algum tempo, mas tem provisões para renovação automática transparente.   
+
+# 6. *TACACS*+
+- *Terminal Access Controller Access-Control System Plus*; Usado principalmente para administração, autenticação, autorização e contabilidade de dispositivos, em oposição ao *RADIUS*, que é usado principalmente para acesso à rede AAA. Usado principalmente como um sistema de autenticação para dispositivos de infraestrutura de rede.  
+
+# 7. *SSO*
+- *Single Sing-On*, um logon único que da acesso a vários serviços e aplicativos com uma única autenticação. 
+- Como não é necessário fazer a autenticação em cada serviço, não é preciso ter nomes de usuário e senhas diferentes para acessar vários aplicativos e serviços. - O SSO é realizado com a autenticação em um servidor central que fornece um cookie/token que dá acesso a aplicativos configurados para usar SSO.  
