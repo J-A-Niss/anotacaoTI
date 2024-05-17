@@ -1,6 +1,6 @@
 # ***Authenticaction, Authorization, Accounting***
 # 1. **Authentication**
-- É um modo de garantir que o usuário é quem diz ser. O modo mais comun de autenticação se dá por meio de credenciais, como login e senha. Usa-se o termo `auth-n`.
+- Primeiro `A` do `AAA`; É um modo de garantir que o usuário é quem diz ser. O modo mais comun de autenticação se dá por meio de credenciais, como login e senha. Usa-se o termo `auth-n`.
 
 ## 1.1 **Identification**
 - *Identificação*, um modo unico de descrever uma entidade específica, como por exemplo, um usuário.  
@@ -35,7 +35,7 @@
 - Utiliza características da fisiológicas do indivíduo para o identificar, como impressão digital e escaneamento de retina.
 
 # 2. **Authorization**
-- Os recursos que uma identidade te da, por exemplo, autorização de administrador de sistemas. Usa-se o termo `auth-z`
+- O segundo `A` do `AAA`; Os recursos que uma identidade te da (***oque o usuário pode fazer***), por exemplo, autorização de administrador de sistemas. Usa-se o termo `auth-z`
 
 # Para mais informações: *https://colab.research.google.com/drive/1VXLefLLdR5m24_X85E83KlRHeoHVpouo#scrollTo=PaWT3-hxwsuz*  
 
@@ -46,19 +46,23 @@
 - Os certificados têm duas datas que precisam ser verificadas, `Não é válido antes de` que verifica se o certificado *já* é válido, e `Não é válido depois de` que é uma simples data de expiração. 
 
 # 4. **RADIUS**
-- *Remote Authn. Dial-in User Services* ou **Serviço de Usuário Discado de Autenticação Remota** é um protocolo que fornece serviços AAA para usuários em uma rede. Muito comum, é usado para gerenciar o acesso a redes internas, Wi-Fi, serviços de e-mail e VPN.
-- Os clientes que querem se autenticar em um servidor RADIUS não interagem diretamente com ele. Em vez disso, quando um cliente quer acessar um recurso protegido, apresenta credenciais de autenticação a um NAS, ou servidor de acesso à rede, que vai retransmitir as credenciais ao servidor RADIUS. O servidor RADIUS verifica então as credenciais usando um esquema de autenticação configurado.
+- *Remote Authn. Dial-in User Services* ou **Serviço de Usuário Discado de Autenticação Remota** é um sistema AAA de acesso à rede, que monitora detalhes sobre acesso e uso da rede. A contabilização do RADIUS começa quando o servidor de acesso à rede envia um pacote de solicitações ao servidor de contabilização, que contém um registro de eventos. Com isso, a contabilização é iniciada. O servidor envia uma resposta de contabilização, indicando o recebimento da mensagem.
+    - A NaaS continuará enviando mensagens de contabilização periódicas com estatísticas da sessão até receber um pacote de interrupção.
+    - Muito comum, é usado para gerenciar o acesso a redes internas, Wi-Fi, serviços de e-mail e VPN.
+- *Os clientes que querem se autenticar em um servidor RADIUS não interagem diretamente com ele.* Em vez disso, quando um cliente quer acessar um recurso protegido, apresenta credenciais de autenticação a um NAS, ou servidor de acesso à rede, que vai retransmitir as credenciais ao servidor RADIUS. O servidor RADIUS verifica então as credenciais usando um esquema de autenticação configurado.
+- *Os provedores podem tambem usar a contabilização do RADIUS para fins de cobrança,* com base na duração da sessão, no volume de dados enviados e recebidos. Esses dados também servem para aplicar cotas de dados ou tempo, limitando a duração das sessões ou o volume de dados permitido. 
+ 
 
 # 5. **Kerberos**
 - Protocolo de autenticação de rede em que entidades usam tickets para comprovar a identidade delas em canais inseguros e realizar autenticação mútua. Ele também usa criptografia simétrica para proteger as mensagens contra interceptação e ataques de reprodução.
-    - **Primeiro**, o usuário que quer se autenticar digita o nome de usuário e a senha na máquina cliente. O software cliente do Kerberos usa a senha para gerar uma chave *simétrica*, cliente então envia uma mensagem em texto simples ao servidor de autenticação (**AS**) do Kerberos incluindo o ID do usuário que está autenticando. **A senha e a chave secreta derivada não são transmitidas**. O AS usa o ID de usuário para verificar se há uma conta no banco de dados de autenticação, como um servidor do Active Directory. Em caso positivo, o AS gera a chave secreta usando o hash de senha armazenado no servidor de distribuição de chaves.
+    - **Primeiro**, o usuário que quer se autenticar digita o nome de usuário e a senha na máquina cliente. O software cliente do Kerberos usa a senha para gerar uma chave *simétrica*, cliente então envia uma mensagem em texto simples ao servidor de autenticação, o *Authentication Server* ou **AS** do Kerberos incluindo o ID do usuário que está autenticando. **A senha e a chave secreta derivada não são transmitidas**. O AS usa o ID de usuário para verificar se há uma conta no banco de dados de autenticação, como um servidor do Active Directory. Em caso positivo, o AS gera a chave secreta usando o hash de senha armazenado no servidor de distribuição de chaves.
     - O AS usa a chave secreta para criptografar e enviar uma mensagem com a chave de sessão TGS do cliente. É uma chave secreta usada para criptografar comunicações com o servidor de concessão de ticket (TGS), que o servidor de autenticação já conhece. O AS também envia outra mensagem, com um ticket de concessão de ticket (TGT), que é criptografada com a chave secreta do TGS. O ticket de concessão de ticket tem informações como o ID do cliente, o período de validade do ticket e a chave de sessão do serviço de concessão de ticket do cliente. 
 
 ## 5.1 *Tickets*
 - Uma token para comprovar a identidade, usados para autenticação em serviços protegidos pelo Kerberos, ou que estão no domínio do Kerberos. Com os tickets, os usuários *fazem autenticação em serviços sem usar nome de usuário e senha para cada serviço*. O ticket expira após algum tempo, mas tem provisões para renovação automática transparente.   
 
 # 6. *TACACS*+
-- *Terminal Access Controller Access-Control System Plus*; Usado principalmente para administração, autenticação, autorização e contabilidade de dispositivos, em oposição ao *RADIUS*, que é usado principalmente para acesso à rede AAA. Usado principalmente como um sistema de autenticação para dispositivos de infraestrutura de rede.  
+- *Terminal Access Controller Access-Control System Plus*; é um sistema AAA de acesso a dispositivos que gerencia quem tem acesso a dispositivos de rede e quais são as ações executadas. Usado principalmente para administração, autenticação, autorização e contabilidade de dispositivos, em oposição ao *RADIUS*, que é usado principalmente para acesso à rede AAA. Usado principalmente como um sistema de autenticação para dispositivos de infraestrutura de rede.  
 
 # 7. *SSO*
 - *Single Sing-On*, um logon único que da acesso a vários serviços e aplicativos com uma única autenticação. 
@@ -81,4 +85,9 @@
 ## 8.2 ACL
 - *Access Control List* é um modo de definir permissões/autorização para objetos e um dos usos mais comuns é de permissão de sistemas de arquivos.
     - Um sistema de arquivos tem uma ACL, ***que é uma tabela ou um banco de dados com uma lista de entradas que especifica os direitos de acesso de indivíduos ou grupos a vários objetos***, como pastas, arquivos ou programas. Essas permissões de acesso individual por objeto são chamadas entradas de controle de acesso e compõem a ACL.
-    - **Também podem restringir o acesso externo** a sistemas e limitar o tráfego de saída para impor políticas ou evitar transferências de dados não autorizadas. 
+    - **Também podem restringir o acesso externo** a sistemas e limitar o tráfego de saída para impor políticas ou evitar transferências de dados não autorizadas.   
+
+# 9. Accounting
+- Terceiro `A` do `AAA`; **Monitoramento**, ou seja, **manter registros de quais recursos e serviços os usuários acessam ou o que fizeram ao usar os sistemas**. Para isso, **a auditoria é essencial, ou seja, uma análise desses registros para verificar se há algo fora do comum.**
+    - Por exemplo, o servidor *TACACS+* monitora a autenticação de usuários, os sistemas em que se autenticaram e os comandos que executaram na sessão
+    - ***Cisco*** contabiliza comandos executados individualmente, conexões com dispositivos de rede, comandos executados no modo privilegiado, serviços de rede e detalhes do sistema, como atualizações ou reinicializações. 
