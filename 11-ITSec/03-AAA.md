@@ -62,4 +62,23 @@
 
 # 7. *SSO*
 - *Single Sing-On*, um logon único que da acesso a vários serviços e aplicativos com uma única autenticação. 
-- Como não é necessário fazer a autenticação em cada serviço, não é preciso ter nomes de usuário e senhas diferentes para acessar vários aplicativos e serviços. - O SSO é realizado com a autenticação em um servidor central que fornece um cookie/token que dá acesso a aplicativos configurados para usar SSO.  
+- Como não é necessário fazer a autenticação em cada serviço, não é preciso ter nomes de usuário e senhas diferentes para acessar vários aplicativos e serviços. - O SSO é realizado com a autenticação em um servidor central que fornece um cookie/token que dá acesso a aplicativos configurados para usar SSO.   
+
+# 8. ***Authorization***
+- Determina ao que uma conta possui acesso. O usuário pode se autenticar em um sistema apresentando credenciais válidas, mas se o nome de usuário informado não estiver autorizado a acessar o sistema, o acesso será negado.
+- Um padrão aberto conhecido para autorização e delegação de acesso é o **OAuth** usado por empresas como Google, Facebook e Microsoft. 
+
+## 8.1 ***OAuth***
+- *Open Authorization*, é um padrão aberto para os usuários concederem suas informações a sites e aplicativos terceirizados sem compartilhar credenciais, sendo uma forma de delegação de acesso, porque o acesso à conta do usuário é delegado a entidades externas.
+- Para isso, o usuário deve confirmar que concorda em dar acesso a certas informações da conta para a entidade. ***Em geral, a solicitação mostra quais informações e acessos são solicitados***.   
+    - **Após a confirmação, o provedor de identidade emite um token para entidade externa, que dá acesso às informações do usuário**. A entidade pode usar o token para acessar dados ou serviços oferecidos pelo provedor de identidade em nome do usuário.
+    - **O OAuth é muito usado para que aplicativos terceirizados acessem as APIs de grandes empresas** da Internet, como Google, Microsoft e Facebook.
+- O site que usa o *OAuth* pede permissão para usar o serviço, por exemplo, seu e-mail. Ele envia uma solicitação de OAuth ao seu provedor de e-mail. Quando você aprova a solicitação, o provedor emite um token de acesso ao site, que então pode acessar sua conta de e-mail. ***O token só permite acessar o e-mail, e não outros serviços da sua conta***.  
+- ***As permissões do OAuth podem ser usadas em ataques de phishing para acessar contas sem comprometer as credenciais.*** Para isso, o invasor envia e-mails de phishing que parecem ser solicitações reais de autorização do OAuth, pedindo ao usuário permissão para acessar alguns aspectos da conta pelo OAuth. Quando o usuário permite acesso, o invasor pode acessar a conta com o token de autorização do OAuth.
+    - *https://www.theverge.com/2017/5/3/15534768/google-docs-phishing-attack-share-this-document-with-you-spam*
+- ***O OAuth é um sistema de autorização, e o OpenID é um sistema de autenticação.*** Embora sejam usados juntos, o OpenID Connect é uma camada de autenticação criada sobre o OAuth 2.0 para melhorar o OpenID e a integração com autorizações do OAuth.  
+
+## 8.2 ACL
+- *Access Control List* é um modo de definir permissões/autorização para objetos e um dos usos mais comuns é de permissão de sistemas de arquivos.
+    - Um sistema de arquivos tem uma ACL, ***que é uma tabela ou um banco de dados com uma lista de entradas que especifica os direitos de acesso de indivíduos ou grupos a vários objetos***, como pastas, arquivos ou programas. Essas permissões de acesso individual por objeto são chamadas entradas de controle de acesso e compõem a ACL.
+    - **Também podem restringir o acesso externo** a sistemas e limitar o tráfego de saída para impor políticas ou evitar transferências de dados não autorizadas. 
