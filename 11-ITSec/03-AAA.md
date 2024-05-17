@@ -61,7 +61,7 @@
 - *Terminal Access Controller Access-Control System Plus*; Usado principalmente para administração, autenticação, autorização e contabilidade de dispositivos, em oposição ao *RADIUS*, que é usado principalmente para acesso à rede AAA. Usado principalmente como um sistema de autenticação para dispositivos de infraestrutura de rede.  
 
 # 7. *SSO*
-- *Single Sing-On*, um logon único que da acesso a vários serviços e aplicativos com uma única autenticação. 
+- *Single Sign-On*, um logon único que da acesso a vários serviços e aplicativos com uma única autenticação. 
 - Como não é necessário fazer a autenticação em cada serviço, não é preciso ter nomes de usuário e senhas diferentes para acessar vários aplicativos e serviços. - O SSO é realizado com a autenticação em um servidor central que fornece um cookie/token que dá acesso a aplicativos configurados para usar SSO.   
 
 # 8. ***Authorization***
