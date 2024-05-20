@@ -36,13 +36,35 @@
     - *Ele foi originalmente criado para Ethernet, mas foi acrescentado o suporte para outros tipos de rede, como redes Wi-Fi e de fibra*.
 
 ##### 1.3.2.1.3 *EAP-TLS*
-- Um dos métodos EAP mais comuns e seguros de EAP, ***é um tipo de autenticação compatível com EAP que usa o TLS para fornecer autenticação mútua do cliente e do servidor de autenticação***. Essa é considerada uma das configurações mais seguras para a segurança sem fio. 
+- Um dos métodos EAP mais comuns e seguros de EAP, ***é um tipo de autenticação compatível com EAP que usa o TLS para fornecer autenticação mútua do cliente e do servidor de autenticação por meio de certificados***. Essa é considerada uma das configurações mais seguras para a segurança sem fio. 
 - Quando um cliente quer se autenticar em uma rede usando 802.1X, há três partes envolvidas, o dispositivo cliente é o que chamamos de ***suplicante***.
     - O suplicante se comunica com o ***autenticador***, que age como intermediário da rede que exige que os cliente se autentiquem na rede antes que tenham permissão de se comunicar com ela
     - O **autenticador** encaminha a solicitação de autenticação ao ***servidor de autenticação*** e aí a verificação de credenciais realmente ocorre.
-- *A segurança do EAP-TLS deriva da segurança inerente que o protocolo TLS e o PKI fornecem, que também significa que as armadilhas são as mesmas no que se refere a gerenciar adequadamente os elementos de PKI.* 
+- *A segurança do EAP-TLS deriva da segurança inerente que o protocolo TLS e o PKI fornecem, que também significa que as armadilhas são as mesmas no que se refere a gerenciar adequadamente os elementos de PKI.*    
 
-# 2. Monitoramente de Tráfego
+## 1.4 ***Do Software***
+### 1.4.1 ***Firewall***
+- Ferramente essencial para proteção ***que regula o fluxo de tráfego em uma rede***. Podem tambem ser implementados como um *dispositivo dedicado à proteção de toda a rede, ou  como software, dedicado apenas a um host*.
+
+#### 1.4.1.1 *Baseado em Host*
+- Um firewall baseado em host fornece proteção para dispositivos móveis, como um laptop que poderia ser usado em um ambiente não confiável como um hotspot Wi-Fi em um aeroporto.
+- **Também são úteis para proteger outros hosts de serem comprometidos pelo dispositivo corrompido na rede interna**. Isso é algo que um firewall baseado em rede poderia não conseguir.
+- ***Todos os principais sistemas operacionais têm firewalls integrados.***
+
+#### 1.4.1.2 *Baseado na Rede*
+- Gerenciado por dispositivos, como por exemplo roteadores, que possuem um firewall dedicado à rede.   
+
+#### 1.4.1.3 Proxies
+- **Um servidor que age como intermediário** entre o cliente e um servidor providenciando recursos. **Ao invés de ser conectar diretamente ào servidor** para completar a requisição, como uma página web por exemplo, **o cliente direciona o pedido ao proxy que então o avalia e realiza todas as tarefas associadas ao seu envio**.
+    - *Isso auxilia na simplificação do pedido e para providenciar mais segurança, privacidade e equilibrio de carga.*
+- Haproxy
+    - *http://www.haproxy.org/#docs,%20http://cbonte.github.io/haproxy-dconv/1.8/intro.html#3.3.1*
+- nginx
+    - *http://nginx.org/en/*
+- Apche
+    - *https://httpd.apache.org/docs/current/en/*
+
+# 2. **Monitoramente de Tráfego**
 - É importante por vários motivos, como por exemplo, **permite estabelecer um valor de referência para a aparência típica do tráfego da rede** e isso ajuda a discernir o tráfego comun do incomun, ajudando na detecção de possíveis ataques. 
     - *Geralemente é feito com o monitoramento de rede e a análise de registros.*
 
@@ -79,4 +101,32 @@
     - https://support.apple.com/pt-br/guide/mac-help/mh34041/mac
 
 - Ubuntu
-    - https://www.digitalocean.com/community/tutorials/ufw-essentials-common-firewall-rules-and-commands
+    - https://www.digitalocean.com/community/tutorials/ufw-essentials-common-firewall-rules-and-commands  
+
+# 3. ***Proteção Wireless***
+## 3.1 WEP
+- *Wired Equivalent Privacy*, sua finalidade era fornecer privacidade equivalente à de uma rede cabeada significando que as informações transmitidas pela rede devem ser protegidas contra **interceptação**. Diferente das redes cabeadas, os pacotes podiam ser interceptados por qualquer pessoa fisicamente próxima do ponto de acesso ou da estação cliente e sem alguma forma de criptografia para proteger os pacotes, o tráfego sem fio poderia ser lido por qualquer pessoa nas proximidades.
+- ***O WEP se mostrou gravemente ineficaz em fornecer confidencialidade ou segurança para redes sem fio e foi descartado em 2004 em favor de sistemas mais seguros.***
+    -  O WEP usa a cifra de fluxo simétrico RC4, usado como uma chave compartilhada de 40 ou 104 bits em que a chave para pacotes individuais foi derivada. A chave de criptografia real de cada pacote foi calculada considerando a chave compartilhada fornecida pelo usuário combinada com um vetor de inicialização de 24 bits, é um bit de dados aleatório para evitar a reutilização da mesma chave de criptografia entre pacotes. Como esses bits de dados são concatenados, um esquema de chave compartilhada de 40 bits usa uma chave de 64 bits para criptografia e o de 104 bits usa uma chave de 128 bits. **Originalmente, a criptografia WEP estava limitada a apenas 64 bits devido às restrições de exportação dos EUA aplicadas às tecnologias de criptografia.**
+        - **Essas leis mudaram e a criptografia de 128 bits pode ser usada** a chave compartilhada foi inserida como 10 caracteres hexadecimais para WEP de 40 bits ou 26 caracteres hexadecimais para WEP de 104 bits. **Isso reduziu o keyspace disponível para somente caracteres ASCII válidos em vez de todos os possíveis valores hexadecimais.**
+- A autenticação de chave compartilhada funcionava exigindo que os clientes se autenticassem com um processo de respostas de desafio de 4 etapas e o WEP enviava essas etapas **transmitindo o texto simples e o texto cifrado de uma maneira que expõe as duas mensagens abrindo a possibilidade do invasor recuperar a chave de criptografia.** *Um conceito geral em segurança e criptografia é nunca enviar o texto simples e o texto cifrado juntos*.
+- ***MAS o verdadeiro ponto fraco do WEP não estava relacionado aos esquemas de autenticação***. 
+    - O uso da cifra de fluxo RC4 e como os IVs eram usados para gerar chaves de criptografia Mas a chave de criptografia no WEP é composta **apenas da chave compartilhada, que não muda com muita frequência**, tendo 24 bits de dados aleatórios incluindo o IV acrescentado ao final dela, **resultando em um pool de apenas 24 bits**, em que as chaves de criptografia exclusivas seriam escolhidas entre as não utilizadas. ***Como o IV é composto de 24 bits de dados, o número total de possíveis valores não é muito grande de acordo com os padrões de computação modernos***.
+    - São apenas cerca de 17 milhões de IVs exclusivos, o que significa que **após uns 5 mil pacotes um IV será reutilizado, e quando um IV é reutilizado, a chave de criptografia também é reutilizada**. Além do fato que o IV era transmitido por texto simples, significando que um invasor só precisaria monitorar os IVs e procurar pelos repetidos, **permitindo que o invasor reconstrua esse fluxo de chaves que usa pacotes criptografados com os IVs fracos**.
+
+## 3.2 WPA/WPA2
+- *Wi-Fi Protected Access* originalmente designado como o substituo de curto prazo do WEP, compatível com hardware ainda o utilizando por meio de uma simples atualização de *firmware*.
+    - **Firmware** é um tipo de micro-código integrado à hardware para auxiliar em seu desempenho.
+- Isso permitiu que não fosse necessário a re-aquisição de novo hardware de wi-fi 
+
+### 3.2.1 TKIP
+- *Temporal Key Integrity Protoc.* Foi desenvolvido para lidar com as limitações de segurança do WEP implementando 3 novos recursos que o tornavam mais seguro que o WEP:
+    1. *Novo método de derivação de chave mais seguro, para incorporar o IV com mais segurança à chave de criptografia por pacote.* 
+    2. *Contador sequencial foi implementado para evitar ataques de repetição, rejeitando pacotes fora de ordem.*
+    3. *Um MessageIntegrityCheck de 64 bits, ou verificação de integridade de mensagem, foi introduzida para evitar falsificação, adulteração ou corrupção de pacotes.*
+- O TKIP ainda usa a cifra RC4 como algoritmo de criptografia, **mas solucionou os pontos fracos na geração de chaves da Web usando uma função de mistura de chaves para gerar chaves de criptografia exclusivas por pacote**. Ele também utiliza chaves com 256 bits.
+- **Os métodos de PIN são realmente interessantes *e também onde uma falha crítica foi introduzida***.
+    - O mecanismo de autenticação por PIN é compatível com dois modos. Em um deles, o cliente gera um PIN, que por sua vez é inserido no AP. No outro modo, o AP tem um PIN normalmente codificado no firmware, que é inserido no cliente. **O segundo modo é que é vulnerável a um ataque de força bruta on-line**.
+        - O método de autenticação por PIN usa PINs com 8 dígitos, mas o último dígito é um checksum calculado a partir dos primeiros 7 dígitos. Assim o número total de PINs possíveis é 10^7, ou cerca de 10 milhões de possibilidades. **Mas o PIN é autenticado pelo AP em *metades*. Isso significa que o cliente enviará os primeiros 4 dígitos do AP, esperará por uma resposta positiva ou negativa, e enviará a segunda metade do PIN se a primeira estiver correta**.***Na verdade, estamos reduzindo ainda mais o total de PINs válidos possíveis e facilitando ainda mais descobrir qual é o PIN correto***. 
+            - *A primeira metade do PIN, tendo 4 dígitos, tem cerca de 10 mil possibilidades. A segunda metade, com apenas 3 dígitos devido ao valor do checksum, tem no máximo 1.000 possibilidades.* **Isso significa que o PIN correto pode ser descoberto em, no máximo, 11 mil tentativas, parece muito mas não é**. *Sem nenhuma limitação de taxa, um invasor pode recuperar o PIN e a chave pré-compartilhada em menos de 4 horas*. 
+- A *Wi-Fi Alliance* reformula as exigências da especificação WPS, introduzindo um período de bloqueio de 1 minuto após 3 tentativas de inserir o PIN incorreto, aumentando o tempo máximo para descobrir o PIN de 4 horas para menos de 3 dias. **Para um invasor paciente e determinado, isso não chega a ser um obstáculo**, mas se a rede for comprometida com o uso desse ataque porque o **PIN é um elemento imutável que faz parte da configuração do AP**, o invasor pode apenas reutilizar o PIN já recuperado para obter a nova senha.
