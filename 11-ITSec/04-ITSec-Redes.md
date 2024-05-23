@@ -91,7 +91,48 @@
     - Há outro limite chamado ***limite de ativação*** que quando atingido, dispara uma ação pré-configurada, normalmente o bloqueio de tráfego da fonte do ataque identificado, por um período de tempo. 
 
 ### 2.3.1 *Fail2Ban*
-- Um *flood Guard* de código aberto que detecta sinais de um ataque em um sistema e bloqueia outras tentativas do suposto endereço do ataque. 
+- Um *flood Guard* de código aberto que detecta sinais de um ataque em um sistema e bloqueia outras tentativas do suposto endereço do ataque.  
+
+## 2.4 *Packet Sniffing*
+- Ou *Packet Capturing* é o processo de interceptar pacotes de dados em sua totalidade para analisa-los. Por padrão as interfaces de rede e o stack do software de rede em um sistema operacional se comportam como uma interface organizada só aceitando/processando pacotes para o seu endereço de interface *específico*, geralmente identificado por um endereço MAC e se um pacote com um endereço de destino diferente for encontrado, a interface simplesmente descartará o pacote.  Para que se aceite *todos* pacotes, pode se colocar a interface no modo **promíscuo**.
+
+### 2.4.1 **Modo Promiscuo**
+- Modo na qual a interface da rede de Ethernet que **aceitando e processando todos pacote**, ao invés de só aceitar os pacotes destinados ao sistema em si.
+- São necessários privilégios de administrador/root para colocar uma interface no modo promíscuo, mas muitas ferramentas de captura de pacotes já fazem isso pelo usuário.
+- Apesar disso, em casos que se use um *switch* **o único tráfego que você poderia capturar seria o tráfego do seu host ou destinado a ele, impedindo que voce sequer consiga captar o tráfego para outros hosts** se os pacotes não forem enviados para a sua interface em primeiro lugar, sendo assin, o modo promíscuo **não ajudará você a detectá-los**.
+- Switches corporativos têm um recurso chamado **espelhamento** de porta que ajuda nesse tipo de cenário.
+- Modo promiscuo no windows:
+    - https://lifeofageekadmin.com/how-to-manually-change-your-nic-to-promiscuous-mode-on-windows-72008-r2/ 
+- Modo promiscuo no mac:
+    - https://danielmiessler.com/p/entering-promiscuous-mode-os-x/   
+
+### 2.4.2 **Espelhamento de Porta**
+- **Recurso que permite ao switch pegar todos os pacotes de uma porta específica, um intervalo de portas ou toda a VLAN** e os espelhar à uma porta específica do próprio switch permitindo acesso a todos os pacotes que passam de forma mais conveniente e segura.
+    - *Ou seja, re-roteia os pacotes de um lugar para outro.*  
+
+### 2.4.3 **Modo Monitor**
+- Se precisar capturar e analisar **todo** o tráfego wireless que podemos receber na área imediata, podemos colocar nossa interface sem fio no ***modo monitor***. 
+    - ***Esse modo permite fazer uma varredura em todos os canais para conferir todo o tráfego sem fio que está sendo enviado por APs e clientes. Não importa a que redes eles se destinam***, não sendo necessário que o dispositivo cliente esteja associado ou conectado a qualquer rede sem fio. **Para capturar o tráfego sem fio, basta uma interface no modo monitor.**
+- **É importante ressaltar que, se uma rede sem fio estiver criptografada, você ainda poderá capturar os pacotes, mas não conseguirá decodificar as payloads do tráfego sem saber a a senha da rede sem fio.**
+
+### 2.4.4 ***Tcpdump***
+- Utilitário leve e popular baseado em linha de comando que você pode usar para capturar e analisar pacotes, usando a biblioteca ***libcap*** de código aberto, muito conhecida e usada em várias ferramentas de captura de pacotes.
+- Também é compatível com a gravação de capturas de pacotes em um arquivo para análise posterior, compartilhamento ou reprodução do tráfego e permite a leitura de capturas de pacotes a partir de um arquivo.
+- ***O modo de operação padrão do Tcpdump é fornecer uma breve análise de pacotes***, convertendo as principais informações das camadas 3 e acima em formatos legíveis por humanos imprimindo informações sobre cada pacote em uma saída padrão ou diretamente em seu terminal e convertendo endereços IP *de origem e destino* no formato com pontos e 4 partes, com o qual estamos mais acostumados, e mostrando os números de porta que estão sendo usados pelas comunicações.
+    - A primeira informação é bem direta, é um carimbo de data/hora que representa quando o pacote nessa linha foi processado pelo kernel em horário local. 
+    - Em seguida, o protocolo da camada 3 é identificado, como por exemplo o IPV4. 
+    - Depois disso, o quadrante de conexão é exibido. Esse é o endereço de origem, a porta de origem, o endereço de destino e a porta de destino. 
+    - Em seguida, os sinalizadores TCP e o número de sequência TCP são definidos no pacote, se houver algum. Isso é seguido pelo número do ato, pelo tamanho da janela TCP e pelas opções TCP, se houver alguma definida. 
+    - Por fim, temos o tamanho do payload em bytes.
+- O Tcpdump por padrão tentará resolver endereços de host para nomes de host. Ele também substituirá os números de porta por serviços comumente associados que usam essas portas. Você pode substituir esse comportamento com o sinalizador `-n`.
+    - Também é possível visualizar os dados brutos reais que compõem o pacote. Isso é representado como dígitos hexadecimais usando o sinalizador `-x` ou `X` se você quiser o X na interpretação ASCII dos dados.  
+
+#### 2.4.4.1 ***Wireshark*** 
+- ***Ferramenta de captura e análise de pacotes que você pode usar. Mas ele é muito mais avançado quando se trata de análise de aplicativos e pacotes em comparação com o Tcpdump***.
+-  É um utilitário gráfico que também usa a biblioteca libpcap para captura e interpretação de pacotes, mas ele é muito mais extensível quando se trata de análise de protocolos e aplicativos. Embora o Tcpdump possa fazer uma análise básica de alguns tipos de tráfego, como consultas e respostas de DNS,  Wireshark pode decodificar payloads criptografados se a chave de criptografia for conhecida e pode identificar e extrair payloads de dados de transferências de arquivos por meio de protocolos como SMB ou HTTP.
+- A compreensão do Wireshark dos protocolos em nível de aplicativo **se estende até mesmo às suas strings de filtros**. Isso permite regras de filtragem, como encontrar solicitações HTTP com strings específicas no URL, que seriam semelhantes a: `http.request.uri matches "q=wireshark"`.
+    - *Essa string de filtro localizaria os pacotes em nossa captura que contêm uma solicitação de URL, com a string especificada dentro dela. Nesse caso, ele corresponderia a um perímetro de consulta de um URL que procura o Wireshark*.
+-  A profunda compreensão dos protocolos do Wireshark permite a filtragem por protocolos juntamente com seus campos específicos.  
 
 # *Firewalls*
 - Windows
@@ -139,7 +180,7 @@
         3. O AP envia a GTK
         4. O cliente responde com um Ack confirmando a negociação bem-sucedida.
 
-# 4. Fortalecimento de Redes na Prática
+# 4. Fortalecimento de Redes **na Prática**
 - Idealmente se usaria o 802.1X por seu nível elevado de segurança *mas sua complexidade e sobrecarga de gerenciamente, devido à necessiadade de um servidor RADIUS e um backend adicional de autenticação*, o torna impraticável em muitos casos. **Se o EAP-TLS for implementado também**, todos os componentes da infraestrutura de chave pública também serão necessários, aumentando ainda mais a complexidade e a sobrecarga de gerenciamento.
 - **Se o 802.1X for muito complicado para uma empresa, a próxima melhor alternativa seria o WPA2 com o modo AES/CCMP.** 
     - Mas para proteção contra ataques de força bruta ou de tabela arco-íris, deve-se tomar medidas para elevar o nível computacional. **Uma senha longa e complexa que não seria encontrada em um dicionário** aumentaria o tempo e os recursos de que o invasor precisaria para quebrar a senha longa. **Alterar o SSID para algo incomum e exclusivo** também tornaria menos provável o ataque de tabelas arco-íris. Isso exigiria que um invasor fizesse os cálculos por conta própria, aumentando o tempo e os recursos necessários para realizar um ataque.
