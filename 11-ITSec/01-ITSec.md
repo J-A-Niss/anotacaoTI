@@ -118,7 +118,7 @@ Para mais info. sobre prot. antimalware: https://colab.research.google.com/drive
  
 ### 4.2.1.1 ***Comprimento > c0mpl3x1d4d&***
 ```
-Senhas geralmente são compostas por uma combinação de: 56 letras + 10 números + 10 carácteres especiais totalizando 76 possíveis carácteres
+Senhas são compostas por uma combinação de: 56 letras + 10 números + 10 carácteres especiais totalizando 76 possíveis carácteres únicos.
 
 >> senha de 6 carácteres  = 76 x 76 x 76 x 76 x 76 x 76 = 192.699.928.576 possíveis combinações diferentes
 
