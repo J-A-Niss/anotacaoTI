@@ -118,11 +118,11 @@ Para mais info. sobre prot. antimalware: https://colab.research.google.com/drive
  
 ### 4.2.1.1 ***Comprimento > c0mpl3x1d4d&***
 ```
-56 letras + 10 números + 10 carácteres especiais = 76 possíveis carácteres
+Senhas geralmente são compostas por uma combinação de: 56 letras + 10 números + 10 carácteres especiais totalizando 76 possíveis carácteres
 
->> senha de 6 carácteres  = 76 x 76 x 76 x 76 x 76 x 76 = 192.699.928.576 possíveis combinações 
+>> senha de 6 carácteres  = 76 x 76 x 76 x 76 x 76 x 76 = 192.699.928.576 possíveis combinações diferentes
 
-senha de 10 carácteres = 76 x 76 x 76 x 76 x 76 x 76 x 76 x 76 x 76 x 76 = 6.428.888.932.339.941.376 possiveis combinações
+senha de 10 carácteres = 76 x 76 x 76 x 76 x 76 x 76 x 76 x 76 x 76 x 76 = 6.428.888.932.339.941.376 possiveis combinações diferentes
 
 ignorando letras e carácteres especiais:
 
@@ -130,7 +130,8 @@ senha de 6 carácteres  = 56 x 56 x 56 x 56 x 56 x 56 = 30.840.979.456 poss. com
 
 >> senha de 10 carácteres = 56 x 56 x 56 x 56 x 56 x 56 x 56 x 56 x 56 x 56 = 303.305.489.096.114.176 poss. comb. 
 ```
-- **Ou seja; comprimento da senha exponencializa a dificuldade de adivinhação do programa, tornando a senha muito mais segura do que pela complexidade dos carácteres**.
+- ***É inegável que a complexidade é sim um fator no total de combinações possíveis da senha, a tornando mais robusta por consequência, mas ironicamente, um senha mais comprida e com menos carácteres especiais, e por consequencia mais facilmente lembrada, pode ser mais segura.*** 
+    - **Ou seja; comprimento da senha exponencializa a dificuldade de adivinhação do programa, tornando a senha muito mais segura do que pela complexidade dos carácteres**.
 
 ### 4.2.1.2 Captcha
 - Um captcha é um tipo de filtro que tenta distinguir um acesso de um humano do acesso de um robo, usado como um tipo de protetor da senha contra um método de força bruta.  

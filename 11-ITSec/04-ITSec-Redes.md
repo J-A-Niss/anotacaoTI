@@ -134,6 +134,28 @@
     - *Essa string de filtro localizaria os pacotes em nossa captura que contêm uma solicitação de URL, com a string especificada dentro dela. Nesse caso, ele corresponderia a um perímetro de consulta de um URL que procura o Wireshark*.
 -  A profunda compreensão dos protocolos do Wireshark permite a filtragem por protocolos juntamente com seus campos específicos.  
 
+## 2.5 **Detecção e Prevenção de Intrusos**
+- *Intrusion Detection and Prevention Systems*, ou ***IDS/IPS*** são sistemas de monitoramento e análise de tráfego, cujo objetivo é detectar e prevenir acessos de terceiros não autorizados.
+-  Eles procuram comportamentos ou características correspondentes à tráfego malicioso. ***A maior diferença é que o IDS apenas detecta, registra e alerta, e o IPS toma medidas efetivas para prevenção, ajustando regras de firewall automaticamente com intuito de bloquear e elimiar o tráfego mal-intencionado quando for detectado.***
+- *Estes serviços podem ser baseados no host ou na rede.*
+
+## 2.5.1 *Network Intrusion Detection Systems*
+- O mesmo do *IDS* mas baseado em uma rede, geralmente **implementado em algum ponto que possa monitorar toda a rede.**
+    - Uma boa maneira de obter acesso ao tráfego de rede é **usar a funcionalidade de espelhamento de porta**, permitindo que todos os pacotes em uma determinada parte da rede sejam espelhados para outra porta, onde o host do **NIDS** esta conectado, de modo que todos os pacotes sejam escaneados.
+    - *O host do NIDS analisaria esse tráfego ativando o modo promíscuo na porta de análise e a  interface de rede conectada à porta espelho em um switch, podendo ver todos os pacotes transmitidos e realizar análises do tráfego.*
+    - Como a interface é usada para receber pacotes espelhados da rede que gostaríamos de monitorar, **um host NIDS deve ter pelo menos duas interfaces** de rede. *Uma delas é para monitoramento e análise* e a *outra é para conexão à nossa rede para fins de gerenciamento*.
+- O posicionamento de um sistema NIP seria diferente de um NID. **Isso se deve ao fato de um sistema de prevenção ser capaz de agir contra um tráfego suspeito de ser mal-intencionadoe para que um dispositivo NIPS bloqueie nosso tráfego de trabalho de uma ameaça detectada, *ele deve ser colocado em linha com o tráfego que está sendo monitorado.*** Isso significa que o tráfego que está sendo monitorado deve passar pelo dispositivo NIPS.
+    - **Um NIDS é um observador *PASSIVO*, o NIPS é um bloqueador *ATIVO*.**
+- O que um NID faz quando detecta um tráfego malicioso é configuráve mas normalmente o sistema NID ***registraria o evento de detecção com uma captura completa de pacotes do tráfego malicioso***, também notificando a equipe de investigação para que examine o tráfego detectado e, dependendo da gravidade do evento, pode ser desde um e-mail, até um ticket para acompanhamentos e até mesmo acordar alguém no meio da noite.
+    - ***Em geral, esses alertas também incluem informações de referência vinculadas a uma vulnerabilidade conhecida ou mais informações sobre a natureza do alerta para ajudar o investigador a analisar o evento.*** 
+
+## 2.6 ***Assinaturas***
+- *Características exclusivas do tráfego mal-intencionado* **conhecido**,  podendo ser *sequências específicas de pacotes* ou *pacotes com determinados valores específicos, codificados no campo de cabeçalho.*
+    - *Isso permite que os sistemas de detecção e prevenção de intrusões reconheçam com facilidade e rapidez o tráfego ruim conhecido de fontes como botnets, worms e outros vetores de ataque comuns na Internet.*
+- De forma semelhante ao antivírus, *ataques menos comuns ou direcionados podem não ser detectados por um sistema baseado em assinaturas,* **pois talvez não existam assinaturas desenvolvidas para esses casos**.
+- Também é possível criar regras personalizadas para corresponder ao tráfego que pode ser considerado suspeito, mas não necessariamente malicioso. 
+- Se o tráfego for considerado *malicioso*, uma assinatura poderá ser desenvolvida e incorporada ao sistema. 
+
 # *Firewalls*
 - Windows
     - https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc754274(v=ws.11)?redirectedfrom=MSDN  
